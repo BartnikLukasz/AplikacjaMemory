@@ -20,6 +20,7 @@ class User extends Authenticatable
         'nickname',
         'email',
         'password',
+        'position',
     ];
 
     /**
@@ -45,9 +46,9 @@ class User extends Authenticatable
 
     protected $attributes = [
         'role_id' => 1,
-        'position' => 0,
         'ranking_points' => 0,
         'deleted' => 0,
+        'position' => 0,
 
      ];
 
@@ -55,8 +56,21 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function isAdmin(){
+        if($this->role->name == 'ADMINISTRATOR'){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     public function singleGame(){
         return $this->hasMany(SingleGame::class);
+    }
+
+    public function getTotalGames(){
+        return $this->hasMany(SingleGame::class)->whereUserId($this->id)->count();
     }
 
     public function category(){
@@ -65,6 +79,10 @@ class User extends Authenticatable
 
     public function unlockCategory(){
         return $this->hasMany(UnlockCategory::class);
+    }
+
+    public function getTotalUnlockedCategories(){
+        return $this->hasMany(UnlockCategory::class)->whereUserId($this->id)->count();
     }
 
 }

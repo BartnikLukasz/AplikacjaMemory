@@ -1,9 +1,28 @@
+<?php
+    use Illuminate\Support\Facades\Auth;
+?>
+
 <x-app-layout>
 
 <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+            <div >
+            <a class="btn btn-primary" href="{{ route('chooseDifficulty') }}">
+            {{ __('Start') }}
+        </a>
+        <a class="btn btn-primary" href="{{ route('userCategories', Auth::user()->id) }}">
+            {{ __('Własne kategorie') }}
+        </a>
+        <a class="btn btn-primary" href="{{ route('userStatistics', Auth::user()->id) }}">
+            {{ __('Statystyki') }}
+        </a>
+        <a class="btn btn-primary" href="{{ route('settings') }}">
+            {{ __('Ustawienia') }}
+        </a>
+        @if(Auth::user()->isAdmin())
+        <a class="btn btn-primary" href="{{ route('controlPanel') }}">
+            {{ __('Panel administratora') }}
+        </a>
+        @endif
             </div>
 
             <div class="mt-3 space-y-1">

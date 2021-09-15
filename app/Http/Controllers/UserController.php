@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Utilities\StatisticsUtil;
 
 class UserController extends Controller
 {
@@ -17,5 +18,21 @@ class UserController extends Controller
     {
         $users = User::where('position', '>', '0')->orderBy('position', 'asc')->get();
         return view('ranking', compact('users'));
+    }
+
+    public function categories($id){
+        $user = User::find($id);
+        $categories = $user->category();
+        return view('userCategories', compact('categories'));
+    }
+
+    public function statistics($id){
+        $user = User::find($id);
+        $statistics = new StatisticsUtil($user);
+        return view('statistics', compact('statistics'));
+    }
+
+    public function settings(){
+        return view('settings');
     }
 }

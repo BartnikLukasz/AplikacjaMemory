@@ -9,6 +9,8 @@ class UnlockCategory extends Model
 {
     use HasFactory;
 
+    protected $table = 'unlock_category';
+
     public $timestamps = false;
 
     public function category(){

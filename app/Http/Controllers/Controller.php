@@ -17,4 +17,8 @@ class Controller extends BaseController
         return view('ranking', compact('users'));
     }
 
+    public function createInformation(){
+        return view('information');
+    }
+
 }
