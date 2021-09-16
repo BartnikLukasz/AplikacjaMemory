@@ -4,7 +4,7 @@
     <div>
     <ol class="list-unstyled mb-0">
             @foreach ($users as $user)
-          <li>{{$user}}</li>
+          <li>{{$user->nickname}} {{$user->ranking_points}}</li>
           @endforeach
         </ol>
     </div>

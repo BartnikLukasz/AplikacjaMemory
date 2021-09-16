@@ -35,7 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/game','App\Http\Controllers\GameController@startGame')->name('game');
 
     Route::get('/statistics/{id}','App\Http\Controllers\UserController@statistics')->name('userStatistics');
-    Route::get('/categories/{id}','App\Http\Controllers\UserController@categories')->name('userCategories');
+    Route::get('/categories/{id}','App\Http\Controllers\CategoryController@create')->name('userCategories');
+    Route::get('/categories/new','App\Http\Controllers\CategoryController@add')->name('createCategory');
+    Route::get('/categories/edit/{id}','App\Http\Controllers\CategoryController@edit')->name('editCategory');
 
     Route::get('/settings','App\Http\Controllers\UserController@settings')->name('settings');
 

@@ -14,7 +14,7 @@ class Category extends Model
     protected $table = 'category';
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'author');
     }
 
     public function unlockCategory(){
@@ -23,6 +23,10 @@ class Category extends Model
 
     public function picture(){
         return $this->hasMany(Picture::class);
+    }
+
+    public function isReported(){
+        return $this->reported == 1;
     }
 
 }

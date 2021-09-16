@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function categories($id){
         $user = User::find($id);
-        $categories = $user->category();
+        $categories = $user->category()->get();
         return view('userCategories', compact('categories'));
     }
 

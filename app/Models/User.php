@@ -74,7 +74,7 @@ class User extends Authenticatable
     }
 
     public function category(){
-        return $this->hasMany(Category::class);
+        return $this->hasMany(Category::class, 'author');
     }
 
     public function unlockCategory(){
