@@ -8,9 +8,9 @@
             <label for="oldPassword" class="col-md-4 col-form-label text-md-right">{{ __('Obecna nazwa') }}</label>
 
             <div class="col-md-6">
-                <input id="oldPassword" type="text" class="form-control @error('oldPassword') is-invalid @enderror" name="oldPassword" value="{{ old('oldPassword') }}" required autocomplete="oldPassword" autofocus>
+                <input id="oldPassword" type="password" class="form-control @error('oldPassword') is-invalid @enderror" name="oldPassword" value="{{ old('oldPassword') }}" required autocomplete="oldPassword" autofocus>
 
-                @error('login')
+                @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -22,7 +22,7 @@
             <label for="newPassword" class="col-md-4 col-form-label text-md-right">{{ __('Hasło') }}</label>
 
             <div class="col-md-6">
-                <input id="newPassword" type="newPassword" class="form-control @error('newPassword') is-invalid @enderror" name="newPassword" required autocomplete="current-newPassword">
+                <input id="newPassword" type="password" class="form-control @error('newPassword') is-invalid @enderror" name="newPassword" required autocomplete="current-newPassword">
 
                 @error('newPassword')
                     <span class="invalid-feedback" role="alert">

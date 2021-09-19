@@ -33,7 +33,7 @@ class SettingsController extends Controller
         return view('reset');
     }
 
-    public function reset($request){
+    public function reset(Request $request){
         if(SettingsUtil::checkPassword($request->password)){
             SettingsUtil::resetAccount();
         }
@@ -44,7 +44,7 @@ class SettingsController extends Controller
         return view('delete');
     }
 
-    public function delete($request){
+    public function delete(Request $request){
         if(SettingsUtil::checkPassword($request->password)){
             SettingsUtil::deleteAccount();
         }
