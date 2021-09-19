@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use App\Models\User;
 
 class LoginRequest extends FormRequest
 {
@@ -44,6 +45,12 @@ class LoginRequest extends FormRequest
     public function authenticate()
     {
         $this->ensureIsNotRateLimited();
+
+        if(User::isDeleted($this->nickname)){
+            throw ValidationException::withMessages([
+                'nickname' => __('auth.failed'),
+            ]);
+        }
 
         if (! Auth::attempt($this->only('nickname', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());

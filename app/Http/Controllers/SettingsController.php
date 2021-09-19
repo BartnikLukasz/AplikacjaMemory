@@ -48,7 +48,7 @@ class SettingsController extends Controller
         if(SettingsUtil::checkPassword($request->password)){
             SettingsUtil::deleteAccount();
         }
-        return view('settings');
+        return redirect()->route('logoutUser');
     }
 
 
