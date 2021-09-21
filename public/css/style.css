@@ -1,0 +1,163 @@
+:root{
+    --main-color: #12747A;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+h3{
+    font-weight: 400 !important;
+}
+
+.text-decoration-none{
+    color: initial;
+}
+
+.container{
+    min-height: 100vh;
+    min-width: 100vw;
+    background-image: url("../img/background.jpg");
+    background-position: center;
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+
+.title-container:hover{
+    color: #000;
+}
+.title{
+    margin:auto;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 5em;
+    font-family: 'Fredericka the Great', cursive;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+    z-index: -1;
+    transition: all .5s ease-in-out;
+    transform:translateY(-5px);
+    max-width: 30%;
+}
+
+.title:hover{
+    transform: scale(1.02);
+    color:black;
+}
+
+.main-panel{
+    padding: 40px 60px;
+    background-color: #fff;
+    box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+}
+
+.main-panel form label{
+    font-weight: 400;
+    font-size: 1.1em;
+}
+
+.main-panel form input[type=text], .main-panel form input[type=password], .main-panel form input[type=email]{
+    background: #E6E9E6;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    width: 100%;
+    min-width: 220px;
+}
+
+.main-panel form input[type=submit]{
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    margin-left:auto;
+    margin-right: auto;
+    display: block;
+}
+
+.main-panel .register-button{
+    font-size: 1em;
+    align-self: center;
+}
+
+.ranking-list .row{
+    align-items: center;
+}
+
+.ranking-list{
+    list-style: none;
+    counter-reset: item;
+}
+
+.ranking-list li {
+    counter-increment: item;
+    margin-bottom: 5px;
+}
+
+.ranking-list li:before {
+    margin-right: 10px;
+    content: counter(item);
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 1.5em;
+}
+
+.ranking-list li div{
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 1.1em;
+}
+
+.ranking-list li div:last-of-type{
+    color:#351FBC;
+}
+
+.ranking-list li div:last-of-type::after{
+    content: " pkt";
+}
+
+.left-buttons{
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+}
+
+.button{
+    padding: 7px 20px;
+    margin: 10px;
+    background-color: var(--main-color);
+    color: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    min-width: 180px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.3em;
+    transition: all .1s ease-in-out;
+}
+
+.button:hover{
+    background-color: #fff;
+    color: var(--main-color);
+}
+
+.sound-button-container{
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+}
+
+.sound-button{
+    background-color: #fff;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 2.5em;
+    color: var(--main-color);
+    box-shadow: 0px 4px 4px 3px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
