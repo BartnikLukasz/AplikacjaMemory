@@ -13,6 +13,12 @@ class Picture extends Model
 
     protected $table = 'picture';
 
+    protected $fillable = [
+        'link',
+        'word',
+        'category_id',
+    ];
+
     public function category(){
         return $this->belongsTo(Category::class);
     }

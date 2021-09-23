@@ -1,28 +1,40 @@
 <x-app-layout>
     Załącz co najmniej 10 obrazków, dodaj podpisy i nazwę kategorii
     <div>
-    <form>
-    <input type="file" name="my_file[]" accept="image/*" multiple onchange="loadFile(event)">
-</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<form action="{{ route('storePicture') }}" method="POST" enctype="multipart/form-data">
+@csrf
+  <input type="file" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple/>
+  <div id="image_preview">
+@if($category != null)
 @foreach($category->picture()->get() as $image)
-    <img src="{{$image->link}}"/>
+    <img style='height: 100px; width: 100px' src="{{$image->link}}"/>
     {{$image->word}}
 @endforeach
-<img id="output1"/>
-<img id="output2"/>
+@endif
+</div>
+<input type='text' name="title"/>
+<input type="submit" name='submit_image' value="Dodaj obrazki"/>
+ </form>
+<img id="0"/></img>
+<img id="1"/></img>
 <script>
-  var loadFile = function(event) {
-    var output1 = document.getElementById('output1');
-    output1.src = URL.createObjectURL(event.target.files[0]);
-    output1.onload = function() {
-      URL.revokeObjectURL(output1.src) // free memory
-    }
-    var output2 = document.getElementById('output2');
-    output2.src = URL.createObjectURL(event.target.files[1]);
-    output2.onload = function() {
-      URL.revokeObjectURL(output2.src) // free memory
-    }
-  };
+ $(document).ready(function() 
+{ 
+ $('form').ajaxForm(function() 
+ {
+  alert("Uploaded SuccessFully");
+ }); 
+});
+
+function preview_image() 
+{
+ var total_file=document.getElementById("upload_file").files.length;
+ for(var i=0;i<total_file;i++)
+ {
+  $('#image_preview').append("<div><img style='height: 100px; width: 100px' src='"+URL.createObjectURL(event.target.files[i])+"'><br><input type='text' name='words[]'/></div>");
+ }
+}
 </script>
     </div>
     <a class="btn btn-primary" href="{{ route('dashboard') }}">

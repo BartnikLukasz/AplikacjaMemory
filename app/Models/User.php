@@ -49,7 +49,6 @@ class User extends Authenticatable
         'ranking_points' => 0,
         'deleted' => 0,
         'position' => 0,
-
      ];
 
     public function role(){

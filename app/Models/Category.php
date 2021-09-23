@@ -13,6 +13,17 @@ class Category extends Model
 
     protected $table = 'category';
 
+    protected $fillable = [
+        'name',
+        'author',
+    ];
+
+    protected $attributes = [
+        'status' => 1,
+        'reported' => 0,
+     ];
+
+
     public function user(){
         return $this->belongsTo(User::class, 'author');
     }

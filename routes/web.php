@@ -37,9 +37,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/statistics/{id}','App\Http\Controllers\UserController@statistics')->name('userStatistics');
     Route::get('/categories/{id}','App\Http\Controllers\CategoryController@create')->name('userCategories');
     Route::get('/category/{id}','App\Http\Controllers\CategoryController@createOne')->name('category');
-    Route::get('/categories/new','App\Http\Controllers\CategoryController@add')->name('createCategory');
-    Route::get('/categories/edit/{id}','App\Http\Controllers\CategoryController@edit')->name('editCategory');
-    Route::get('/categories/delete/{id}','App\Http\Controllers\CategoryController@delete')->name('deleteCategory');
+    Route::get('/category-new','App\Http\Controllers\CategoryController@add')->name('addCategory');
+    Route::post('/category-new','App\Http\Controllers\CategoryController@store')->name('storePicture');
+    Route::get('/category/edit/{id}','App\Http\Controllers\CategoryController@edit')->name('editCategory');
+    Route::get('/category/delete/{id}','App\Http\Controllers\CategoryController@delete')->name('deleteCategory');
 
     Route::get('/settings','App\Http\Controllers\UserController@settings')->name('settings');
 

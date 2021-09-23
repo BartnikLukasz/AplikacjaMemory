@@ -4,13 +4,11 @@
 <x-app-layout>
     <div>
         @foreach($category->picture()->get() as $picture)
-            {{$picture->link}}
+            <img style='height: 100px; width: 100px' src="{{$picture->link}}"/>
             {{$picture->word}}
             </br>
         @endforeach
     </div>
-    {{ Auth::user()->id }}
-    {{ $category->user_id }}
     @if(Auth::user()->id == $category->author)
     <a class="btn btn-primary" href="{{ route('editCategory', $category->id) }}">
             {{ __('Edytuj kategorię') }}
