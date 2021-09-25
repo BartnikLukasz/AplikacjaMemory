@@ -29,20 +29,34 @@
 
             <a href="{{ route('login') }}" class="title-container text-decoration-none"><h1 class="title">Memory<br>game</h1></a>
 
+            <div class="user-button">
+                <!-- Authentication -->
+                <span class="user-button-text text-end">Witaj <span style="font-weight:500;">{{ Auth::user()->nickname }}</span> !</span>
+                <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <a class="button" href="route('logout')"  
+                                        onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                                            {{ __('Wyloguj się') }}
+                        </a>
+                </form>
+            </div>
+
+
             <div class="main-panel-container d-flex flex-column align-items-center">
                 {{ $slot }}
             </div>
-
 
             {{-- @if (Route::has('instant-game')) --}} <!--Laravel Comment {{-- --}} -->
             <div class="left-buttons d-flex flex-column">
                 <!-- <a class="button" href="{{--{{ route('instant-game') }}--}}"> -->
                 <a class="button" >
-                    Szybka gra
+                    {{ __('Szybka gra') }}
                 </a>
                 {{-- @endif --}}
                 <a class="button" href="{{ route('ranking') }}">
-                    Ranking
+                    {{ __('Ranking') }}
                 </a>
             </div>
             

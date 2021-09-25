@@ -4,45 +4,30 @@
 
 <x-app-layout>
 
-<div class="pt-4 pb-1 border-t border-gray-200">
-            <div >
-            <a class="btn btn-primary" href="{{ route('chooseDifficulty') }}">
-            {{ __('Start') }}
-        </a>
-        <a class="btn btn-primary" href="{{ route('userCategories', Auth::user()->id) }}">
-            {{ __('Własne kategorie') }}
-        </a>
-        <a class="btn btn-primary" href="{{ route('userStatistics', Auth::user()->id) }}">
-            {{ __('Statystyki') }}
-        </a>
-        <a class="btn btn-primary" href="{{ route('settings') }}">
-            {{ __('Ustawienia') }}
-        </a>
-        @if(Auth::user()->isAdmin())
-        <a class="btn btn-primary" href="{{ route('controlPanel') }}">
-            {{ __('Panel administratora') }}
-        </a>
-        @endif
-            </div>
+    <div class="main-panel">
+        <div class="d-flex flex-column">
+            <a class="start-button button" href="{{ route('chooseDifficulty') }}">
+            <i class="bi bi-joystick icon-start"></i><br>{{ __('Start') }}
+            </a>
 
-            <div class="mt-3 space-y-1">
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
+            <a class="button" href="{{ route('userCategories', Auth::user()->id) }}">
+            <i class="bi bi-plus-square icon"></i> <br>{{ __('Własne kategorie') }}
+            </a>
 
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-responsive-nav-link>
+            <a class="button" href="{{ route('userStatistics', Auth::user()->id) }}">
+            <i class="bi bi-graph-up icon"></i><br>{{ __('Statystyki') }}
+            </a>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
-                </div>
-            </div>
+            <a class="button" href="{{ route('settings') }}">
+               <i class="bi bi-sliders icon"></i><br>{{ __('Ustawienia') }}
+            </a>
+
+            @if(Auth::user()->isAdmin())
+            <a class="button" href="{{ route('controlPanel') }}">
+                {{ __('Panel administratora') }}
+            </a>
+            @endif
         </div>
     </div>
+    
 </x-app-layout>

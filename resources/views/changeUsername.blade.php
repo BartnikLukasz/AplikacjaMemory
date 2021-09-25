@@ -1,62 +1,47 @@
 <x-app-layout>
-    <div>
-        Zmiana nazwy użytkownika
-    <form method="POST" action="{{ route('changeUsername') }}">
-        @csrf
 
-        <div class="form-group row">
-            <label for="oldNickname" class="col-md-4 col-form-label text-md-right">{{ __('Obecna nazwa') }}</label>
+    <div class="main-panel">
 
-            <div class="col-md-6">
-                <input id="oldNickname" type="text" class="form-control @error('oldNickname') is-invalid @enderror" name="oldNickname" value="{{ old('oldNickname') }}" required autocomplete="oldNickname" autofocus>
+        <h3 class="mb-3 text-center">{{ __('Zmiana nazwy użytkownika') }}</h3>
 
-                @error('login')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
+        <form method="POST" action="{{ route('changeUsername') }}">
+            @csrf
 
-        <div class="form-group row">
-            <label for="newNickname" class="col-md-4 col-form-label text-md-right">{{ __('Nowa nazwa') }}</label>
+            <label for="oldNickname">{{ __('Obecna nazwa') }}</label><br>
+            <input id="oldNickname" type="text" class="@error('oldNickname') is-invalid @enderror mb" name="oldNickname" value="{{ old('oldNickname') }}" required autocomplete="oldNickname" autofocus><br>
 
-            <div class="col-md-6">
-                <input id="newNickname" type="text" class="form-control @error('newNickname') is-invalid @enderror" name="newNickname" value="{{ old('newNickname') }}" required autocomplete="newNickname" autofocus>
+            @error('login')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+            
+            <label for="newNickname" class="mt-2">{{ __('Nowa nazwa') }}</label><br>
+            <input id="newNickname" type="text" class="@error('newNickname') is-invalid @enderror" name="newNickname" value="{{ old('newNickname') }}" required autocomplete="newNickname"><br>
 
-                @error('login')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div
+            @error('login')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+            
+            <label for="password" class="mt-2">{{ __('Hasło') }}</label><br>
+            <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="current-password"><br>
 
-        <div class="form-group row">
-            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Hasło') }}</label>
+            @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
 
-            <div class="col-md-6">
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+            <input type="submit" value="Zmień nazwę" class="button mt-4">
+                
+        </form>
 
-                @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-
-        <div class="form-group row mb-0">
-            <div class="col-md-8 offset-md-4">
-                <button type="submit" class="btn btn-primary">
-                    {{ __('Zmień nazwę') }}
-                </button>
-            </div>
-        </div>
-    </form>
+        <a class="back-button-container text-center" href="{{ route('settings') }}">
+            <div class="back-button button">{{ __('Powrót') }}</div>
+        </a>
 
     </div>
-    <a class="btn btn-primary" href="{{ route('settings') }}">
-        {{ __('Powrót') }}
-    </a>
+
 </x-app-layuout>

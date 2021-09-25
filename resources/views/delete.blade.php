@@ -1,34 +1,31 @@
 <x-app-layout>
-    <div>
-        Usunięcie osiągnięć konta
-    <form method="POST" action="{{ route('deleteUser') }}">
-        @csrf
-        Aby usunąć konto proszę podać hasło
-        <div class="form-group row">
-            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Hasło') }}</label>
 
-            <div class="col-md-6">
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+    <div class="main-panel">
 
-                @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
+        <h3 class="mb-3 text-center">{{ __('Usunięcie konta') }}</h3>
+            
+        <form method="POST" action="{{ route('deleteUser') }}">
+            @csrf
 
-        <div class="form-group row mb-0">
-            <div class="col-md-8 offset-md-4">
-                <button type="submit" class="btn btn-primary">
-                    {{ __('Usuń konto') }}
-                </button>
-            </div>
-        </div>
-    </form>
+            <p class="text-center">Aby usunąć konto proszę podać hasło</p>
+            
+            <label for="password">{{ __('Hasło') }}</label><br>
+            <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="current-password"><br>
+
+            @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+                
+            <input type="submit" value="Usuń konto" class="button mt-4" onclick="return confirm('UWAGA! Konto zostanie bezpowrotnie usunięte. Kontynuować?')">
+            
+        </form>
+
+        <a class="back-button-container text-center" href="{{ route('settings') }}">
+            <div class="back-button button">{{ __('Powrót') }}</div>
+        </a>
 
     </div>
-    <a class="btn btn-primary" href="{{ route('settings') }}">
-        {{ __('Powrót') }}
-    </a>
+    
 </x-app-layuout>

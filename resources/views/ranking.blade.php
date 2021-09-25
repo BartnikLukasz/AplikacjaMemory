@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <div class="main-panel text-center">
+    <div class="main-panel">
 
         <h3 class="mb-3">Tablica rankingu</h3>
         
@@ -18,8 +18,9 @@
         </ol>
 
         <p style="font-size: 0.9em;">Tablica aktualizuje się o pełnych godzinach</p>
-        <a class="button" href="{{ route('dashboard') }}">
-            {{ __('Powrót') }}
+
+        <a class="back-button-container text-center" href="{{ route('dashboard') }}">
+            <div class="back-button button">{{ __('Powrót') }}</div>
         </a>
             
     </div>

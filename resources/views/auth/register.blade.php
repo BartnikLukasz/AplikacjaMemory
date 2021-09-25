@@ -8,7 +8,7 @@
             @csrf
 
             <label for="email">{{ __('Email') }}</label><br>
-            <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email"><br>
+            <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus><br>
             
             @error('email')
                 <span class="invalid-feedback" role="alert">
@@ -17,7 +17,7 @@
             @enderror
 
             <label for="nickname" class="mt-2">{{ __('Login') }}</label><br>
-            <input id="nickname" type="text" class="@error('nickname') is-invalid @enderror" name="nickname" value="{{ old('nickname') }}" required autocomplete="nickname" autofocus><br>
+            <input id="nickname" type="text" class="@error('nickname') is-invalid @enderror" name="nickname" value="{{ old('nickname') }}" required autocomplete="nickname"><br>
 
             @error('name')
                 <span class="invalid-feedback" role="alert">

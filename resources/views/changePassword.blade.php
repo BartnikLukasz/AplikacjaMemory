@@ -1,48 +1,38 @@
 <x-app-layout>
-    <div>
-        Zmiana hasła
-    <form method="POST" action="{{ route('changePassword') }}">
-        @csrf
 
-        <div class="form-group row">
-            <label for="oldPassword" class="col-md-4 col-form-label text-md-right">{{ __('Obecna nazwa') }}</label>
+    <div class="main-panel">
 
-            <div class="col-md-6">
-                <input id="oldPassword" type="password" class="form-control @error('oldPassword') is-invalid @enderror" name="oldPassword" value="{{ old('oldPassword') }}" required autocomplete="oldPassword" autofocus>
+        <h3 class="mb-3 text-center">{{ __('Zmiana hasła') }}</h3>
+    
+        <form method="POST" action="{{ route('changePassword') }}">
+            @csrf
+            
+            <label for="oldPassword">{{ __('Obecne hasło') }}</label><br>
+            <input id="oldPassword" type="password" class="@error('oldPassword') is-invalid @enderror" name="oldPassword" value="{{ old('oldPassword') }}" required autocomplete="oldPassword" autofocus><br>
 
-                @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
+            @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+            
+            <label for="newPassword" class="mt-2">{{ __('Nowe hasło') }}</label><br>
+            <input id="newPassword" type="password" class="@error('newPassword') is-invalid @enderror" name="newPassword" required autocomplete="current-newPassword"><br>
 
-        <div class="form-group row">
-            <label for="newPassword" class="col-md-4 col-form-label text-md-right">{{ __('Hasło') }}</label>
+            @error('newPassword')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+            
+            <input type="submit" value="Zmień hasło" class="button mt-4">
 
-            <div class="col-md-6">
-                <input id="newPassword" type="password" class="form-control @error('newPassword') is-invalid @enderror" name="newPassword" required autocomplete="current-newPassword">
-
-                @error('newPassword')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-
-        <div class="form-group row mb-0">
-            <div class="col-md-8 offset-md-4">
-                <button type="submit" class="btn btn-primary">
-                    {{ __('Zmień hasło') }}
-                </button>
-            </div>
-        </div>
-    </form>
+        </form>
+    
+        <a class="back-button-container text-center" href="{{ route('settings') }}">
+            <div class="back-button button">{{ __('Powrót') }}</div>
+        </a>
 
     </div>
-    <a class="btn btn-primary" href="{{ route('settings') }}">
-        {{ __('Powrót') }}
-    </a>
+
 </x-app-layuout>
