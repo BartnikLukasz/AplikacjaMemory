@@ -68,8 +68,13 @@ class CategoryController extends Controller
         if(Auth::user()->id != $category->author){
             return view('dashboard');
         }
+        $pictures = Picture::where('category_id', $id)->get();
+        foreach($pictures as $picture){
+            $url = public_path().$picture->link;
+            unlink($url);
+        }
+        Picture::where('category_id', $id)->delete();
         Category::destroy($id);
-        //create(Auth::user()->id);
     }
 }
 function incoming_files() {

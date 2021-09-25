@@ -66,7 +66,7 @@ class User extends Authenticatable
 
     public static function isDeleted($nickname){
         $user = User::where('nickname', $nickname)->first();
-        if($user->deleted == 1){
+        if($user && $user->deleted == 1){
             return true;
         }
         return false;

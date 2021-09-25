@@ -31,6 +31,7 @@
 
             <div class="user-button">
                 <!-- Authentication -->
+                @if(Auth::user())
                 <span class="user-button-text text-end">Witaj <span style="font-weight:500;">{{ Auth::user()->nickname }}</span> !</span>
                 <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -41,6 +42,7 @@
                                             {{ __('Wyloguj się') }}
                         </a>
                 </form>
+                @endif
             </div>
 
 

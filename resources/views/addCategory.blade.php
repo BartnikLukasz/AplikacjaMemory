@@ -4,7 +4,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <form action="{{ route('storePicture') }}" method="POST" enctype="multipart/form-data">
 @csrf
-  <input type="file" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple/>
+  <input type="image" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple/>
   <div id="image_preview">
 @if($category != null)
 @foreach($category->picture()->get() as $image)
