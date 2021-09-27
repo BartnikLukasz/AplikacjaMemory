@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Utilities\SettingsUtil;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\MessageBag;
 
 class SettingsController extends Controller
 {
@@ -12,10 +14,21 @@ class SettingsController extends Controller
     }
 
     public function changeUsername(Request $request){
-        if(SettingsUtil::checkNickname($request->oldNickname) && SettingsUtil::checkPassword($request->password)){
-            SettingsUtil::changeNickname($request->newNickname);
+        $request->validate([
+            'newNickname' => ['required', 'string', 'max:255'],
+            'password' => ['required', Rules\Password::defaults()],
+        ]);
+        if(!SettingsUtil::checkNickname($request->oldNickname)){
+            return back()->withErrors(["oldNickname"=>__('auth.oldNickname')]);
         }
-        return view('settings');
+        if(!SettingsUtil::checkPassword($request->password)){
+            return back()->withErrors(["password"=>__('auth.password')]);
+        }
+        if(!SettingsUtil::changeNickname($request->newNickname)){
+            return back()->withErrors(["newNickname"=>__('auth.newNickname')]);
+        }
+            
+            return view('settings');
     }
 
     public function createChangePassword(){
@@ -23,9 +36,13 @@ class SettingsController extends Controller
     }
 
     public function changePassword(Request $request){
-        if(SettingsUtil::checkPassword($request->oldPassword)){
-            SettingsUtil::changePassword($request->newPassword);
+        $request->validate([
+            'newPassword' => ['required', Rules\Password::defaults()],
+        ]);
+        if(!SettingsUtil::checkPassword($request->oldPassword)){
+            return back()->withErrors(["password"=>__('auth.password')]);
         }
+        SettingsUtil::changePassword($request->newPassword);
         return view('settings');
     }
 
@@ -34,9 +51,10 @@ class SettingsController extends Controller
     }
 
     public function reset(Request $request){
-        if(SettingsUtil::checkPassword($request->password)){
-            SettingsUtil::resetAccount();
+        if(!SettingsUtil::checkPassword($request->password)){
+            return back()->withErrors(["password"=>__('auth.password')]);
         }
+        SettingsUtil::resetAccount();
         return view('settings');
     }
 
@@ -45,9 +63,10 @@ class SettingsController extends Controller
     }
 
     public function delete(Request $request){
-        if(SettingsUtil::checkPassword($request->password)){
-            SettingsUtil::deleteAccount();
+        if(!SettingsUtil::checkPassword($request->password)){
+            return back()->withErrors(["password"=>__('auth.password')]);
         }
+        SettingsUtil::deleteAccount();
         return redirect()->route('logoutUser');
     }
 

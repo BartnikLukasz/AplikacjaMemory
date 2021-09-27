@@ -4,7 +4,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <form action="{{ route('storePicture') }}" method="POST" enctype="multipart/form-data">
 @csrf
-  <input type="image" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple/>
+  <input type="file" id="upload_file" name="upload_file[]" class="@error('image') is-invalid @enderror" onchange="preview_image();" multiple/>
+    @error('image')
+        <span class="invalid-feedback" role="alert">
+            <strong class="bg-light">{{ $message }}</strong>
+        </span>
+    @enderror
   <div id="image_preview">
 @if($category != null)
 @foreach($category->picture()->get() as $image)

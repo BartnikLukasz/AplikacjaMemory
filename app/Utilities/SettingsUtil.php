@@ -21,7 +21,10 @@ class SettingsUtil{
     public static function changeNickname($nickname){
         $user = User::find(Auth::user()->id);
         $user->nickname = $nickname;
-        $user->save();
+        if($user->save()){
+            return true;
+        }
+        return false;
     }
 
     public static function changePassword($password){
