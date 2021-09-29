@@ -8,6 +8,7 @@
 @if($category != null)
 @foreach($category->picture()->get() as $image)
     <img style='height: 100px; width: 100px' src="{{$image->link}}"/>
+    <a href="{{ route('deleteImage', $image->id) }}">Delete image</a>
     {{$image->word}}
 @endforeach
 @endif

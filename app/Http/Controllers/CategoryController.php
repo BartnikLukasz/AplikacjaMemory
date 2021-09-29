@@ -77,6 +77,18 @@ class CategoryController extends Controller
         Category::destroy($id);
         return $this->create(Auth::user()->id);
     }
+
+    public function deleteImage($id){
+        $picture = Picture::find($id);
+        $url = public_path().$picture->link;
+        try {
+            unlink($url);
+        } catch (\Exception $e) {
+
+        }
+        Picture::destroy($id);
+        return $this->edit($picture->category_id);
+    }
 }
 function incoming_files() {
     $files = $_FILES;

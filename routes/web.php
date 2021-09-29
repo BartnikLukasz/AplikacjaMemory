@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/category-new','App\Http\Controllers\CategoryController@store')->name('storePicture');
     Route::get('/category/edit/{id}','App\Http\Controllers\CategoryController@edit')->name('editCategory');
     Route::get('/category/delete/{id}','App\Http\Controllers\CategoryController@delete')->name('deleteCategory');
+    Route::get('/category/delete-image/{id}','App\Http\Controllers\CategoryController@deleteImage')->name('deleteImage');
 
     Route::get('/settings','App\Http\Controllers\UserController@settings')->name('settings');
 
