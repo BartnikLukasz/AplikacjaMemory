@@ -15,7 +15,7 @@
                 </span>
             @enderror
             
-            <label for="newNickname" class="mt-2">{{ __('Nowa nazwa') }}</label><br>
+            <label for="newNickname" class="mt-2">Nowa nazwa</label><br>
             <input id="newNickname" type="text" class="@error('newNickname') is-invalid @enderror" name="newNickname" value="{{ old('newNickname') }}" required autocomplete="newNickname"><br>
 
             @error('newNickname')

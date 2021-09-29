@@ -37,7 +37,7 @@ class CategoryController extends Controller
     public function store(Request $request){
         session_start();
         if(Auth::user()==null){
-            return view('posts');
+            return view('login');
         }
         $category = Category::where('name', $request->title)->first();
         if(!$category){
@@ -47,20 +47,16 @@ class CategoryController extends Controller
             ]);
         }
         $category = Category::where('name', $request->title)->first();
-        $upload = incoming_files();
-        $i = 0;
-        foreach($request->words as $word){
-            $picture = new Picture();
-            $picture->category_id = $category->id;
-            $picture->word = $word;
-            $path = '/pictures/'.$request->title.'_'.$picture->word.'.jpg';
-            $path = str_replace('\\', '/', $path);
-            $picture->link = $path;
-            $picture->save();
-            move_uploaded_file($upload[$i]["tmp_name"], public_path().$path);
-            $i++;
-        }
-        return $this->create(Auth::user()->id);
+        $upload = $_FILES["upload_file"]["tmp_name"];
+        $picture = new Picture();
+        $picture->category_id = $category->id;
+        $picture->word = $request->word;
+        $path = '/pictures/'.$request->title.'_'.$picture->word.'.jpg';
+        $path = str_replace('\\', '/', $path);
+        $picture->link = $path;
+        $picture->save();
+        move_uploaded_file($upload, public_path().$path);
+        return $this->edit($category->id);
     }
 
     public function delete($id){
@@ -71,10 +67,15 @@ class CategoryController extends Controller
         $pictures = Picture::where('category_id', $id)->get();
         foreach($pictures as $picture){
             $url = public_path().$picture->link;
-            unlink($url);
+            try {
+                unlink($url);
+            } catch (\Exception $e) {
+
+            }
         }
         Picture::where('category_id', $id)->delete();
         Category::destroy($id);
+        return $this->create(Auth::user()->id);
     }
 }
 function incoming_files() {
@@ -95,9 +96,10 @@ function incoming_files() {
         }
         $files2 = array_merge($files2,$filesByInput);
     }
-    $files3 = [];
+    /*$files3 = [];
     foreach($files2 as $file) { // let's filter empty & errors
         if (!$file['error']) $files3[] = $file;
-    }
-    return $files3;
+    }*/
+    var_dump($files2);
+    return $files2;
 }
