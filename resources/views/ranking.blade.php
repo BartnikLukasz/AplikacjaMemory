@@ -17,7 +17,7 @@
 
         </ol>
 
-        <p style="font-size: 0.9em;">Tablica aktualizuje się o pełnych godzinach</p>
+        <p style="font-size: 0.9em;">{{ __('Tablica aktualizuje się o pełnych godzinach') }}</p>
 
         <a class="back-button-container text-center" href="{{ route('dashboard') }}">
             <div class="back-button button">{{ __('Powrót') }}</div>

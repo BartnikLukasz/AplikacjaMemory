@@ -77,17 +77,13 @@ h3{
     border-radius: 14px;
 }
 
-.main-panel .icon{
-    font-size: 1.2em;
-}
-
-.main-panel .icon-start{
-    font-size: 1.6em;
-}
-
 .main-panel form label{
     font-weight: 400;
     font-size: 1.1em;
+}
+
+.main-panel form input:focus{
+    outline: none;
 }
 
 .main-panel form input[type=text], .main-panel form input[type=password], .main-panel form input[type=email]{
@@ -97,6 +93,7 @@ h3{
     border-radius: 10px;
     width: 100%;
     min-width: 220px;
+    padding: 2px 8px;
 }
 
 .main-panel form input[type=submit]{
@@ -214,8 +211,106 @@ h3{
 }
 
 /*------------------------------------
+-------Statistics---------------------
+------------------------------------*/
+
+#statistics-panel span{
+    font-size: 1.2em;
+}
+
+/*------------------------------------
 -------Main page---------------------
 ------------------------------------*/
 .start-button{
     padding: 15px 0;
+}
+
+.main-panel .icon{
+    font-size: 1em;
+}
+
+.main-panel .icon-start{
+    font-size: 1.2em;
+}
+
+/*------------------------------------
+-------Choose Difficulty---------------------
+------------------------------------*/
+#choose-difficulty .difficult-button{
+    position:relative;
+    display: inline-block;
+    min-width: 170px;
+    min-height: 150px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    box-shadow: 2px 4px 6px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    transition: all .3s ease-in-out;
+}
+
+#choose-difficulty .difficult-button .main-text{
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    text-shadow: 2px 2px 7px rgba(0,0,0,0.15);
+    transform: translateY(-50%) translateX(-50%);
+    font-size: 1.8em;
+    font-weight: 400;
+}
+
+#choose-difficulty .difficult-button .description{
+    position: absolute;
+    display: block;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-shadow: 2px 2px 7px rgba(0,0,0,0.1);
+}
+
+#choose-difficulty .easy:hover{
+    background: white;
+    color: #25EF39;
+    font-size: 1.05em;
+}
+
+#choose-difficulty .medium:hover{
+    background: white;
+    color: #EFE607;
+    font-size: 1.05em;
+}
+
+#choose-difficulty .hard:hover{
+    background: white;
+    color: #FB5D5D;
+    font-size: 1.05em;
+}
+#choose-difficulty .easy{
+    background-color: #25EF39;
+}
+
+#choose-difficulty .medium{
+    background-color: #EFE607;
+}
+
+#choose-difficulty .hard{
+    background-color: #FB5D5D;
+}
+
+/*------------------------------------
+-------Choose Category---------------------
+------------------------------------*/
+
+#choose-category .one-category{
+    display: block;
+    background-size: cover;
+    min-height: 140px;
+    box-shadow: 2px 4px 6px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;   
+}
+
+#choose-category .category-title{
+    color: #000;
+    text-decoration: none;
 }

@@ -19,7 +19,7 @@
             </a>
 
             <a class="button" href="{{ route('settings') }}">
-               <i class="bi bi-sliders icon"></i><br>{{ __('Ustawienia') }}
+            <i class="bi bi-sliders icon"></i><br>{{ __('Ustawienia') }}
             </a>
 
             @if(Auth::user()->isAdmin())
