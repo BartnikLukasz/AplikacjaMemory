@@ -1,4 +1,10 @@
 <x-app-layout>
+
+<div class="main-panel">
+
+
+</div>
+
     <div>
         Game
         </div>
@@ -6,4 +12,6 @@
             {{ __('Wyjdź z gry') }}
         </a>
     </div>
+
+
 </x-app-layuout>
