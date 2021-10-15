@@ -13,10 +13,11 @@
 
         <p style="font-size: 0.9em;">{{ __('Załącz co najmniej 10 obrazków, dodaj podpisy i nazwę kategorii') }}</p>
 
-        <form action="{{ route('storePicture') }}" method="POST" enctype="multipart/form-data">
+        <form id="categoryForm" action="{{ route('storePicture') }}" method="POST" enctype="multipart/form-data">
         <div class="categories-container">
             <div id="image_preview" class="row">
                 @if($category != null)
+                <input type='hidden' name="oldTitle" class="d-inline" value="{{ $category->name }}" />
                 @foreach($category->picture()->get() as $image)
                     <img style='height: 100px; width: 100px' src="{{$image->link}}"/>
                     <a href="{{ route('deleteImage', $image->id) }}">Delete image</a>
@@ -43,28 +44,25 @@
                     <input type='text' name="title" class="d-inline" placeholder="Nazwa kategorii" @if($category != null) value="{{ $category->name }}" @endif/>
                 </div>
                 <div class="col text-end">
-                    <input type="submit" class="button d-inline add-category-button" name='submit_image' value="Dodaj kategorię"/>
+                    <input type="submit" class="button d-inline add-category-button" name='submit_image' value="Dodaj Obrazek"/>
                 </div>
             </div>
         </form>
 
-
+        @if($category != null)
+            <a class="back-button-container text-center" href="{{ route('deleteCategory', $category->id) }}" >
+                <div class="back-button button">{{ __('Anuluj') }}</div>
+            </a>
+        @else
+            <a class="back-button-container text-center" href="{{ route('userCategories', Auth::user()->id) }}" >
+                <div class="back-button button">{{ __('Anuluj') }}</div>
+            </a>
+        @endif
         <a class="back-button-container text-center" href="{{ route('userCategories', Auth::user()->id) }}">
-            <div class="back-button button">{{ __('Powrót') }}</div>
+            <div class="back-button button">{{ __('Zakończ') }}</div>
         </a>
     </div>
-
-    
-
-        <img id="0"/></img>
-        <img id="1"/></img>
             <script>
-                $(document).ready(function(){ 
-                    $('form').ajaxForm(function(){
-                        alert("Uploaded SuccessFully");
-                    }); 
-                });
-
                 function preview_image() 
                 {
                     var total_file=document.getElementById("upload_file").files.length;
@@ -75,6 +73,4 @@
                     }
                 }
             </script>
-
-    
 </x-app-layout>

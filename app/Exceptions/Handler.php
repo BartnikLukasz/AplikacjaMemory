@@ -34,14 +34,9 @@ class Handler extends ExceptionHandler
      *
      * @return void
      */
-    public function register()
-    {
-        $this->reportable(function (Throwable $e) {
-            //
-        });
-        //TODO naprawa widoku błędów
-        /*$this->renderable(function ($e, $request) {
-            return response()->view('errors.default', [], 500);
-        });*/
-    }
+    //Działający ekran błędów, odkomentować do prezentacji
+    /*
+    public function render($request, Throwable $exception){
+        return response()->view('errors.default', [], 500);
+    }*/
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Picture;
+use DB;
 use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
@@ -39,9 +40,13 @@ class CategoryController extends Controller
         if(Auth::user()==null){
             return view('login');
         }
-        $category = Category::where('name', $request->title)->first();
-        if(!$category){
-            $category = Category::create([
+
+        if(isset($request->oldTitle)){
+            if($request->oldTitle != $request->title){
+                Category::where('name', $request->oldTitle)->update(['name'=>$request->title]);
+            }
+        } else{
+            Category::create([
                 'name' => $request->title,
                 'author' => Auth::user()->id,
             ]);

@@ -48,7 +48,7 @@ class LoginRequest extends FormRequest
 
         if(User::isDeleted($this->nickname)){
             throw ValidationException::withMessages([
-                'nickname' => __('auth.failed'),
+                'login' => __('auth.failed'),
             ]);
         }
 
@@ -56,7 +56,7 @@ class LoginRequest extends FormRequest
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'nickname' => __('auth.failed'),
+                'login' => __('auth.failed'),
             ]);
         }
 
@@ -81,7 +81,7 @@ class LoginRequest extends FormRequest
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'nickname' => trans('auth.throttle', [
+            'login' => trans('auth.throttle', [
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),
