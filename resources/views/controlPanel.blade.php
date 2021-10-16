@@ -6,58 +6,9 @@
     $categories = Category::orderBy('id', 'asc')->get();
 ?>
 <x-app-layout>
-    <div>
-        Ustawienia
-    <a class="btn btn-primary"">
-        {{ __('Informacje o użytkownikach') }}
-    </a>
-    <a class="btn btn-primary"">
-        {{ __('Zarządzanie użytkownikami') }}
-    </a>
-    <a class="btn btn-primary"">
-        {{ __('Ustawienia punktacji') }}
-    </a>
-    <a class="btn btn-primary"">
-        {{ __('Zarządzanie kategoriami') }}
-    </a>
-    <a class="btn btn-primary"">
-        {{ __('Zgłoszenia kategorii') }}
-    </a>
-    </div>
-    <div id="users">
-        Informacje o użytkownikach</br>
-        <table>
-            <tr>
-                <th>
-                    Id
-                </th>
-                <th>
-                    Nazwa
-                </th>
-                <th>
-                    E-mail
-                </th>
-                <th>
-                    Data dołączenia
-                </th>
-            </tr>
-            @foreach($users as $user)
-            <tr>
-                <td>
-                    {{ $user->id; }}
-                </td>
-                <td>
-                {{ $user->nickname; }}
-                </td>
-                <td>
-                {{ $user->email; }}
-                </td>
-                <td>
-                {{ $user->created_at; }}
-                </td>
-            </tr>
-            @endforeach
-        </table>
+@include('controlPanelMenu')
+    <div class="control-panel">
+        @section('table')
     </div>
     <div id="categories" >
         Informacje o kategoriach</br>

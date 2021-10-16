@@ -27,6 +27,9 @@ Route::get('/dashboard', function () {
 
 Route::middleware('admin')->group(function () {
     Route::get('/control-panel', 'App\Http\Controllers\AdminController@create')->name('controlPanel');
+    Route::get('/control-panel-users', 'App\Http\Controllers\AdminController@createUsersView')->name('controlPanelUsers');
+    Route::get('/control-panel-categories', 'App\Http\Controllers\AdminController@createCategoriesView')->name('controlPanelCategories');
+    Route::get('/control-panel-reported-categories', 'App\Http\Controllers\AdminController@createReportedCategoriesView')->name('controlPanelReportedCategories');
 });
 
 Route::middleware('auth')->group(function () {

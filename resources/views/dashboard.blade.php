@@ -23,7 +23,7 @@
             </a>
 
             @if(Auth::user()->isAdmin())
-            <a class="button" href="{{ route('controlPanel') }}">
+            <a class="button" href="{{ route('controlPanelUsers') }}">
                 {{ __('Panel administratora') }}
             </a>
             @endif
