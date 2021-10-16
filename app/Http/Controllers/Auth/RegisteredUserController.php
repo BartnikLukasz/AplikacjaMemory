@@ -40,19 +40,25 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $position = User::orderBy('position', 'desc')->first()->position + 1;
-
-        $user = User::create([
-            'nickname' => $request->nickname,
-            'email' => $request->email,
-            'position' => $position,
-            'password' => Hash::make($request->password),
-        ]);
+        $user = $this->createUser($request);
 
         event(new Registered($user));
 
         Auth::login($user);
 
         return redirect()->route('dashboard');
+    }
+
+    private function createUser($request){
+
+        $position = User::orderBy('position', 'desc')->first()->position + 1;
+
+        return User::create([
+            'nickname' => $request->nickname,
+            'email' => $request->email,
+            'position' => $position,
+            'password' => Hash::make($request->password),
+        ]);
+
     }
 }
