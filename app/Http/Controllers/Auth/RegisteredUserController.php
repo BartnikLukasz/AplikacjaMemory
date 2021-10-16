@@ -9,6 +9,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
@@ -39,13 +40,14 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $position = User::orderBy('position', 'desc')->first()->position + 1;
+
         $user = User::create([
             'nickname' => $request->nickname,
             'email' => $request->email,
-            'position' => User::count()+1,
+            'position' => $position,
             'password' => Hash::make($request->password),
         ]);
-
 
         event(new Registered($user));
 
