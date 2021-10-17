@@ -44,23 +44,19 @@ class LoginRequest extends FormRequest
      */
     public function authenticate()
     {
-        $this->ensureIsNotRateLimited();
 
         if(User::isDeleted($this->nickname)){
             throw ValidationException::withMessages([
-                'login' => __('auth.failed'),
+                'login' => __('auth.deleted'),
             ]);
         }
 
         if (! Auth::attempt($this->only('nickname', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
                 'login' => __('auth.failed'),
             ]);
         }
-
-        RateLimiter::clear($this->throttleKey());
     }
 
     /**

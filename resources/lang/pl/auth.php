@@ -18,5 +18,6 @@ return [
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'oldNickname' => 'oldNicknamePL',
     'newNickname' => 'oldNicknamePL',
+    'deleted' => 'Użytkownik z tym loginem został usunięty.',
 
 ];
