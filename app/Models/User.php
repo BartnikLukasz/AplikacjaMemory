@@ -73,6 +73,10 @@ class User extends Authenticatable
         return false;
     }
 
+    public static function isNameTaken($nickname){
+        return User::where('nickname', $nickname)->exists();
+    }
+
     public function singleGame(){
         return $this->hasMany(SingleGame::class);
     }

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
+use Illuminate\Validation\ValidationException;
 
 class RegisteredUserController extends Controller
 {
@@ -40,6 +41,12 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        if(User::isNameTaken($request->nickname)){
+            throw ValidationException::withMessages([
+                'nickname' => __('auth.nicknameTaken'),
+            ]);
+        }
+
         $user = $this->createUser($request);
 
         event(new Registered($user));
@@ -59,6 +66,5 @@ class RegisteredUserController extends Controller
             'position' => $position,
             'password' => Hash::make($request->password),
         ]);
-
     }
 }
