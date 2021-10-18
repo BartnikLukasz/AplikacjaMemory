@@ -4,8 +4,12 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 
+                
                 <label for="nickname">{{ __('Login') }}</label><br>
                 <input id="nickname" type="text" class=" @error('nickname') is-invalid @enderror" name="nickname" value="{{ old('nickname') }}" required autocomplete="nickname" autofocus><br>
+                
+                <label for="password" class="mt-2">{{ __('Hasło') }}</label><br>
+                <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="current-password"><br>
                 
                 @error('login')
                     <span class="invalid-feedback" role="alert">
@@ -13,9 +17,6 @@
                     </span>
                 @enderror
 
-                <label for="password" class="mt-2">{{ __('Hasło') }}</label><br>
-                <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="current-password"><br>
-                
                 @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

@@ -36,16 +36,10 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nickname' => ['required', 'string', 'max:255'],
+            'nickname' => ['required', 'string', 'max:255', 'unique:user'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:user'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
-        if(User::isNameTaken($request->nickname)){
-            throw ValidationException::withMessages([
-                'nickname' => __('auth.nicknameTaken'),
-            ]);
-        }
 
         $user = $this->createUser($request);
 

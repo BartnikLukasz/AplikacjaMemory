@@ -1,7 +1,7 @@
 <x-guest-layout>
 
     <!-- Validation Errors -->
-    <x-auth-validation-errors class="mb-4" :errors="$errors" />
+    <!-- <x-auth-validation-errors class="mb-4" :errors="$errors" /> -->
 
     <div class="main-panel">
         <form method="POST" action="{{ route('register') }}">
@@ -19,7 +19,7 @@
             <label for="nickname" class="mt-2">{{ __('Login') }}</label><br>
             <input id="nickname" type="text" class="@error('nickname') is-invalid @enderror" name="nickname" value="{{ old('nickname') }}" required autocomplete="nickname"><br>
 
-            @error('name')
+            @error('nickname')
                 <span class="invalid-feedback" role="alert">
                     <strong class="bg-light">{{ $message }}</strong>
                 </span>

@@ -13,11 +13,12 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.PL',
-    'password' => 'The provided password is incorrect.PL',
+    'failed' => 'Niepoprawny login lub hasło użytkownika.',
+    'password' => 'Hasło użytkownika jest nieprawidłowe.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'oldNickname' => 'oldNicknamePL',
     'newNickname' => 'oldNicknamePL',
     'deleted' => 'Użytkownik z tym loginem został usunięty.',
+    'nicknameTaken' => 'Ten login jest już zajęty',
 
 ];
