@@ -18,5 +18,6 @@ return [
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'oldNickname' => 'oldNickname',
     'newNickname' => 'oldNickname',
+    'nicknameTaken' => 'This login is already used.',
 
 ];
