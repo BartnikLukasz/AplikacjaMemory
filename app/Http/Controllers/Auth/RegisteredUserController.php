@@ -52,7 +52,14 @@ class RegisteredUserController extends Controller
 
     private function createUser($request){
 
-        $position = User::orderBy('position', 'desc')->first()->position + 1;
+        $position = User::orderBy('position', 'desc')->first()->position;
+
+        if($position){
+            $position++;
+        }
+        else{
+            $position = 1;
+        }
 
         return User::create([
             'nickname' => $request->nickname,
