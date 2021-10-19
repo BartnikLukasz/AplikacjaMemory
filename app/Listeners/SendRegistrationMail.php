@@ -27,6 +27,6 @@ class SendRegistrationMail
      */
     public function handle($event)
     {
-        Mail::to($event->user->email)->send(new Welcome());
+        Mail::to($event->user->email)->send(new Welcome($event->user->nickname));
     }
 }
