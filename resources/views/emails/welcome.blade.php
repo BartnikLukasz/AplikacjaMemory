@@ -1,1 +1,1 @@
-<h1>Witaj</h1>
+<h1>Witaj {{$nickname}}</h1>
