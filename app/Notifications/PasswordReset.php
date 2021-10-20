@@ -12,15 +12,17 @@ class PasswordReset extends Notification
     use Queueable;
 
     public $token;
+    public $nickname;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($token)
+    public function __construct($token, $nickname)
     {
         $this->token = $token;
+        $this->nickname = $nickname;
     }
 
     /**
@@ -49,7 +51,7 @@ class PasswordReset extends Notification
                     ->line('Thank you for using our application!');*/
 
         return (new MailMessage)->view(
-            'emails.resetPassword', ['url' => $url]);
+            'emails.resetPassword', ['url' => $url, 'nickname' => $this->nickname]);
     }
 
     /**
