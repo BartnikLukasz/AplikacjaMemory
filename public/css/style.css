@@ -402,6 +402,94 @@ h3{
 }
 
 /*------------------------------------
+-------Game------------------------
+------------------------------------*/
+.game-container{
+    width: 80%;
+    height: 60vh;
+}
+
+.game-container-row{
+    height: 100%;
+}
+
+.game-container .category-row{
+    height: 20%;
+    background-color: #fff;
+    margin: -10px 20px 20px 20px;
+}
+
+.game-container .points-row{
+    height: 80%;
+    background-color: #fff;
+    margin: 0 20px;
+}
+
+.game-container .card-container{
+    background-color: #fff;
+    height: 100%;
+}
+
+.game-container .card-row{
+    height: 33.3%;
+}
+
+.game-container .game-card{
+    height: 100%;
+    border:1px solid black;
+}
+
+/*card*/
+.card-1{
+    color: yellow;
+}
+
+.card-2{
+    color: red;
+}
+
+.card-3{
+    color: purple;
+}
+
+.card-4{
+    color: blue;
+}
+
+.card-5{
+    color: orange;
+}
+
+.card-6{
+    color: blue;
+}
+
+.card-7{
+    color: yellow;
+}
+
+.card-8{
+    color: pink;
+}
+
+.card-9{
+    color: purple;
+}
+
+.card-10{
+    color: red;
+}
+
+.card-11{
+    color: pink;
+}
+
+.card-12{
+    color: orange;
+}
+
+
+/*------------------------------------
 -------Errors------------------------
 ------------------------------------*/
 .invalid-feedback{ 

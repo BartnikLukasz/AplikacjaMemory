@@ -1,17 +1,58 @@
 <x-app-layout>
+<style>
+    .left-buttons{
+        display: none !important;
+    }
+</style>
 
-<div class="main-panel">
+    <div class="game-container">
+        <div class="row game-container-row">
+            <div class="col-3">
+                <div class="row category-row main-panel">
+                    <div class="col-12">
+                        <h4 class="text-uppercase">{{ __('Kategoria:') }}</h4>
 
+                    </div>
+                </div>
+                <div class="row points-row main-panel">
+                    <div class="col-12">
 
-</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="card-container main-panel">
+                    <div class="row card-row">
+                        <div class="col-3 game-card card-1"></div>
+                        <div class="col-3 game-card card-2"></div>
+                        <div class="col-3 game-card card-3"></div>
+                        <div class="col-3 game-card card-4"></div>
+                    </div>
 
-    <div>
-        Game
+                    <div class="row card-row">
+                        <div class="col-3 game-card card-5"></div>
+                        <div class="col-3 game-card card-6"></div>
+                        <div class="col-3 game-card card-7"></div>
+                        <div class="col-3 game-card card-8"></div>
+                    </div>
+
+                    <div class="row card-row">
+                        <div class="col-3 game-card card-9"></div>
+                        <div class="col-3 game-card card-10"></div>
+                        <div class="col-3 game-card card-11"></div>
+                        <div class="col-3 game-card card-12"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <a class="btn btn-primary" href="{{ route('dashboard') }}">
-            {{ __('Wyjdź z gry') }}
-        </a>
     </div>
+
+
+
+<a class="back-button-container text-center text-decoration-none" href="{{ route('dashboard') }}">
+    <div class="back-button button">{{ __('Wyjdź z gry') }}</div>
+</a>
+
 
 
 </x-app-layuout>
