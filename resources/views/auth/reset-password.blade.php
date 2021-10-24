@@ -1,13 +1,9 @@
 <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
 
+    <div class="main-panel">
+        
         <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <!-- <x-auth-validation-errors class="mb-4" :errors="$errors" /> -->
 
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
@@ -15,34 +11,35 @@
             <!-- Password Reset Token -->
             <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
+        
+            <label for="email">{{ __('Email') }}</label><br>
+            <input id="email" type="email" name="email" value="{{ old('email', $request->email) }}" required autocomplete="email" autofocus><br>
+    
+            @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong class="bg-light">{{ $message }}</strong>
+                </span>
+            @enderror
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
-            </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+            <label for="password" class="mt-2">{{ __('Hasło') }}</label><br>
+            <input id="password" type="password" name="password" required><br>
 
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required />
-            </div>
+            @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong class="bg-light">{{ $message }}</strong>
+                </span>
+            @enderror
 
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
 
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                    type="password"
-                                    name="password_confirmation" required />
-            </div>
+            <label for="password_confirmation" class="mt-2">{{ __('Powtórz hasło') }}</label><br>
+            <input id="password_confirmation" type="password" name="password_confirmation" required><br>
 
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Reset Password') }}
-                </x-button>
-            </div>
+            
+            <input type="submit" value="Zresetuj hasło" class="button mt-4">
+            
         </form>
-    </x-auth-card>
+
+    </div>
+    
 </x-guest-layout>
