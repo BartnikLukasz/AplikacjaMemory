@@ -16,7 +16,7 @@ return [
     'reset' => 'Twoje hasło zostało odzyskane.',
     'sent' => 'Link do odzyskania hasła został wysłany na twój email.',
     'throttled' => 'Please wait before retrying.',
-    'token' => 'This password reset token is invalid.',
+    'token' => 'Podano niepoprawny adres email.',
     'user' => "Nie znaleziono użytkownika z podanym adresem email.",
 
 ];
