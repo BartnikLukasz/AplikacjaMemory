@@ -16,6 +16,9 @@
                 <th>
                     Data dołączenia
                 </th>
+                <th>
+                    Opcje
+                </th>
             </tr>
             @foreach($users as $user)
             <tr>
@@ -30,6 +33,11 @@
                 </td>
                 <td>
                 {{ $user->created_at; }}
+                </td>
+                <td>
+                    <a href="{{ route('controlPanelRenameUser', $user->id) }}" >Rename</a>
+                    <a href="{{ route('controlPanelChangeUserPassword', $user->id) }}" >Change password</a>
+                    <a href="{{ route('controlPanelDeleteUser', $user->id) }}" >Delete</a>
                 </td>
             </tr>
             @endforeach

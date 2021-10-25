@@ -1,42 +1,41 @@
 <x-app-layout>
     @include('panel.controlPanelMenu')
     <div class="control-panel">
-    Zgłoszone kategorie</br>
+    Informacje o kategoriach</br>
         <table>
             <tr>
                 <th>
                     Id
                 </th>
                 <th>
-                    Nazwa
+                    Poziom
                 </th>
                 <th>
-                    Autor
+                    Ilość obrazków
                 </th>
                 <th>
-                    Status
+                    Mnożnik
                 </th>
                 <th>
                     Opcje
                 </th>
             </tr>
-            @foreach($reportedCategories as $category)
+            @foreach($levelDifficulties as $levelDifficulty)
             <tr>
                 <td>
-                    {{ $category->id; }}
+                    {{ $levelDifficulty->id; }}
                 </td>
                 <td>
-                {{ $category->name; }}
+                {{ $levelDifficulty->level; }}
                 </td>
                 <td>
-                {{ $category->user->nickname; }}
+                {{ $levelDifficulty->amount_of_pictures; }}
                 </td>
                 <td>
-                {{ $category->status; }}
+                {{ $levelDifficulty->multiplier; }}
                 </td>
                 <td>
-                    <a href="{{ route('editCategory', $category->id) }}" >Edit</a>
-                    <a href="{{ route('deleteCategory', $category->id) }}" >Delete</a>
+                    <a href="{{ route('controlPanelChangeLevel', $levelDifficulty->id) }}" >Edit</a>
                 </td>
             </tr>
             @endforeach

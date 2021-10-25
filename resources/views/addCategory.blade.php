@@ -48,19 +48,21 @@
                 </div>
             </div>
         </form>
-
-        @if($category != null)
-            <a class="back-button-container text-center" href="{{ route('deleteCategory', $category->id) }}" >
-                <div class="back-button button">{{ __('Anuluj') }}</div>
-            </a>
+        @if($category)
+        <a class="back-button-container text-center" href="{{ route('cancelCategoryCreation', $category->id) }}" >
+            <div class="back-button button">{{ __('Anuluj') }}</div>
+        </a>
+        <a class="back-button-container text-center" href="{{ route('endCategoryCreation', $category->id) }}">
+            <div class="back-button button">{{ __('Zakończ') }}</div>
+        </a>
         @else
-            <a class="back-button-container text-center" href="{{ route('userCategories', Auth::user()->id) }}" >
-                <div class="back-button button">{{ __('Anuluj') }}</div>
-            </a>
-        @endif
+        <a class="back-button-container text-center" href="{{ route('userCategories', Auth::user()->id) }}" >
+            <div class="back-button button">{{ __('Anuluj') }}</div>
+        </a>
         <a class="back-button-container text-center" href="{{ route('userCategories', Auth::user()->id) }}">
             <div class="back-button button">{{ __('Zakończ') }}</div>
         </a>
+        @endif
     </div>
             <script>
                 function preview_image() 

@@ -16,6 +16,9 @@
                 <th>
                     Status
                 </th>
+                <th>
+                    Opcje
+                </th>
             </tr>
             @foreach($categories as $category)
             <tr>
@@ -30,6 +33,10 @@
                 </td>
                 <td>
                 {{ $category->status; }}
+                </td>
+                <td>
+                    <a href="{{ route('editCategory', $category->id) }}" >Edit</a>
+                    <a href="{{ route('deleteCategory', $category->id) }}" >Delete</a>
                 </td>
             </tr>
             @endforeach

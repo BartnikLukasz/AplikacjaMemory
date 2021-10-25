@@ -29,7 +29,7 @@ class CategoryController extends Controller
 
     public function edit($id){
         $category = Category::find($id);
-        if(Auth::user()->id != $category->author){
+        if((Auth::user()->id != $category->author) && !Auth::user()->isAdmin()){
             return view('dashboard');
         }
         return view('addCategory', compact('category'));
@@ -66,7 +66,7 @@ class CategoryController extends Controller
 
     public function delete($id){
         $category = Category::find($id);
-        if(Auth::user()->id != $category->author){
+        if((Auth::user()->id != $category->author) && (!Auth::user()->isAdmin())){
             return view('dashboard');
         }
         $pictures = Picture::where('category_id', $id)->get();
@@ -94,29 +94,25 @@ class CategoryController extends Controller
         Picture::destroy($id);
         return $this->edit($picture->category_id);
     }
-}
-function incoming_files() {
-    $files = $_FILES;
-    $files2 = [];
-    foreach ($files as $input => $infoArr) {
-        $filesByInput = [];
-        foreach ($infoArr as $key => $valueArr) {
-            if (is_array($valueArr)) { // file input "multiple"
-                foreach($valueArr as $i=>$value) {
-                    $filesByInput[$i][$key] = $value;
-                }
-            }
-            else { // -> string, normal file input
-                $filesByInput[] = $infoArr;
-                break;
-            }
+
+    public function endCreation($id){
+        if(Auth::user()->isAdmin()){
+            $categories = Category::orderBy('id', 'asc')->get();
+            return view("panel.controlPanelCategories", compact('categories'));
         }
-        $files2 = array_merge($files2,$filesByInput);
+        else{
+            return $this->create(Auth::user()->id);
+        }
     }
-    /*$files3 = [];
-    foreach($files2 as $file) { // let's filter empty & errors
-        if (!$file['error']) $files3[] = $file;
-    }*/
-    var_dump($files2);
-    return $files2;
+
+    public function cancelCreation($id){
+        $this->delete($id);
+        if(Auth::user()->isAdmin()){
+            $categories = Category::orderBy('id', 'asc')->get();
+            return view("panel.controlPanelCategories", compact('categories'));
+        }
+        else{
+            return $this->create(Auth::user()->id);
+        }
+    }
 }

@@ -27,9 +27,22 @@ Route::get('/dashboard', function () {
 
 Route::middleware('admin')->group(function () {
     Route::get('/control-panel', 'App\Http\Controllers\AdminController@create')->name('controlPanel');
+
     Route::get('/control-panel-users', 'App\Http\Controllers\AdminController@createUsersView')->name('controlPanelUsers');
+    Route::get('/control-panel-users-rename/{id}', 'App\Http\Controllers\AdminController@createRenameUserView')->name('controlPanelRenameUser');
+    Route::post('/control-panel-users-rename', 'App\Http\Controllers\AdminController@renameUser')->name('adminRenameUser');
+    Route::get('/control-panel-users-password/{id}', 'App\Http\Controllers\AdminController@createChangeUserPasswordView')->name('controlPanelChangeUserPassword');
+    Route::post('/control-panel-users-password', 'App\Http\Controllers\AdminController@changeUserPassword')->name('adminChangeUserPassword');
+    Route::get('/control-panel-users-delete/{id}', 'App\Http\Controllers\AdminController@deleteUser')->name('controlPanelDeleteUser');
+
     Route::get('/control-panel-categories', 'App\Http\Controllers\AdminController@createCategoriesView')->name('controlPanelCategories');
+
     Route::get('/control-panel-reported-categories', 'App\Http\Controllers\AdminController@createReportedCategoriesView')->name('controlPanelReportedCategories');
+
+    Route::get('control-panel-levelDifficulties', 'App\Http\Controllers\AdminController@createLevelDifficultiesView')->name('controlPanelLevelDifficulties');
+    Route::get('control-panel-levelDifficulty/{id}', 'App\Http\Controllers\AdminController@createChangeLevelView')->name('controlPanelChangeLevel');
+    Route::post('control-panel-levelDifficulty', 'App\Http\Controllers\AdminController@changeLevelDifficulty')->name('changeLevelDifficulty');
+
 });
 
 Route::middleware('auth')->group(function () {
@@ -45,6 +58,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/category/edit/{id}','App\Http\Controllers\CategoryController@edit')->name('editCategory');
     Route::get('/category/delete/{id}','App\Http\Controllers\CategoryController@delete')->name('deleteCategory');
     Route::get('/category/delete-image/{id}','App\Http\Controllers\CategoryController@deleteImage')->name('deleteImage');
+    Route::get('/category/cancel/{id}','App\Http\Controllers\CategoryController@cancelCreation')->name('cancelCategoryCreation');
+    Route::get('/category/end/{id}','App\Http\Controllers\CategoryController@endCreation')->name('endCategoryCreation');
+
 
     Route::get('/settings','App\Http\Controllers\UserController@settings')->name('settings');
 
