@@ -12,10 +12,11 @@ class GameController extends Controller
     public function startGame($id, $level){
         $levelDifficulty = LevelDifficulty::where('level', $level)->first();
         $category = Category::find($id);
+        $categoryName = $category->name;
         $pictures = Picture::where('category_id', $id)->get()->toArray();
         shuffle($pictures);
         array_slice($pictures, 0, $levelDifficulty->amountOfPictures);
-        return view('game', compact('pictures'));
+        return view('game', compact('pictures', 'categoryName', 'level'));
     }
 
     public function chooseCategory($difficulty){
