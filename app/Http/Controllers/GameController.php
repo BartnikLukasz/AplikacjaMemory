@@ -4,16 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\LevelDifficulty;
+use App\Models\Picture;
 
 class GameController extends Controller
 {
-    public function startGame(){
-        return view(('game'));
+    public function startGame($id, $level){
+        $levelDifficulty = LevelDifficulty::where('level', $level)->first();
+        $category = Category::find($id);
+        $pictures = Picture::where('category_id', $id)->get()->toArray();
+        shuffle($pictures);
+        array_slice($pictures, 0, $levelDifficulty->amountOfPictures);
+        return view('game', compact('pictures'));
     }
 
-    public function chooseCategory(){
+    public function chooseCategory($difficulty){
         $categories = Category::orderBy('id', 'asc')->get();
-        return view('chooseCategory', compact('categories'));
+        $level = $difficulty;
+        return view('chooseCategory', compact('categories', 'level'));
     }
 
     public function chooseDifficulty(){

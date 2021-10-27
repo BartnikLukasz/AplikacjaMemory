@@ -1,4 +1,10 @@
 <x-app-layout>
+    <?php
+        $pictures = array_merge($pictures, $pictures);
+        shuffle($pictures);
+        $i = 0;
+        $link = "link";
+    ?>
 <style>
     .left-buttons{
         display: none !important;
@@ -20,7 +26,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-9">
+            <!--<div class="col-9">
                 <div class="card-container main-panel">
                     <div class="row card-row">
                         <div class="col-3 game-card card-1"></div>
@@ -42,6 +48,20 @@
                         <div class="col-3 game-card card-11"></div>
                         <div class="col-3 game-card card-12"></div>
                     </div>
+                </div>
+            </div> -->
+            <div class="col-9">
+                <div class="card-container main-panel">
+                    @if(count($pictures) == 6)
+                        @for ($k = 0; $k < 2; $k++)
+                            <div class="row card-row">
+                                @for ($j = 0; $j < 3; $j++)
+                                    <div class="col-3 game-card card-{{ $i }}" style="background-image: url('{{asset($pictures[$i][$link])}}')"></div>
+                                    <?php $i++; ?>
+                                @endfor
+                            </div>
+                        @endfor
+                    @endif
                 </div>
             </div>
         </div>

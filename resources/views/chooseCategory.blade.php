@@ -11,7 +11,7 @@
                 
                 @foreach ($categories as $category)
                 <div class="col-2 mb-2">
-                    <a href="{{ route('game') }}" class="text-decoration-none">
+                    <a href="{{ route('startGame', [$category->id, $level]) }}" class="text-decoration-none">
                         <div class="one-category" style="background-image: url('{{asset('img/background.jpg')}}');"></div>
                         <p class="category-title text-center mt-2">{{ $category->name }}</p>
                     </a>
