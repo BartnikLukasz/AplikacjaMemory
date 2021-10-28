@@ -35,32 +35,46 @@ class CategoryController extends Controller
         return view('addCategory', compact('category'));
     }
 
-    public function store(Request $request){
+    public function store($upload, $categoryId, $categoryTitle, $word, $i){
+        if(Picture::where('word', $word)->where('category_id', $categoryId)->exists()) return;
         session_start();
+        $picture = new Picture();
+        $picture->category_id = $categoryId;
+        $picture->word = $word;
+        $path = '/pictures/'.$categoryTitle.'_'.$word.'.jpg';
+        $path = str_replace('\\', '/', $path);
+        $picture->link = $path;
+        $picture->save();
+        move_uploaded_file($upload[$i]["tmp_name"], public_path().$path);
+        session_destroy();
+    }
+
+    public function addCategory(Request $request){
         if(Auth::user()==null){
             return view('login');
         }
-
+        $category = null;
         if(isset($request->oldTitle)){
             if($request->oldTitle != $request->title){
-                Category::where('name', $request->oldTitle)->update(['name'=>$request->title]);
+                $category = Category::where('name', $request->oldTitle)->update(['name'=>$request->title]);
             }
-        } else{
-            Category::create([
+            else{
+                $category = Category::where('name', $request->oldTitle)->first();
+            }
+        }
+        else{
+            $category = Category::firstOrCreate([
                 'name' => $request->title,
                 'author' => Auth::user()->id,
             ]);
         }
         $category = Category::where('name', $request->title)->first();
-        $upload = $_FILES["upload_file"]["tmp_name"];
-        $picture = new Picture();
-        $picture->category_id = $category->id;
-        $picture->word = $request->word;
-        $path = '/pictures/'.$request->title.'_'.$picture->word.'.jpg';
-        $path = str_replace('\\', '/', $path);
-        $picture->link = $path;
-        $picture->save();
-        move_uploaded_file($upload, public_path().$path);
+        $upload = $this->incoming_files();
+        $i = 0;
+        foreach($request->words as $word){
+            $this->store($upload, $category->id, $category->name, $word, $i);
+            $i++;
+        }
         return $this->edit($category->id);
     }
 
@@ -115,4 +129,30 @@ class CategoryController extends Controller
             return $this->create(Auth::user()->id);
         }
     }
+
+    function incoming_files() {
+        $files = $_FILES;
+        $files2 = [];
+        foreach ($files as $input => $infoArr) {
+            $filesByInput = [];
+            foreach ($infoArr as $key => $valueArr) {
+                if (is_array($valueArr)) { // file input "multiple"
+                    foreach($valueArr as $i=>$value) {
+                        $filesByInput[$i][$key] = $value;
+                    }
+                }
+                else { // -> string, normal file input
+                    $filesByInput[] = $infoArr;
+                    break;
+                }
+            }
+            $files2 = array_merge($files2,$filesByInput);
+        }
+        $files3 = [];
+        foreach($files2 as $file) { // let's filter empty & errors
+            if (!$file['error']) $files3[] = $file;
+        }
+        return $files3;
+    }
+
 }

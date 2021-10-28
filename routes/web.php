@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/categories/{id}','App\Http\Controllers\CategoryController@create')->name('userCategories');
     Route::get('/category/{id}','App\Http\Controllers\CategoryController@createOne')->name('category');
     Route::get('/category-new','App\Http\Controllers\CategoryController@add')->name('addCategory');
-    Route::post('/category-new','App\Http\Controllers\CategoryController@store')->name('storePicture');
+    Route::post('/category-new','App\Http\Controllers\CategoryController@addCategory')->name('storeCategory');
     Route::get('/category/edit/{id}','App\Http\Controllers\CategoryController@edit')->name('editCategory');
     Route::get('/category/delete/{id}','App\Http\Controllers\CategoryController@delete')->name('deleteCategory');
     Route::get('/category/delete-image/{id}','App\Http\Controllers\CategoryController@deleteImage')->name('deleteImage');
