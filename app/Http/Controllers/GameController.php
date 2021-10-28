@@ -15,7 +15,7 @@ class GameController extends Controller
         $categoryName = $category->name;
         $pictures = Picture::where('category_id', $id)->get()->toArray();
         shuffle($pictures);
-        array_slice($pictures, 0, $levelDifficulty->amountOfPictures);
+        $pictures = array_slice($pictures, 0, $levelDifficulty->amount_of_pictures);
         return view('game', compact('pictures', 'categoryName', 'level'));
     }
 

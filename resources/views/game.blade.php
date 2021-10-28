@@ -18,9 +18,9 @@
     <div class="game-container">
         <div class="row game-container-row">
             <div class="col-3">
-                <div class="row category-row main-panel">
-                    <div class="col-12">
-                        <h4 class="text-uppercase">Kategoria: {{ $categoryName }}</h4>
+                <div class="row category-row main-panel category-name">
+                    <div class="col-12 category-name-inner">
+                        <h4 class="text-uppercase m-0">Kategoria: {{ $categoryName }}</h4>
 
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-9">
+            <!-- <div class="col-9">
                 <div class="card-container main-panel">
                     <div class="row card-row">
                         <div class="col-3 game-card card-1"></div>
@@ -55,8 +55,8 @@
                         <div class="col-3 game-card card-12"></div>
                     </div>
                 </div>
-            </div> 
-            <!--<div class="col-9">
+            </div>  -->
+            <div class="col-9">
                 <div class="card-container main-panel">
                     @if(count($pictures) == 6)
                         @for ($k = 0; $k < 2; $k++)
@@ -69,7 +69,7 @@
                         @endfor
                     @endif
                 </div>
-            </div>-->
+            </div>
         </div>
     </div>
 

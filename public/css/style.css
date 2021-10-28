@@ -413,6 +413,19 @@ h3{
     height: 100%;
 }
 
+.game-container .category-name{
+    padding: 0;
+    text-align: center;
+    position: relative;
+}
+
+.game-container .category-name-inner{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
 .game-container .category-row{
     height: 20%;
     background-color: #fff;
@@ -437,6 +450,9 @@ h3{
 .game-container .game-card{
     height: 100%;
     border:1px solid black;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 /*card*/
