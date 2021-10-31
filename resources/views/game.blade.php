@@ -57,7 +57,7 @@
                 </div>
             </div>  -->
             <div class="col-9">
-                <div class="card-container main-panel">
+                <div id="game" class="card-container main-panel">
                     @if(count($pictures) == 6)
                         @for ($k = 0; $k < 2; $k++)
                             <div class="row card-row">
@@ -68,6 +68,19 @@
                             </div>
                         @endfor
                     @endif
+                </div>
+                <div id="end-game-form" style="display: none">
+                    <form method="post" action="{{ route('endGame') }}">
+                    @csrf
+                        <input type="text" id="time" name="time" value="" hidden/>
+                        <input type="number" id="levelDifficultySend" name="levelDifficulty" value="{{ $level }}" hidden/>
+                        <input type="number" id="multiplier" name="multiplier" value="{{ $multiplier }}" hidden/>
+                        <input type="text" id="score" name="score" value="" hidden/>
+                        <p id="timeP">Czas gry: </p>
+                        <p id="numberOfMovesP">Liczba ruchów: </p>
+                        <p id="scoreP">Zdobyte punkty: </p>
+                        <input type="submit" class="button d-inline add-category-button" name='submit_game' value="Zakończ"/>
+                    </form>
                 </div>
             </div>
         </div>

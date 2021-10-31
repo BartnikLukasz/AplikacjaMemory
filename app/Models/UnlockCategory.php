@@ -13,6 +13,11 @@ class UnlockCategory extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'user_id',
+        'category_id',
+    ];
+
     public function category(){
         return $this->belongsTo(Category::class);
     }

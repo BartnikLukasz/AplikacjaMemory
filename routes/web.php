@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/difficulty','App\Http\Controllers\GameController@chooseDifficulty')->name('chooseDifficulty');
     Route::get('/choose-category/{difficulty}','App\Http\Controllers\GameController@chooseCategory')->name('chooseCategory');
     Route::get('/game/{id}/{level}','App\Http\Controllers\GameController@startGame')->name('startGame');
+    Route::post('/game/end','App\Http\Controllers\GameController@endGame')->name('endGame');
 
     Route::get('/statistics/{id}','App\Http\Controllers\UserController@statistics')->name('userStatistics');
     Route::get('/categories/{id}','App\Http\Controllers\CategoryController@create')->name('userCategories');

@@ -13,6 +13,13 @@ class SingleGame extends Model
 
     protected $table = 'single_game';
 
+    protected $fillable = [
+        'time',
+        'level_difficulty_id',
+        'user_id',
+        'scores',
+    ];
+
     public function levelDifficulty(){
         return $this->belongsTo(LevelDifficulty::class);
     }
