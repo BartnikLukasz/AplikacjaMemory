@@ -426,6 +426,36 @@ h3{
     transform: translateX(-50%) translateY(-50%);
 }
 
+.game-container .points-row{
+    justify-content: center;
+    align-items: center;
+}
+
+.game-container .game-info-single:not(:last-child){
+    margin-bottom: 25px;
+}
+
+.game-container .game-info-single{
+    width: 75%;
+    display: block;
+    margin: auto;
+}
+
+.game-container .game-info-single h4{
+    font-size: 1.2em;
+}
+
+.game-container .points-row .info-border{
+    padding: 12px 20px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.game-container .points-row .bottom-info-border{
+    text-align: center;
+    text-transform: uppercase;
+}
+
 .game-container .category-row{
     height: 20%;
     background-color: #fff;
@@ -436,23 +466,35 @@ h3{
     height: 80%;
     background-color: #fff;
     margin: 0 20px;
+    padding: 20px 10px;
 }
 
 .game-container .card-container{
     background-color: #fff;
     height: 100%;
+    padding: 25px 40px;
 }
 
-.game-container .card-row{
+.game-container .three-card-row{
+    height: 50%;
+}
+
+.game-container .four-card-row{
     height: 33.3%;
+}
+
+.game-container .five-card-row{
+    height: 25%;
 }
 
 .game-container .game-card{
     height: 100%;
-    border:1px solid black;
+    border-radius: 15px;
+    box-shadow: 2px 4px 6px 2px rgba(0, 0, 0, 0.25);
+    background: #25EF39;
     background-position: center;
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; 
 }
 
 /*card*/

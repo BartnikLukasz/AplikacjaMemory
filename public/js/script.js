@@ -9,66 +9,67 @@ $(function(){
     var number_of_moves = 0;
     var seconds = 0;
 
-
     $(document).on('click', '.game-card', function(){
-
-        number_of_moves++;
-        number_of_moves_showed.text("Liczba ruchów: " + number_of_moves);
         
-        if($(this).attr("reveal") == "true"){
+        if($(this).attr("reveal") == "true" || active_card_2 != null){
             return false;
         }
         else{
 
             number_of_cards++;
 
-            $(this).css("background-color", $(this).css("color"));
+           $(this).css({"background": $(this).data("url"), 
+                        "background-position": "center", 
+                        "background-size": "cover", 
+                        "background-repeat": "no-repeat"});
 
             if(number_of_cards<2){
                 active_card = $(this);
             }
             else{
+                number_of_moves++;
+                number_of_moves_showed.text(number_of_moves);
+                
                 number_of_cards = 0;
 
-               /* if(active_card.css("color") === $(this).css("color")){
-                    $(this).css("background-color", "white");
-                }
-                else{ */
                     active_card_2 = $(this);
 
-                    if(active_card.css("color") != $(this).css("background-color")){
+                    if(active_card.data("url") != $(this).data("url")){
                         setTimeout(function(){
-                            active_card.css("background-color", "white");
-                            active_card_2.css("background-color", "white");
-                        }, 300);    
+                            active_card.css("background", "#25EF39");
+                            active_card_2.css("background", "#25EF39");
+                            active_card.attr("reveal", "false");
+                            active_card_2.attr("reveal", "false");
+                            active_card_2 = null;
+                        }, 500);    
                     }
                     else{
                         active_card.attr("reveal", "true");
                         active_card_2.attr("reveal", "true");
+                        active_card_2 = null;
                         complete_pairs++;
                         
                         setTimeout(function(){
-                            if (complete_pairs == "6"){
+                            if (complete_pairs == "3"){
                                 alert("Wygrałeś!\nCzas gry: " + seconds + "\nLiczba ruchów: " + number_of_moves);
-                                $('.game-card').css("background-color", "white");
+                                $('.game-card').css("background", "#25EF39");
                                 $('.game-card').attr("reveal", "false");
                                 complete_pairs = 0;
                             }
                         }, 300);  
                     }
-               // } Naprawić podwójny klik na jedną kartę
-
             }
 
         }
 
+        $(this).attr("reveal", "true");
     });
 
     var start = Date.now();
     setInterval(function() {
         var delta = Date.now() - start; // milliseconds elapsed since start
         seconds = Math.floor(delta / 1000);
-        timer.text("Czas: " + seconds);
+        timer.text(seconds);
     }, 1000);
 
 });

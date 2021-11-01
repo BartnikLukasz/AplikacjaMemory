@@ -20,15 +20,23 @@
             <div class="col-3">
                 <div class="row category-row main-panel category-name">
                     <div class="col-12 category-name-inner">
-                        <h4 class="text-uppercase m-0">Kategoria: {{ $categoryName }}</h4>
-
+                        <h4 class="m-0"><span class="text-uppercase" style="font-weight: 400;">Kategoria:</span><br>{{ $categoryName }}</h4>
                     </div>
                 </div>
                 <div class="row points-row main-panel">
                     <div class="col-12">
-                        <h5>Poziom: {{ $level }}</h5>
-                        <h5 id="timer">Czas: 0</h5>
-                        <h5 id="moves">Liczba ruchów: 0</h5>
+                        <div class="game-info-single">
+                            <h4 class="info-border">{{ $level }}</h4>
+                            <h4 class="bottom-info-border">Poziom</h4>
+                        </div>
+                        <div class="game-info-single">
+                            <h4 class="info-border" id="timer">0</h4>
+                            <h4 class="bottom-info-border">Czas</h4>
+                        </div>
+                        <div class="game-info-single">
+                            <h4 class="info-border" id="moves">0</h4>
+                            <h4 class="bottom-info-border">Liczba ruchów</h4>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -60,9 +68,11 @@
                 <div id="game" class="card-container main-panel">
                     @if(count($pictures) == 6)
                         @for ($k = 0; $k < 2; $k++)
-                            <div class="row card-row">
+                            <div class="row three-card-row">
                                 @for ($j = 0; $j < 3; $j++)
-                                    <div class="col-3 game-card card-{{ $i }}" style="background-image: url('{{asset($pictures[$i][$link])}}')"></div>
+                                    <div class="col-4 p-3">
+                                        <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')"></div>
+                                    </div>
                                     <?php $i++; ?>
                                 @endfor
                             </div>
@@ -89,7 +99,7 @@
 
 
 <a class="back-button-container text-center text-decoration-none" href="{{ route('dashboard') }}">
-    <div class="back-button button">{{ __('Wyjdź z gry') }}</div>
+    <div class="back-button button mt-4">{{ __('Wyjdź z gry') }}</div>
 </a>
 
 
