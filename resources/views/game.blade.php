@@ -30,7 +30,7 @@
                             <h4 class="bottom-info-border">Poziom</h4>
                         </div>
                         <div class="game-info-single">
-                            <h4 class="info-border" id="timer">0</h4>
+                            <h4 class="info-border" id="timer">0:00</h4>
                             <h4 class="bottom-info-border">Czas</h4>
                         </div>
                         <div class="game-info-single">
@@ -40,30 +40,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-9">
-                <div class="card-container main-panel">
-                    <div class="row card-row">
-                        <div class="col-3 game-card card-1"></div>
-                        <div class="col-3 game-card card-2"></div>
-                        <div class="col-3 game-card card-3"></div>
-                        <div class="col-3 game-card card-4"></div>
-                    </div>
-
-                    <div class="row card-row">
-                        <div class="col-3 game-card card-5"></div>
-                        <div class="col-3 game-card card-6"></div>
-                        <div class="col-3 game-card card-7"></div>
-                        <div class="col-3 game-card card-8"></div>
-                    </div>
-
-                    <div class="row card-row">
-                        <div class="col-3 game-card card-9"></div>
-                        <div class="col-3 game-card card-10"></div>
-                        <div class="col-3 game-card card-11"></div>
-                        <div class="col-3 game-card card-12"></div>
-                    </div>
-                </div>
-            </div>  -->
             <div class="col-9">
                 <div id="game" class="card-container main-panel">
                     @if(count($pictures) == 6)
