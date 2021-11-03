@@ -9,7 +9,7 @@
     
     
   
-    <div class="main-panel w-75 text-center" id="add-category">
+    <div class="main-panel w-75 text-center categories" id="add-category">
 
         <p style="font-size: 0.9em;">{{ __('Załącz co najmniej 10 obrazków, dodaj podpisy i nazwę kategorii') }}</p>
 
@@ -19,20 +19,24 @@
 
         <div class="categories-container">
             <div id="image_preview" class="row">
+
                 @if($category != null)
                 <input type='hidden' name="oldTitle" class="d-inline" value="{{ $category->name }}" />
                 @foreach($category->picture()->get() as $image)
-                    <img style='height: 100px; width: 100px' src="{{$image->link}}"/>
-                    <a href="{{ route('deleteImage', $image->id) }}">Delete image</a>
-                    {{$image->word}}
+                    <div class="col-2 mb-2" style="position:relative;">
+                        <a href="{{ route('deleteImage', $image->id) }}" class="delete-image"><div class="delete-image-inner">X</div></a>
+                        <div class='add-category-img' style='background-image: url("{{$image->link}}")'></div>
+                        <p class="category-title text-center mt-1 text-uppercase">{{$image->word}}</p>
+                    </div>
                 @endforeach
                 @endif
-                <div class="label_div" id="label_div" name="label_div" style="display: flex;">
-                    <label id="label1" for="upload_file1" class="col-2 add-category-add-button"></label>
+                <div class="label_div col-2 add-category-add-button order-last" id="label_div" name="label_div" style="display: flex;">
+                    <label id="label1" for="upload_file1" class="add-category-add-button-inner"><span><i class="bi bi-plus-square"></i><br><span style="font-size: 1rem;">Dodaj<br>obrazek</span></span></label>
                 </div>
                 <div class="input_div" id="input_div" name="input_div" hidden>
                     <input type="file" id="upload_file1" name="upload_file[]" class="@error('image') is-invalid @enderror" onchange="preview_image(this)" />
                 </div>
+                
             </div>
             @error('image')
                 <span class="invalid-feedback" role="alert">
@@ -49,20 +53,21 @@
             </div>
         </div>
         </form>
+        
         @if($category)
-        <a class="back-button-container text-center" href="{{ route('cancelCategoryCreation', $category->id) }}" >
-            <div class="back-button button">{{ __('Anuluj') }}</div>
-        </a>
-        <a class="back-button-container text-center" href="{{ route('endCategoryCreation', $category->id) }}">
-            <div class="back-button button">{{ __('Zakończ') }}</div>
-        </a>
+        <div class="category-buttons text-center">
+            <a class="button" href="{{ route('cancelCategoryCreation', $category->id) }}">
+            {{ __('Anuluj') }}</a>
+            <a class="button" href="{{ route('endCategoryCreation', $category->id) }}">
+            {{ __('Zakończ') }}</a>
+        </div>
         @else
-        <a class="back-button-container text-center" href="{{ route('userCategories', Auth::user()->id) }}" >
-            <div class="back-button button">{{ __('Anuluj') }}</div>
-        </a>
-        <a class="back-button-container text-center" href="{{ route('userCategories', Auth::user()->id) }}">
-            <div class="back-button button">{{ __('Zakończ') }}</div>
-        </a>
+        <div class="category-buttons text-center">
+            <a class="button" href="{{ route('userCategories', Auth::user()->id) }}">
+            {{ __('Anuluj') }}</a>
+            <a class="button" href="{{ route('userCategories', Auth::user()->id) }}">
+            {{ __('Zakończ') }}</a>
+        </div>
         @endif
     </div>
             <script>
@@ -73,7 +78,7 @@
                 {
                     $('#label'+j).hide();
                     j++;
-                    $('#label_div').append('<label id="label'+j+'" for="upload_file'+j+'" class="col-2 add-category-add-button"></label>')
+                    $('#label_div').append('<label id="label'+j+'" for="upload_file'+j+'" class="add-category-add-button-inner"><span class="plus-icon"><i class="bi bi-plus-square"></i><br><span style="font-size: 1rem;">Dodaj<br>obrazek</span></span></label>')
                     $('#input_div').append('<input type="file" id="upload_file'+j+'" name="upload_file[]" onchange="preview_image(this)" />');
                     var file=document.getElementById("upload_file"+j);
                     console.log(event.target.files[0]);

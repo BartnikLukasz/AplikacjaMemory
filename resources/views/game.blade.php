@@ -35,7 +35,7 @@
                         </div>
                         <div class="game-info-single">
                             <h4 class="info-border" id="moves">0</h4>
-                            <h4 class="bottom-info-border">Liczba ruchów</h4>
+                            <h4 class="bottom-info-border">Liczba prób</h4>
                         </div>
                     </div>
                 </div>
@@ -54,6 +54,7 @@
                             </div>
                         @endfor
                     @endif
+                    <a href="#"><div class="report-button">Zgłoś kategorię</div></a>
                 </div>
                 <div id="end-game-form" style="display: none">
                     <form method="post" action="{{ route('endGame') }}">

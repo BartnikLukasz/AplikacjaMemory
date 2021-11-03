@@ -1,15 +1,16 @@
-<div>
-        Ustawienia
-    <a class="btn btn-primary" href="{{ route('controlPanelUsers') }}">
-        {{ __('Informacje o użytkownikach') }}
+<div class="col-3 main-panel d-flex flex-column text-center">
+
+    <a class="button" href="{{ route('controlPanelUsers') }}">
+        {{ __('Użytkownicy') }}
     </a>
-    <a class="btn btn-primary" href="{{ route('controlPanelLevelDifficulties') }}">
+    <a class="button" href="{{ route('controlPanelLevelDifficulties') }}">
         {{ __('Ustawienia punktacji') }}
     </a>
-    <a class="btn btn-primary" href="{{ route('controlPanelCategories') }}">
+    <a class="button" href="{{ route('controlPanelCategories') }}">
         {{ __('Zarządzanie kategoriami') }}
     </a>
-    <a class="btn btn-primary"  href="{{ route('controlPanelReportedCategories') }}">
-        {{ __('Zgłoszenia kategorii') }}
+    <a class="button"  href="{{ route('controlPanelReportedCategories') }}">
+        {{ __('Zgłoszone kategorie') }}
     </a>
-    </div>
+
+</div>

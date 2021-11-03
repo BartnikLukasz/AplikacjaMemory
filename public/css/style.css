@@ -310,9 +310,10 @@ h3{
     padding: 10px 20px;
 }
 
-.main-panel#user-categories{
+.main-panel#user-categories, .main-panel#add-category{
     padding: 20px 60px;
 }
+
 
 .categories .one-category{
     display: block;
@@ -329,12 +330,10 @@ h3{
 
 .categories .col-2:hover .one-category{
      opacity: 0.75;
-
 }
 
 .categories .col-2:hover .category-title{
-    transform: translateY(-5px);
-    font-size: 1.01em;
+    transform: translateY(-3px) scale(1.08);
 }
 
 .categories .category-title{
@@ -392,14 +391,97 @@ h3{
 
 .add-category-add-button{
     height: 125px;
-    background-image: url("../img/add-category-plus.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    border: 1px solid #000;
-    box-shadow: 2px 4px 6px 2px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
 }
+
+.add-category-add-button-inner{
+    min-width: 80%;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 8px;
+    transition: all .3s ease-in-out;
+}
+
+.add-category-add-button-inner span{
+    font-size: 3em;
+    transition: all .3s ease-in-out;
+}
+
+.add-category-add-button-inner span i{
+    transition: all .3s ease-in-out;
+    display: inline-block;
+}
+
+.add-category-add-button-inner:hover{
+    cursor:pointer;
+}
+
+.add-category-add-button-inner:hover i{
+    text-shadow: 2px 2px 7px rgba(0,0,0,0.2);
+    color:var(--main-color);
+    transform: translateY(-3px);
+}
+
+#image_preview .delete-image-inner{
+    background-color: rgba(252, 59, 59, 0.87);
+    box-shadow: 2px 4px 6px 2px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    color: white;
+    border-radius: 50%;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    right: 0;
+    font-size: 0.8em;
+    transition: all .3s ease-in-out;
+}
+
+#image_preview .delete-image-inner:hover{
+    transform: scale(1.2);
+}
+
+/*------------------------------------
+-------Admin-Panel------------------------
+------------------------------------*/
+.control-panel-row{
+    width:85%;
+}
+
+.control-panel h4{
+    font-weight: 400;
+}
+
+.control-panel table a{
+    text-decoration: none;
+    text-align: center;
+}
+
+.control-panel .table th{
+    position: sticky; 
+    top: 0; 
+    z-index: 1;
+    background-color: white;
+}
+
+.control-panel .table-container{
+    max-height: 340px;
+    overflow-y: scroll;
+    text-align: center;
+}
+
+.control-panel .table-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.control-panel .table-container::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+}
+
 
 /*------------------------------------
 -------Game------------------------
@@ -473,6 +555,7 @@ h3{
     background-color: #fff;
     height: 100%;
     padding: 25px 40px;
+    position: relative;
 }
 
 .game-container .three-card-row{
@@ -497,6 +580,16 @@ h3{
     background-repeat: no-repeat; 
 }
 
+.card-container .report-button{
+    position:absolute;
+    right: 0;
+    bottom: -45px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
+    color:#000;
+}
 /*------------------------------------
 -------Errors------------------------
 ------------------------------------*/
