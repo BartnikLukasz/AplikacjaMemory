@@ -53,6 +53,29 @@
                                 @endfor
                             </div>
                         @endfor
+                    @elseif(count($pictures) == 12)
+                        @for ($k = 0; $k < 3; $k++)
+                            <div class="row six-card-row">
+                                @for ($j = 0; $j < 4; $j++)
+                                    <div class="col-3 p-2">
+                                        <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')"></div>
+                                    </div>
+                                    <?php $i++; ?>
+                                @endfor
+                            </div>
+                        @endfor
+                    @elseif(count($pictures) == 20)
+                        @for ($k = 0; $k < 4; $k++)
+                            <div class="row ten-card-row">
+                                @for ($j = 0; $j < 5; $j++)
+                                    <div class="col-20 p-1">
+                                        <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')"></div>
+                                    </div>
+                                    <?php $i++; ?>
+                                @endfor
+                            </div>
+                        @endfor
+                        
                     @endif
                     <a href="#"><div class="report-button">Zgłoś kategorię</div></a>
                 </div>

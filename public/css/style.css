@@ -554,7 +554,7 @@ h3{
 .game-container .card-container{
     background-color: #fff;
     height: 100%;
-    padding: 25px 40px;
+    padding: 15px 30px;
     position: relative;
 }
 
@@ -562,12 +562,17 @@ h3{
     height: 50%;
 }
 
-.game-container .four-card-row{
+.game-container .six-card-row{
     height: 33.3%;
 }
 
-.game-container .five-card-row{
+.game-container .ten-card-row{
     height: 25%;
+}
+
+.col-20{
+    flex: 0 0 auto;
+    width: 20% !important;
 }
 
 .game-container .game-card{

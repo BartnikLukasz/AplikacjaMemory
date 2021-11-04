@@ -10,9 +10,9 @@ $(function(){
     var seconds = 0;
     var minutes = 0;
     var timerInterval = null;
+    var diffucultLevel = $('#levelDifficultySend').val();
 
     $(document).on('click', '.game-card', function(){
-        
         if(active_card == null){
             //var start = Date.now();
             timerInterval = setInterval(function() {
@@ -73,7 +73,10 @@ $(function(){
                         complete_pairs++;
                         
                         setTimeout(function(){
-                            if (complete_pairs == "3"){
+                            if ((complete_pairs == "3" && diffucultLevel == 1) ||
+                                (complete_pairs == "6" && diffucultLevel == 2) ||
+                                (complete_pairs == "10" && diffucultLevel ==3) ){
+
                                 if (seconds < 10){
                                     alert("Wygrałeś!\nCzas gry: " + minutes + ":0" + seconds + "\nLiczba ruchów: " + number_of_moves);
                                 } else{
