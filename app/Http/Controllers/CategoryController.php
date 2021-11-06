@@ -120,7 +120,7 @@ class CategoryController extends Controller
     }
 
     public function cancelCreation($id){
-        $this->delete($id);
+        //$this->delete($id);
         if(Auth::user()->isAdmin()){
             $categories = Category::orderBy('id', 'asc')->get();
             return view("panel.controlPanelCategories", compact('categories'));

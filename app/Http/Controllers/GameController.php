@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\LevelDifficulty;
+use App\Models\UnlockCategory;
 use App\Models\Picture;
 use App\Models\SingleGame;
 use App\Models\User;
@@ -25,7 +26,8 @@ class GameController extends Controller
     }
 
     public function chooseCategory($difficulty){
-        $categories = Category::orderBy('id', 'asc')->get();
+        $unlockedCategoriesId = UnlockCategory::where('user_id', Auth::user()->id)->pluck('category_id')->toArray();
+        $categories = Category::whereIn('id', $unlockedCategoriesId)->get();
         $level = $difficulty;
         return view('chooseCategory', compact('categories', 'level'));
     }

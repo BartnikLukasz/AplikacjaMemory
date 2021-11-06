@@ -86,6 +86,8 @@ $(function(){
                                 $('.game-card').attr("reveal", "false");
                                 complete_pairs = 0;
 
+                                endGame();
+
                                 clearInterval(timerInterval);
                                 active_card = null;
                                 minutes = 0;
@@ -103,5 +105,26 @@ $(function(){
 
         $(this).attr("reveal", "true");
     });
+
+    function endGame(){
+        var timeEndShow = $('#timeP');
+        var movesEndShow = $('#numberOfMovesP');
+        var scoreShow = $('#scoreP');
+        var timeEndSend = $('#time');
+        var scoreSend = $('#score');
+
+        var multiplier = $('#levelDifficultySend').val();
+
+
+
+        timeEndSend.val(seconds);
+        scoreSend.val(Math.floor(100000*multiplier/(seconds*number_of_moves)));
+        timeEndShow.text("Czas gry: " + seconds);
+        movesEndShow.text("Liczba ruchów: " + number_of_moves);
+        scoreShow.text("Zdobyte punkty: " + scoreSend.val());
+
+        $('#end-game-form').show();
+    }
+
 
 });
