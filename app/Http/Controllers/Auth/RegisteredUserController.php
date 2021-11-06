@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use App\Utilities\UnlockCategoryUtil;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +48,8 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        $this->unlockCategories();
+
         return redirect()->route('dashboard');
     }
 
@@ -67,5 +70,9 @@ class RegisteredUserController extends Controller
             'position' => $position,
             'password' => Hash::make($request->password),
         ]);
+    }
+
+    private function unlockCategories(){
+        UnlockCategoryUtil::unlockCategoryOnRegistration(Auth::user()->id);
     }
 }

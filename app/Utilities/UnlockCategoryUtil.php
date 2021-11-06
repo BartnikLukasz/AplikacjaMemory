@@ -33,4 +33,15 @@ class UnlockCategoryUtil{
         }
     }
 
+    public static function unlockCategoryOnRegistration($id){
+        $categories = Category::all()->take(3);
+
+        foreach($categories as $category){
+            UnlockCategory::create([
+                'user_id' => $id,
+                'category_id' => $category->id
+            ]);
+        }
+    }
+
 }
