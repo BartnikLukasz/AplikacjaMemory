@@ -16,7 +16,6 @@ class SettingsController extends Controller
     public function changeUsername(Request $request){
         $request->validate([
             'newNickname' => ['required', 'string', 'max:255'],
-            'password' => ['required', Rules\Password::defaults()],
         ]);
         if(!SettingsUtil::checkNickname($request->oldNickname)){
             return back()->withErrors(["oldNickname"=>__('auth.oldNickname')]);
