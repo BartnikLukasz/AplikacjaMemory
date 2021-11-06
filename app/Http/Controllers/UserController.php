@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function ranking()
     {
-        $users = User::where('deleted', 0)->orderBy('ranking_points', 'desc')->get();
+        $users = User::where('deleted', 0)->where('role_id', 1)->orderBy('ranking_points', 'desc')->get();
         for($i = 1; $i<=count($users); $i++){
             $users[$i-1]->position = $i;
         }

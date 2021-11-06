@@ -61,6 +61,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/category/delete-image/{id}','App\Http\Controllers\CategoryController@deleteImage')->name('deleteImage');
     Route::get('/category/cancel/{id}','App\Http\Controllers\CategoryController@cancelCreation')->name('cancelCategoryCreation');
     Route::get('/category/end/{id}','App\Http\Controllers\CategoryController@endCreation')->name('endCategoryCreation');
+    Route::get('/category/report/{categoryName}','App\Http\Controllers\CategoryController@reportCategory')->name('reportCategory');
 
 
     Route::get('/settings','App\Http\Controllers\UserController@settings')->name('settings');
@@ -80,6 +81,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/settings/information','App\Http\Controllers\Controller@createInformation')->name('information');
 });
 Route::get('/ranking','App\Http\Controllers\UserController@ranking')->name('ranking');
+Route::get('/quick-game','App\Http\Controllers\GameController@playQuickGame')->name('quickGame');
 
 
 

@@ -11,6 +11,7 @@ use App\Models\SingleGame;
 use App\Models\User;
 use App\Utilities\UnlockCategoryUtil;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\VarDumper\VarDumper;
 
 class GameController extends Controller
 {
@@ -27,7 +28,7 @@ class GameController extends Controller
 
     public function chooseCategory($difficulty){
         $unlockedCategoriesId = UnlockCategory::where('user_id', Auth::user()->id)->pluck('category_id')->toArray();
-        $categories = Category::whereIn('id', $unlockedCategoriesId)->get();
+        $categories = Category::whereIn('id', $unlockedCategoriesId)->where('reported', 0)->get();
         $level = $difficulty;
         return view('chooseCategory', compact('categories', 'level'));
     }
@@ -51,5 +52,19 @@ class GameController extends Controller
 
         UnlockCategoryUtil::unlockCategory();
         return view('dashboard');
+    }
+
+    public function playQuickGame(){
+        $categories = Category::all()->toArray();
+        $key = array_rand($categories);
+        $category = $categories[$key];
+        $id = $category['id'];
+        $categoryName = $category['name'];
+        $level = rand(1, 3);
+        $levelDifficulty = LevelDifficulty::where('level', $level)->first();
+        $pictures = Picture::where('category_id', $id)->get()->toArray();
+        shuffle($pictures);
+        $pictures = array_slice($pictures, 0, $levelDifficulty->amount_of_pictures);
+        return view('quickGame', compact('pictures', 'categoryName', 'level'));
     }
 }

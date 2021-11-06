@@ -35,6 +35,11 @@ class CategoryController extends Controller
         return view('addCategory', compact('category'));
     }
 
+    public function reportCategory($categoryName){
+        Category::where('name', $categoryName)->update(['reported'=>1]);
+        return view("dashboard");
+    }
+
     public function store($upload, $categoryId, $categoryTitle, $word, $i){
         if(Picture::where('word', $word)->where('category_id', $categoryId)->exists()) return;
         session_start();
@@ -120,7 +125,6 @@ class CategoryController extends Controller
     }
 
     public function cancelCreation($id){
-        //$this->delete($id);
         if(Auth::user()->isAdmin()){
             $categories = Category::orderBy('id', 'asc')->get();
             return view("panel.controlPanelCategories", compact('categories'));

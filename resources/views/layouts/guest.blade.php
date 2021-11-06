@@ -36,15 +36,12 @@
             </div>
 
 
-            {{-- @if (Route::has('instant-game')) --}} <!--Laravel Comment {{-- --}} -->
             <div class="left-buttons d-flex flex-column">
-                <!-- <a class="button" href="{{--{{ route('instant-game') }}--}}"> -->
-                <a class="button" >
-                    Szybka gra
+                <a class="button" href="{{ route('quickGame') }}">
+                    {{ __('Szybka gra') }}
                 </a>
-                {{-- @endif --}}
                 <a class="button" href="{{ route('ranking') }}">
-                    Ranking
+                    {{ __('Ranking') }}
                 </a>
             </div>
             

@@ -77,20 +77,6 @@
                         @endfor
                         
                     @endif
-                    <a href="{{ route('reportCategory', $categoryName) }}"><div class="report-button">Zgłoś kategorię</div></a>
-                </div>
-                <div id="end-game-form" style="display: none">
-                    <form method="post" action="{{ route('endGame') }}">
-                    @csrf
-                        <input type="text" id="time" name="time" value="" hidden/>
-                        <input type="number" id="levelDifficultySend" name="levelDifficulty" value="{{ $level }}" hidden/>
-                        <input type="number" id="multiplier" name="multiplier" value="{{ $multiplier }}" hidden/>
-                        <input type="text" id="score" name="score" value="" hidden/>
-                        <p id="timeP">Czas gry: </p>
-                        <p id="numberOfMovesP">Liczba ruchów: </p>
-                        <p id="scoreP">Zdobyte punkty: </p>
-                        <input type="submit" class="button d-inline add-category-button" name='submit_game' value="Zakończ"/>
-                    </form>
                 </div>
             </div>
         </div>
