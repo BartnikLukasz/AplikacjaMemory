@@ -23,12 +23,12 @@ class UnlockCategoryUtil{
             $i++;
         }
 
-        $newUnlockedCategoryId = Category::whereNotIn('id', $categoryIds)->first()->id;
+        $newUnlockedCategory = Category::whereNotIn('id', $categoryIds)->first();
 
-        if($newUnlockedCategoryId){
+        if($newUnlockedCategory){
             UnlockCategory::create([
                 'user_id' => $user_id,
-                'category_id' => $newUnlockedCategoryId
+                'category_id' => $newUnlockedCategory->id
             ]);
         }
     }
