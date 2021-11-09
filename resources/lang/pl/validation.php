@@ -154,6 +154,7 @@ return [
     'attributes' => [
         'nickname' => 'Login',
         'password' => 'Hasło',
+        'newPassword' => 'Nowe hasło',
         'email' => 'E-mail'
     ],
 

@@ -16,9 +16,9 @@ return [
     'failed' => 'Niepoprawny login lub hasło użytkownika.',
     'password' => 'Hasło użytkownika jest nieprawidłowe.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'oldNickname' => 'oldNicknamePL',
+    'oldNickname' => 'Podana nazwa użytkownika jest nieprawidłowa.',
     'newNickname' => 'oldNicknamePL',
     'deleted' => 'Użytkownik z tym loginem został usunięty.',
-    'nicknameTaken' => 'Ten login jest już zajęty',
+    'nicknameTaken' => 'Ten login jest już zajęty.',
 
 ];

@@ -78,4 +78,19 @@ class AdminController extends Controller
         AdminUtil::changeLevelDifficulty($request);
         return $this->createLevelDifficultiesView();
     }
+    
+    public function aprove($id){
+        $category = Category::find($id);
+        $category->reported = 0;
+        $category->status = 1;
+        $category->save();
+        return $this->createReportedCategoriesView();
+    }
+
+    public function hide($id){
+        $category = Category::find($id);
+        $category->status = 0;
+        $category->save();
+        return $this->createReportedCategoriesView();
+    }
 }

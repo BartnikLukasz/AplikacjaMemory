@@ -28,7 +28,7 @@ class GameController extends Controller
 
     public function chooseCategory($difficulty){
         $unlockedCategoriesId = UnlockCategory::where('user_id', Auth::user()->id)->pluck('category_id')->toArray();
-        $categories = Category::whereIn('id', $unlockedCategoriesId)->where('reported', 0)->get();
+        $categories = Category::whereIn('id', $unlockedCategoriesId)->where('status', 1)->get();
         $level = $difficulty;
         return view('chooseCategory', compact('categories', 'level'));
     }

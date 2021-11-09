@@ -24,6 +24,9 @@
                             Data dołączenia
                         </th>
                         <th>
+                            Usunięto
+                        </th>
+                        <th>
                             Opcje
                         </th>
                     </tr>
@@ -40,6 +43,13 @@
                         </td>
                         <td>
                         {{ $user->created_at; }}
+                        </td>
+                        <td>
+                            <?php if( $user->deleted == 1): ?>
+                            {{ __('Tak') }}
+                            <?php else: ?>
+                            {{ __('Nie') }}
+                            <?php endif ?>
                         </td>
                         <td>
                             <a href="{{ route('controlPanelRenameUser', $user->id) }}" >Zmień nazwę </a>|

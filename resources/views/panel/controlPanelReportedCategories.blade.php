@@ -42,6 +42,8 @@
                         {{ $category->status; }}
                         </td>
                         <td>
+                            <a href="{{ route('aproveCategory', $category->id) }}" >Zatwierdź </a>|
+                            <a href="{{ route('hideCategory', $category->id) }}" >Ukryj </a>|
                             <a href="{{ route('editCategory', $category->id) }}" >Edytuj </a>|
                             <a href="{{ route('deleteCategory', $category->id) }}" >Usuń</a>
                         </td>
