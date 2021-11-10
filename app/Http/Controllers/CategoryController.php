@@ -14,7 +14,13 @@ class CategoryController extends Controller
     public function create($id){
         $user = User::find($id);
         $categories = $user->category()->get();
-        return view('userCategories', compact('categories'));
+        $pictures = [];
+        $i = 0;
+        foreach($categories as $category){
+            $pictures[$i] = Picture::where('category_id', $category->id)->first()->link;
+            $i++;
+        }
+        return view('userCategories', compact('categories', 'pictures'));
     }
 
     public function createOne($id){

@@ -7,9 +7,9 @@
         <form method="POST" action="{{ route('changeUsername') }}">
             @csrf
             <label for="oldNickname">{{ __('Obecna nazwa') }}</label><br>
-            <input id="oldNickname" type="text" class="@error('oldNickname') is-invalid @enderror mb" name="oldNickname" value="{{ old('oldNickname') }}" required autocomplete="oldNickname" autofocus><br>
+            <input id="oldNickname" type="text" class="@error('badCredentials') is-invalid @enderror mb" name="oldNickname" value="{{ old('oldNickname') }}" required autocomplete="oldNickname" autofocus><br>
 
-            @error('oldNickname')
+            @error('badCredentials')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -26,12 +26,6 @@
             
             <label for="password" class="mt-2">{{ __('Hasło') }}</label><br>
             <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="current-password"><br>
-
-            @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
 
             <input type="submit" value="Zmień nazwę" class="button mt-4">
                 

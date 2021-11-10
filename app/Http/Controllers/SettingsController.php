@@ -18,10 +18,10 @@ class SettingsController extends Controller
             'newNickname' => ['required', 'string', 'max:255'],
         ]);
         if(!SettingsUtil::checkNickname($request->oldNickname)){
-            return back()->withErrors(["oldNickname"=>__('auth.oldNickname')]);
+            return back()->withErrors(["badCredentials"=>__('auth.badCredentials')]);
         }
         if(!SettingsUtil::checkPassword($request->password)){
-            return back()->withErrors(["password"=>__('auth.password')]);
+            return back()->withErrors(["badCredentials"=>__('auth.badCredentials')]);
         }
         if(!SettingsUtil::changeNickname($request->newNickname)){
             return back()->withErrors(["newNickname"=>__('auth.newNickname')]);

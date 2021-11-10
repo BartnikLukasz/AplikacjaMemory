@@ -20,5 +20,6 @@ return [
     'newNickname' => 'oldNicknamePL',
     'deleted' => 'Użytkownik z tym loginem został usunięty.',
     'nicknameTaken' => 'Ten login jest już zajęty.',
+    'badCredentials' => 'Nazwa użytkownika lub hasło jest nieprawidłowe'
 
 ];

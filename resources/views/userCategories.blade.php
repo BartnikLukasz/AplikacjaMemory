@@ -1,4 +1,7 @@
 <x-app-layout>
+<?php
+        $i = 0;
+    ?>
 <style>
     .left-buttons{
         display: none !important;
@@ -14,10 +17,13 @@
                 @foreach($categories as $category)
                 <div class="col-2 mb-2">
                     <a class="text-decoration-none" href="{{ route('category', $category->id) }}">
-                        <div class="one-category" style="background-image: url('{{asset('img/background.jpg')}}');"></div>
+                        <div class="one-category" style="background-image: url('{{asset($pictures[$i])}}');"></div>
                         <p class="category-title text-center mt-2">{{ $category->name }}</p>
                     </a>
                 </div>
+                <?php
+        $i++;
+    ?>
                 @endforeach
             </div>
         </div>
