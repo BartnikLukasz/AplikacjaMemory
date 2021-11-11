@@ -8,12 +8,6 @@
             @csrf
             <label for="oldNickname">{{ __('Obecna nazwa') }}</label><br>
             <input id="oldNickname" type="text" class="@error('badCredentials') is-invalid @enderror mb" name="oldNickname" value="{{ old('oldNickname') }}" required autocomplete="oldNickname" autofocus><br>
-
-            @error('badCredentials')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
             
             <label for="newNickname" class="mt-2">Nowa nazwa</label><br>
             <input id="newNickname" type="text" class="@error('newNickname') is-invalid @enderror" name="newNickname" value="{{ old('newNickname') }}" required autocomplete="newNickname"><br>
@@ -26,6 +20,11 @@
             
             <label for="password" class="mt-2">{{ __('Hasło') }}</label><br>
             <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="current-password"><br>
+            @error('badCredentials')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
 
             <input type="submit" value="Zmień nazwę" class="button mt-4">
                 

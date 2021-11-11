@@ -17,6 +17,9 @@ class SettingsController extends Controller
         $request->validate([
             'newNickname' => ['required', 'string', 'max:255'],
         ]);
+        if($request->newNickname == $request->oldNickname){
+            return back()->withErrors(["newNickname"=>__('validation.errorSameNickname')]);
+        }
         if(!SettingsUtil::checkNickname($request->oldNickname)){
             return back()->withErrors(["badCredentials"=>__('auth.badCredentials')]);
         }
