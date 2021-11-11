@@ -4,6 +4,7 @@
         shuffle($pictures);
         $i = 0;
         $link = "link";
+        $word = "word";
     ?>
 <style>
     .left-buttons{
@@ -47,7 +48,9 @@
                             <div class="row three-card-row">
                                 @for ($j = 0; $j < 3; $j++)
                                     <div class="col-4 p-3">
-                                        <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')"></div>
+                                        <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')">
+                                        <h3>{{ $pictures[$i][$word] }}</h3>
+                                        </div>
                                     </div>
                                     <?php $i++; ?>
                                 @endfor
@@ -58,7 +61,9 @@
                             <div class="row six-card-row">
                                 @for ($j = 0; $j < 4; $j++)
                                     <div class="col-3 p-2">
-                                        <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')"></div>
+                                        <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')">
+                                        <h3>{{ $pictures[$i][$word] }}</h3>
+                                        </div>
                                     </div>
                                     <?php $i++; ?>
                                 @endfor
@@ -69,7 +74,9 @@
                             <div class="row ten-card-row">
                                 @for ($j = 0; $j < 5; $j++)
                                     <div class="col-20 p-1">
-                                        <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')"></div>
+                                        <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')">
+                                        <h3>{{ $pictures[$i][$word] }}</h3>
+                                        </div>
                                     </div>
                                     <?php $i++; ?>
                                 @endfor

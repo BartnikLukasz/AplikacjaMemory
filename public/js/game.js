@@ -118,7 +118,8 @@ $(function(){
 
 
         timeEndSend.val(seconds);
-        scoreSend.val(Math.floor(100000*multiplier/(seconds*number_of_moves)));
+        scoreSend.val(Math.floor(150/((seconds/2)*(number_of_moves/(multiplier**5)))));
+        if(scoreSend.val()>500) scoreSend.val(500);
         timeEndShow.text("Czas gry: " + seconds);
         movesEndShow.text("Liczba ruchów: " + number_of_moves);
         scoreShow.text("Zdobyte punkty: " + scoreSend.val());
