@@ -52,7 +52,8 @@ class CategoryController extends Controller
         $picture = new Picture();
         $picture->category_id = $categoryId;
         $picture->word = $word;
-        $path = '/pictures/'.$categoryTitle.'_'.$word.'.jpg';
+        if(!is_dir(public_path().'/pictures/'.$categoryTitle)) mkdir(public_path().'/pictures/'.$categoryTitle);
+        $path = '/pictures/'.$categoryTitle.'/'.$word.'.jpg';
         $path = str_replace('\\', '/', $path);
         $picture->link = $path;
         $picture->save();
