@@ -36,7 +36,6 @@ class AdminUtil{
     public static function changeLevelDifficulty($request){
         if(AdminUtil::isAuthorized()){
             $levelDifficulty = LevelDifficulty::find($request->id);
-            $levelDifficulty->amount_of_pictures = $request->amountOfPictures;
             $levelDifficulty->multiplier = $request->multiplier;
             $levelDifficulty->save();
         }
