@@ -11,6 +11,16 @@ $(function(){
     var minutes = 0;
     var timerInterval = null;
     var diffucultLevel = $('#levelDifficultySend').val();
+    var gamePart = 1;
+
+    if(diffucultLevel == 2){
+        $(".word").css("bottom", "20px");
+        $(".word h3").css("font-size", "1.6em");
+    }
+    else if(diffucultLevel == 3){
+        $(".word").css("bottom", "10px");
+        $(".word h3").css({"font-size": "1.4em", "letter-spacing": "initial"});
+    }
 
     $(document).on('click', '.game-card', function(){
         if(active_card == null){
@@ -41,11 +51,26 @@ $(function(){
             
             number_of_cards++;
 
-           $(this).css({"background": $(this).data("url"), 
+            $(this).css({"background": $(this).data("url"), 
                         "background-position": "center", 
                         "background-size": "cover", 
                         "background-repeat": "no-repeat"});
 
+            if(gamePart == 1){
+                $(this).find('.word').show();
+            }
+            else if(gamePart == 2){
+                if(number_of_cards<2){
+                    $(this).find('.word').show();
+                }
+            }
+            else{
+                if(number_of_cards == 2){
+                    $(this).find('.word').show().css({"bottom": "50%", "transform": "translateX(-50%) translateY(50%)"});
+                    $(this).css("background", "#fff");
+                }
+            }            
+            
             if(number_of_cards<2){
                 active_card = $(this);
             }
@@ -61,6 +86,8 @@ $(function(){
                         setTimeout(function(){
                             active_card.css("background", "#25EF39");
                             active_card_2.css("background", "#25EF39");
+                            active_card.find('.word').hide();
+                            active_card_2.find('.word').hide();
                             active_card.attr("reveal", "false");
                             active_card_2.attr("reveal", "false");
                             active_card_2 = null;
@@ -75,27 +102,20 @@ $(function(){
                         setTimeout(function(){
                             if ((complete_pairs == "3" && diffucultLevel == 1) ||
                                 (complete_pairs == "6" && diffucultLevel == 2) ||
-                                (complete_pairs == "10" && diffucultLevel ==3) ){
+                                (complete_pairs == "10" && diffucultLevel == 3) ){
 
-                                if (seconds < 10){
-                                    alert("Wygrałeś!\nCzas gry: " + minutes + ":0" + seconds + "\nLiczba ruchów: " + number_of_moves);
+                                if(gamePart == 3){
+                                    endGame();
+                                    clearInterval(timerInterval);
                                 } else{
-                                    alert("Wygrałeś!\nCzas gry: " + minutes + ":" + seconds + "\nLiczba ruchów: " + number_of_moves);
+                                    gamePart++;
+                                    $("#gamePart").text(gamePart);
+                                    $('.game-card').css("background", "#25EF39");
+                                    $('.game-card').attr("reveal", "false");
+                                    $('.word').hide();
+                                    complete_pairs = 0;
                                 }
-                                $('.game-card').css("background", "#25EF39");
-                                $('.game-card').attr("reveal", "false");
-                                complete_pairs = 0;
 
-                                endGame();
-
-                                clearInterval(timerInterval);
-                                active_card = null;
-                                minutes = 0;
-                                seconds = 0;
-                                timer.text("0:00");
-                                number_of_moves = 0;
-                                number_of_moves_showed.text(0);
-                                
                             }
                         }, 300);  
                     }
@@ -112,18 +132,33 @@ $(function(){
         var scoreShow = $('#scoreP');
         var timeEndSend = $('#time');
         var scoreSend = $('#score');
-
         var multiplier = $('#levelDifficultySend').val();
-
-
-
+        var minMoves = 0; //minimalna ilość ruchów konieczna do ukończenia poziomu
+        if (multiplier == 1){
+            minMoves = 9;
+        } else if(multiplier == 2){
+            minMoves = 18;
+        } else{
+            minMoves = 30;
+        }
+        var endSeconds = minutes*60 + seconds;
+        
         timeEndSend.val(seconds);
-        scoreSend.val(Math.floor(150/((seconds/2)*(number_of_moves/(multiplier**5)))));
-        if(scoreSend.val()>500) scoreSend.val(500);
-        timeEndShow.text("Czas gry: " + seconds);
+        //scoreSend.val(Math.floor(150/((seconds/2)*(number_of_moves/(multiplier**5)))));
+        //if(scoreSend.val()>500) scoreSend.val(500);
+
+        scoreSend.val(Math.round((100-(100*(number_of_moves/(minMoves*3))*(endSeconds/(90*multiplier))))*multiplier));
+        if(scoreSend.val()<1) scoreSend.val(1);
+        
+        if (seconds < 10){
+            timeEndShow.text("Czas gry: "+ minutes+":0"+seconds);
+        } else{
+            timeEndShow.text("Czas gry: "+ minutes+":"+seconds);
+        }
         movesEndShow.text("Liczba ruchów: " + number_of_moves);
         scoreShow.text("Zdobyte punkty: " + scoreSend.val());
 
+        $('#quit-game-button').hide();
         $('#end-game-form').show();
     }
 

@@ -6,12 +6,12 @@ $(function(){
         
         if(audio.paused){
             audio.play();
-            $('.sound-button .bi.bi-volume-up-fill').css("display", "block");
-            $('.sound-button .bi.bi-volume-mute-fill').css("display", "none");
+            $('.sound-button .bi.bi-volume-up-fill').show();
+            $('.sound-button .bi.bi-volume-mute-fill').hide();
         } else{
             audio.pause();
-            $('.sound-button .bi.bi-volume-up-fill').css("display", "none");
-            $('.sound-button .bi.bi-volume-mute-fill').css("display", "block");
+            $('.sound-button .bi.bi-volume-up-fill').hide();
+            $('.sound-button .bi.bi-volume-mute-fill').show();
         }
     });
     

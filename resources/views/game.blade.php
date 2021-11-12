@@ -27,7 +27,7 @@
                 <div class="row points-row main-panel">
                     <div class="col-12">
                         <div class="game-info-single">
-                            <h4 class="info-border">{{ $level }}</h4>
+                            <h4 class="info-border" id="gamePart">1</h4>
                             <h4 class="bottom-info-border">Poziom</h4>
                         </div>
                         <div class="game-info-single">
@@ -49,7 +49,7 @@
                                 @for ($j = 0; $j < 3; $j++)
                                     <div class="col-4 p-3">
                                         <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')">
-                                        <h3>{{ $pictures[$i][$word] }}</h3>
+                                            <div class="word"><h3>{{$pictures[$i][$word]}}</h3></div>
                                         </div>
                                     </div>
                                     <?php $i++; ?>
@@ -62,7 +62,7 @@
                                 @for ($j = 0; $j < 4; $j++)
                                     <div class="col-3 p-2">
                                         <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')">
-                                        <h3>{{ $pictures[$i][$word] }}</h3>
+                                            <div class="word"><h3>{{$pictures[$i][$word]}}</h3></div>
                                         </div>
                                     </div>
                                     <?php $i++; ?>
@@ -75,7 +75,7 @@
                                 @for ($j = 0; $j < 5; $j++)
                                     <div class="col-20 p-1">
                                         <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')">
-                                        <h3>{{ $pictures[$i][$word] }}</h3>
+                                            <div class="word"><h3>{{$pictures[$i][$word]}}</h3></div>
                                         </div>
                                     </div>
                                     <?php $i++; ?>
@@ -106,7 +106,7 @@
 
 
 <a class="back-button-container text-center text-decoration-none" href="{{ route('dashboard') }}">
-    <div class="back-button button mt-4">{{ __('Wyjdź z gry') }}</div>
+    <div class="back-button button mt-4" id="quit-game-button">{{ __('Wyjdź z gry') }}</div>
 </a>
 
 

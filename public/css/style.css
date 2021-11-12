@@ -174,13 +174,30 @@ h3{
 /*------------------------------------
 -------Ranking page-------------------
 ------------------------------------*/
-.ranking-list .row{
-    align-items: center;
+.ranking-list-container{
+    overflow-y: scroll;
+    max-height: 300px;
+    width: 100%;
 }
 
 .ranking-list{
     list-style: none;
     counter-reset: item;
+    margin: 0 20px;
+}
+
+.ranking-list .row{
+    align-items: center;
+}
+
+.ranking-list-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.ranking-list-container::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
 }
 
 .ranking-list li {
@@ -188,7 +205,7 @@ h3{
     margin-bottom: 5px;
 }
 
-.ranking-list li:before {
+.ranking-list .col-7:before {
     margin-right: 10px;
     content: counter(item);
     padding-left: 0;
@@ -314,10 +331,10 @@ h3{
     padding: 20px 60px;
 }
 
-
 .categories .one-category{
     display: block;
     background-size: cover;
+    background-position: center;
     min-height: 125px;
     margin: 0 5px;
     box-shadow: 2px 4px 6px 2px rgba(0, 0, 0, 0.25);
@@ -583,6 +600,31 @@ h3{
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat; 
+    position: relative;
+}
+
+.game-container .game-card .word{
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-transform: uppercase;
+    white-space: nowrap;
+    background-color: rgba(255, 255, 255, 0.658);
+    width: 100%;
+    text-align: center;
+    border-width: 2px 0;
+    border-style: solid;
+    border-color: #fff;
+    display: none;
+}
+
+.game-container .game-card .word h3{
+    padding: 5px;
+    margin: 0;
+    font-size: 1.8em;
+    font-weight: 500 !important;
+    letter-spacing: 1.5px;
 }
 
 .card-container .report-button{
@@ -594,6 +636,22 @@ h3{
     border-radius: 10px;
     box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
     color:#000;
+}
+
+.game-container #end-game-form{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: #fff;
+    border: 7px solid #12747A;
+    border-radius: 10px;
+    padding: 40px 30px;
+    box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
+}
+
+.game-container #end-game-form .button{
+    border: none;
 }
 /*------------------------------------
 -------Errors------------------------
