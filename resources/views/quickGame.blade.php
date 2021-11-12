@@ -4,6 +4,7 @@
         shuffle($pictures);
         $i = 0;
         $link = "link";
+        $word = "word";
     ?>
 <style>
     .left-buttons{
@@ -26,7 +27,7 @@
                 <div class="row points-row main-panel">
                     <div class="col-12">
                         <div class="game-info-single">
-                            <h4 class="info-border">{{ $level }}</h4>
+                            <h4 class="info-border" id="gamePart">1</h4>
                             <h4 class="bottom-info-border">Poziom</h4>
                         </div>
                         <div class="game-info-single">
@@ -47,7 +48,9 @@
                             <div class="row three-card-row">
                                 @for ($j = 0; $j < 3; $j++)
                                     <div class="col-4 p-3">
-                                        <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')"></div>
+                                        <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')">
+                                            <div class="word"><h3>{{$pictures[$i][$word]}}</h3></div>
+                                        </div>
                                     </div>
                                     <?php $i++; ?>
                                 @endfor
@@ -58,7 +61,9 @@
                             <div class="row six-card-row">
                                 @for ($j = 0; $j < 4; $j++)
                                     <div class="col-3 p-2">
-                                        <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')"></div>
+                                        <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')">
+                                            <div class="word"><h3>{{$pictures[$i][$word]}}</h3></div>
+                                        </div>
                                     </div>
                                     <?php $i++; ?>
                                 @endfor
@@ -69,7 +74,9 @@
                             <div class="row ten-card-row">
                                 @for ($j = 0; $j < 5; $j++)
                                     <div class="col-20 p-1">
-                                        <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')"></div>
+                                        <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')">
+                                            <div class="word"><h3>{{$pictures[$i][$word]}}</h3></div>
+                                        </div>
                                     </div>
                                     <?php $i++; ?>
                                 @endfor
@@ -77,6 +84,20 @@
                         @endfor
                         
                     @endif
+                    <a href="{{ route('reportCategory', $categoryName) }}"><div class="report-button">Zgłoś kategorię</div></a>
+                </div>
+                <div id="end-game-form" style="display: none">
+                    <form method="get" action="{{ route('dashboard') }}">
+                    @csrf
+                        <input type="text" id="time" name="time" value="" hidden/>
+                        <input type="number" id="levelDifficultySend" name="levelDifficulty" value="{{ $level }}" hidden/>
+                        <input type="number" id="multiplier" name="multiplier" value="{{ $multiplier }}" hidden/>
+                        <input type="text" id="score" name="score" value="" hidden/>
+                        <p id="timeP">Czas gry: </p>
+                        <p id="numberOfMovesP">Liczba ruchów: </p>
+                        <p id="scoreP">Zdobyte punkty: </p>
+                        <input type="submit" class="button d-inline add-category-button" name='submit_game' value="Zakończ"/>
+                    </form>
                 </div>
             </div>
         </div>
@@ -85,7 +106,7 @@
 
 
 <a class="back-button-container text-center text-decoration-none" href="{{ route('dashboard') }}">
-    <div class="back-button button mt-4">{{ __('Wyjdź z gry') }}</div>
+    <div class="back-button button mt-4" id="quit-game-button">{{ __('Wyjdź z gry') }}</div>
 </a>
 
 

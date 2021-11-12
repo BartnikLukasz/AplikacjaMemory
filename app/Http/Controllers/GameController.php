@@ -68,9 +68,10 @@ class GameController extends Controller
         $categoryName = $category['name'];
         $level = rand(1, 3);
         $levelDifficulty = LevelDifficulty::where('level', $level)->first();
+        $multiplier = $levelDifficulty->multiplier;
         $pictures = Picture::where('category_id', $id)->get()->toArray();
         shuffle($pictures);
         $pictures = array_slice($pictures, 0, $levelDifficulty->amount_of_pictures);
-        return view('quickGame', compact('pictures', 'categoryName', 'level'));
+        return view('quickGame', compact('pictures', 'categoryName', 'level', 'multiplier'));
     }
 }
