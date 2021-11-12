@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Picture;
+use App\Models\UnlockCategory;
 use DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -105,6 +106,7 @@ class CategoryController extends Controller
             }
         }
         Picture::where('category_id', $id)->delete();
+        UnlockCategory::where('category_id', $id)->delete();
         Category::destroy($id);
         return $this->create(Auth::user()->id);
     }
