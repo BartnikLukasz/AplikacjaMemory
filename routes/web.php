@@ -38,7 +38,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/control-panel-categories', 'App\Http\Controllers\AdminController@createCategoriesView')->name('controlPanelCategories');
 
     Route::get('/control-panel-reported-categories', 'App\Http\Controllers\AdminController@createReportedCategoriesView')->name('controlPanelReportedCategories');
-    Route::get('/control-panel-reported-categories/aprove/{id}','App\Http\Controllers\AdminController@aprove')->name('aproveCategory');
+    Route::get('/control-panel-reported-categories/aprove/{id}','App\Http\Controllers\AdminController@approve')->name('aproveCategory');
     Route::get('/control-panel-reported-categories/hide/{id}','App\Http\Controllers\AdminController@hide')->name('hideCategory');
 
     Route::get('control-panel-levelDifficulties', 'App\Http\Controllers\AdminController@createLevelDifficultiesView')->name('controlPanelLevelDifficulties');

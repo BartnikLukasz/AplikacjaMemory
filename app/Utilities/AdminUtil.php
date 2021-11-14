@@ -4,6 +4,7 @@ namespace App\Utilities;
 
 use App\Models\LevelDifficulty;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -38,6 +39,23 @@ class AdminUtil{
             $levelDifficulty = LevelDifficulty::find($request->id);
             $levelDifficulty->multiplier = $request->multiplier;
             $levelDifficulty->save();
+        }
+    }
+
+    public static function approveCategory($id){
+        if(AdminUtil::isAuthorized()){
+            $category = Category::find($id);
+            $category->reported = 0;
+            $category->status = 1;
+            $category->save();
+        }
+    }
+
+    public static function hideCategory($id){
+        if(AdminUtil::isAuthorized()){
+            $category = Category::find($id);
+            $category->status = 0;
+            $category->save();
         }
     }
 
