@@ -86,7 +86,10 @@ h3{
     outline: none;
 }
 
-.main-panel form input[type=text], .main-panel form input[type=password], .main-panel form input[type=email]{
+.main-panel form input[type=text], 
+.main-panel form input[type=password], 
+.main-panel form input[type=email], 
+.main-panel form input[type=number]{
     background: #E6E9E6;
     border: 1px solid #000000;
     box-sizing: border-box;
