@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Utilities\StatisticsUtil;
+use App\Utilities\UserUtil;
 
 class UserController extends Controller
 {
@@ -16,14 +17,8 @@ class UserController extends Controller
      */
     public function ranking()
     {
+        UserUtil::ranking();
         $users = User::where('deleted', 0)->where('role_id', 1)->orderBy('ranking_points', 'desc')->get();
-        for($i = 1; $i<=count($users); $i++){
-            $users[$i-1]->position = $i;
-        }
-        foreach($users as $user){
-            User::where('position', $user->position)->where('id', '!=', $user->id)->update(['position' => null]);
-            $user->save();
-        }
         return view('ranking', compact('users'));
     }
 
