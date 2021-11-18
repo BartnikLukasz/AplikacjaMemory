@@ -11,6 +11,7 @@ use App\Models\SingleGame;
 use App\Models\User;
 use App\Utilities\UnlockCategoryUtil;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\VarDumper\VarDumper;
 
 class GameController extends Controller
@@ -28,15 +29,31 @@ class GameController extends Controller
 
     public function chooseCategory($difficulty){
         $unlockedCategoriesId = UnlockCategory::where('user_id', Auth::user()->id)->get()->pluck('category_id')->toArray();
-        $categories = Category::where('status', 1)->get();
-        $pictures = [];
+        $categoriesDefault = DB::table('category')
+                                ->join('user', 'user.id', '=', 'category.author')
+                                ->where('category.status', 1)
+                                ->where('user.role_id', 2)
+                                ->select('category.id', 'category.name', 'category.author')
+                                ->get();
+                            
+        $categoriesUser = DB::table('category')
+                                ->join('user', 'user.id', '=', 'category.author')
+                                ->where('category.status', 1)
+                                ->where('user.role_id', 1)
+                                ->select('category.id', 'category.name', 'category.author')
+                                ->get();
         $i = 0;
-        foreach($categories as $category){
-            $pictures[$i] = Picture::where('category_id', $category->id)->first()->link;
+        foreach($categoriesDefault as $category){
+            $picturesDefault[$i] = Picture::where('category_id', $category->id)->first()->link;
+            $i++;
+        }
+        $i = 0;
+        foreach($categoriesUser as $category){
+            $picturesUser[$i] = Picture::where('category_id', $category->id)->first()->link;
             $i++;
         }
         $level = $difficulty;
-        return view('chooseCategory', compact('categories', 'level', 'unlockedCategoriesId', 'pictures'));
+        return view('chooseCategory', compact('categoriesDefault', 'categoriesUser', 'level', 'unlockedCategoriesId', 'picturesDefault', 'picturesUser'));
     }
 
     public function chooseDifficulty(){
