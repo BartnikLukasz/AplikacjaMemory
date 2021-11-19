@@ -7,6 +7,7 @@ use App\Models\LevelDifficulty;
 use App\Models\UnlockCategory;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UnlockCategoryUtil{
@@ -23,7 +24,13 @@ class UnlockCategoryUtil{
             $i++;
         }
 
-        $newUnlockedCategory = Category::whereNotIn('id', $categoryIds)->first();
+        $newUnlockedCategory = DB::table('category')
+                                ->join('user', 'user.id', '=', 'category.author')
+                                ->where('category.status', 1)
+                                ->where('user.role_id', 2)
+                                ->whereNotIn('category.id', $categoryIds)
+                                ->select('category.id', 'category.name', 'category.author')
+                                ->first();
 
         if($newUnlockedCategory){
             UnlockCategory::create([
@@ -34,8 +41,14 @@ class UnlockCategoryUtil{
     }
 
     public static function unlockCategoryOnRegistration($id){
-        $categories = Category::all()->take(3);
+        $categories = DB::table('category')
+                            ->join('user', 'user.id', '=', 'category.author')
+                            ->where('category.status', 1)
+                            ->where('user.role_id', 2)
+                            ->select('category.id', 'category.name', 'category.author')
+                            ->get(3);
 
+                                    
         foreach($categories as $category){
             UnlockCategory::create([
                 'user_id' => $id,
