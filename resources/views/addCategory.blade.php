@@ -52,23 +52,25 @@
                 <input type="submit" class="button d-inline add-category-button" name='submit_category' value="Dodaj Kategorię"/>
             </div>
         </div>
-        </form>
         
         @if($category)
         <div class="category-buttons text-center">
+        <input class="button" type="submit" name='submit_category' value="Zapisz">
             <a class="button" href="{{ route('cancelCategoryCreation', $category->id) }}">
             {{ __('Anuluj') }}</a>
-            <a class="button" href="{{ route('endCategoryCreation', $category->id) }}">
-            {{ __('Zakończ') }}</a>
+           
+            
         </div>
         @else
         <div class="category-buttons text-center">
+        <input class="button" type="submit" name='submit_category' value="Zapisz">
             <a class="button" href="{{ route('userCategories', Auth::user()->id) }}">
             {{ __('Anuluj') }}</a>
-            <a class="button" href="{{ route('userCategories', Auth::user()->id) }}">
-            {{ __('Zakończ') }}</a>
+            
+            
         </div>
         @endif
+        </form>
     </div>
             <script>
 

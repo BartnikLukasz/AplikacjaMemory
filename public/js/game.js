@@ -21,7 +21,7 @@ $(function(){
         $(".word").css("bottom", "10px");
         $(".word h3").css({"font-size": "1.4em", "letter-spacing": "initial"});
     }
-
+    
     $(document).on('click', '.game-card', function(){
         if(active_card == null){
             //var start = Date.now();
@@ -132,7 +132,7 @@ $(function(){
         var scoreShow = $('#scoreP');
         var timeEndSend = $('#time');
         var scoreSend = $('#score');
-        var multiplier = $('#levelDifficultySend').val();
+        var multiplier = $('#multiplier').val();
         var minMoves = 0; //minimalna ilość ruchów konieczna do ukończenia poziomu
         if (multiplier == 1){
             minMoves = 9;

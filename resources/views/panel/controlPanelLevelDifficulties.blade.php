@@ -18,7 +18,7 @@
                             Poziom
                         </th>
                         <th>
-                            Ilość obrazków
+                            Liczba obrazków
                         </th>
                         <th>
                             Mnożnik

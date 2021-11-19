@@ -13,4 +13,12 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-/public/pictures
+/public/pictures/*
+!/public/pictures/Flagi
+!/public/pictures/Instrumenty
+!/public/pictures/Owoce
+!/public/pictures/Pojazdy
+!/public/pictures/Ubrania
+!/public/pictures/Warzywa
+!/public/pictures/Zawody
+!/public/pictures/Zwierzęta
