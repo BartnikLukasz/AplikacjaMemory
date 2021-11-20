@@ -42,6 +42,10 @@ class GameController extends Controller
                                 ->where('user.role_id', 1)
                                 ->select('category.id', 'category.name', 'category.author')
                                 ->get();
+
+        $picturesDefault = [];
+        $picturesUser = [];
+
         $i = 0;
         foreach($categoriesDefault as $category){
             $picturesDefault[$i] = Picture::where('category_id', $category->id)->first()->link;
