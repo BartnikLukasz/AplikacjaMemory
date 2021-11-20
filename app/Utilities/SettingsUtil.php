@@ -40,6 +40,7 @@ class SettingsUtil{
         $user->position = User::count()+1;
         $user->ranking_points = 0;
         $user->save();
+        UnlockCategoryUtil::unlockCategoryOnRegistration($user->id);
     }
 
     public static function deleteAccount(){
