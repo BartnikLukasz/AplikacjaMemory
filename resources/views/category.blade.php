@@ -8,11 +8,11 @@
     }
 </style>
 
-    <div class="main-panel w-75 text-center">
-        
+    <div class="main-panel w-75 text-center" id="category">
+        <h3 class="mb-4 text-center">{{ $category->name }}</h3>
         <div class="categories-container mb-2">
             <div id="image_preview" class="row">
-            <h3 class="mb-4 text-center">{{ $category->name }}</h3>
+            
                 @foreach($category->picture()->get() as $picture)
                 <div class="col-2 mb-2">
                     <div class="add-category-img" style="background-image: url('{{$picture->link}}')"></div>

@@ -353,30 +353,36 @@ h3{
 }
 
 .categories .col-2:hover .category-title{
-    transform: translateY(-3px) scale(1.08);
+    transform: translateY(-3px) scale(1.02);
 }
 
 .categories .category-title{
     color: rgb(48, 48, 48);
     text-decoration: none;
     text-transform: uppercase;
-    transition: all .2s ease-in-out;   
+    transition: all .2s ease-in-out;
+    font-weight: 500;
+    font-size: 1.1em;
 }
 
-.categories .categories-container{
+.categories .categories-container, #add-category .categories-container, #category .categories-container{
     max-height: 340px;
     overflow-y: scroll;
 }
 
-.categories .row{
+.categories .row, #add-category .row, #category .row{
     width: 101%;
 }
 
-.categories .categories-container::-webkit-scrollbar {
+.categories .categories-container::-webkit-scrollbar,
+#add-category .categories-container::-webkit-scrollbar, 
+#category .categories-container::-webkit-scrollbar {
     width: 8px;
 }
 
-.categories .categories-container::-webkit-scrollbar-thumb {
+.categories .categories-container::-webkit-scrollbar-thumb,
+#add-category .categories-container::-webkit-scrollbar-thumb,
+#category .categories-container::-webkit-scrollbar-thumb{
     background-color: #d6dee1;
     border-radius: 20px;
     border: 6px solid transparent;
@@ -432,6 +438,11 @@ h3{
 .add-category-button{
     font-size: 1.1em;
     padding: 5px !important;
+}
+
+.add-category-button-return{
+    font-size: 1.1em;
+    padding: 8px 30px;
 }
 
 #upload_file{
@@ -635,6 +646,14 @@ h3{
     position: relative;
 }
 
+.game-container .game-card:not([reveal=true]){
+    cursor: pointer;
+}
+
+.game-container .game-card:not([reveal=true]):hover{
+    background: #23c533 !important;
+}
+
 .game-container .game-card .word{
     position: absolute;
     bottom: 30px;
@@ -642,21 +661,23 @@ h3{
     transform: translateX(-50%);
     text-transform: uppercase;
     white-space: nowrap;
-    background-color: rgba(255, 255, 255, 0.658);
+    background-color: rgba(218, 218, 218, 0.4);
     width: 100%;
     text-align: center;
     border-width: 2px 0;
     border-style: solid;
-    border-color: #fff;
+    border-color: #e3ffe0;
     display: none;
 }
 
 .game-container .game-card .word h3{
     padding: 5px;
     margin: 0;
-    font-size: 1.8em;
+    font-size: 1.9em;
     font-weight: 500 !important;
     letter-spacing: 1.5px;
+    -webkit-text-stroke: 1.3px black;
+    color: #e3ffe0;
 }
 
 .card-container .report-button{
@@ -676,10 +697,21 @@ h3{
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
     background-color: #fff;
-    border: 7px solid #12747A;
+    border: 4px solid #12747A;
     border-radius: 10px;
-    padding: 40px 30px;
-    box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
+    padding: 45px 55px;
+    box-shadow: 1px 4px 10px 2px rgba(0, 0, 0, 0.55);
+    text-align: center;
+}
+
+.game-container #end-game-form p{
+    font-size: 1.2em;
+}
+
+.game-container #end-game-form .end-game-title{
+    font-weight: 500;
+    font-size: 1.5em;
+    margin-bottom: 0;
 }
 
 .game-container #end-game-form .button{

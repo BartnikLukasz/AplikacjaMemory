@@ -9,7 +9,7 @@
     
     
   
-    <div class="main-panel w-75 text-center categories" id="add-category">
+    <div class="main-panel w-75 text-center" id="add-category">
 
         <p style="font-size: 0.9em;">{{ __('Załącz co najmniej 10 obrazków, dodaj podpisy i nazwę kategorii') }}</p>
 
@@ -52,30 +52,25 @@
         </div>
         <div class="row justify-content-between align-items-center mt-3">
             <div class="col text-start">
-                    <input type='text' name="title" class="d-inline" pattern=".{1,30}" title="Nazwa kategorii powinna mieć maksymalnie 30 liter." required placeholder="Nazwa kategorii" @if($category != null) value="{{ $category->name }}" @endif/>
+                    <input type='text' name="title" class="d-inline" pattern=".{1,20}" title="Nazwa kategorii może mieć maksymalnie 20 znaków." required placeholder="Nazwa kategorii" @if($category != null) value="{{ $category->name }}" @endif/>
             </div>
             <div class="col text-end">
-                <input type="submit" class="button d-inline add-category-button" name='submit_category' value="Dodaj Kategorię"/>
+              <!--  <input type="submit" class="button d-inline add-category-button" name='submit_category' value="Dodaj Kategorię"/>-->
+                @if($category)
+        
+                    <a class="button d-inline add-category-button-return" href="{{ route('cancelCategoryCreation', $category->id) }}">{{ __('Powrót') }}</a>    
+                    <input class="button d-inline add-category-button" type="submit" name='submit_category' value="Zapisz">
+                
+                @else
+                
+                    <a class="button d-inline add-category-button-return" href="{{ route('userCategories', Auth::user()->id) }}">{{ __('Powrót') }}</a>
+                    <input class="button d-inline add-category-button" type="submit" name='submit_category' value="Zapisz">
+
+                @endif
             </div>
         </div>
         
-        @if($category)
-        <div class="category-buttons text-center">
-        <input class="button" type="submit" name='submit_category' value="Zapisz">
-            <a class="button" href="{{ route('cancelCategoryCreation', $category->id) }}">
-            {{ __('Anuluj') }}</a>
-           
-            
-        </div>
-        @else
-        <div class="category-buttons text-center">
-        <input class="button" type="submit" name='submit_category' value="Zapisz">
-            <a class="button" href="{{ route('userCategories', Auth::user()->id) }}">
-            {{ __('Anuluj') }}</a>
-            
-            
-        </div>
-        @endif
+        
         </form>
     </div>
             <script>

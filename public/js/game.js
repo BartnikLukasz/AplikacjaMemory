@@ -12,7 +12,6 @@ $(function(){
     var timerInterval = null;
     var diffucultLevel = $('#levelDifficultySend').val();
     var gamePart = 1;
-
     if(diffucultLevel == 2){
         $(".word").css("bottom", "20px");
         $(".word h3").css("font-size", "1.6em");
@@ -66,7 +65,11 @@ $(function(){
             }
             else{
                 if(number_of_cards == 2){
-                    $(this).find('.word').show().css({"bottom": "50%", "transform": "translateX(-50%) translateY(50%)"});
+                    $(this).find('.word').show().css({"bottom": "50%", 
+                                                      "transform": "translateX(-50%) translateY(50%)", 
+                                                      "background-color": "initial",
+                                                      "border-width": "initial",
+                                                      "border-style": "initial"});
                     $(this).css("background", "#fff");
                 }
             }            
@@ -94,10 +97,17 @@ $(function(){
                         }, 500);    
                     }
                     else{
+                        if(gamePart == 3){
+                            var randomColor = (0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
+                            active_card.css("outline", "3px solid #"+randomColor);
+                            active_card_2.css("outline", "3px solid #"+randomColor);
+                        }
                         active_card.attr("reveal", "true");
                         active_card_2.attr("reveal", "true");
                         active_card_2 = null;
                         complete_pairs++;
+
+                        
                         
                         setTimeout(function(){
                             if ((complete_pairs == "3" && diffucultLevel == 1) ||
@@ -144,19 +154,17 @@ $(function(){
         var endSeconds = minutes*60 + seconds;
         
         timeEndSend.val(seconds);
-        //scoreSend.val(Math.floor(150/((seconds/2)*(number_of_moves/(multiplier**5)))));
-        //if(scoreSend.val()>500) scoreSend.val(500);
 
         scoreSend.val(Math.round((100-(100*(number_of_moves/(minMoves*3))*(endSeconds/(90*multiplier))))*multiplier));
         if(scoreSend.val()<1) scoreSend.val(1);
         
         if (seconds < 10){
-            timeEndShow.text("Czas gry: "+ minutes+":0"+seconds);
+            timeEndShow.text( minutes+":0"+seconds);
         } else{
-            timeEndShow.text("Czas gry: "+ minutes+":"+seconds);
+            timeEndShow.text(minutes+":"+seconds);
         }
-        movesEndShow.text("Liczba ruchów: " + number_of_moves);
-        scoreShow.text("Zdobyte punkty: " + scoreSend.val());
+        movesEndShow.text(number_of_moves);
+        scoreShow.text(scoreSend.val());
 
         $('#quit-game-button').hide();
         $('#end-game-form').show();
