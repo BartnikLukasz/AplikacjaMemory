@@ -382,6 +382,35 @@ h3{
     border: 6px solid transparent;
 }
 
+.categories .categories-default-locked, .categories .categories-non-default{
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.categories .user-categories-card-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 125px;
+    text-align: center;
+    text-transform: uppercase;
+    color:#12747A;
+    font-weight: 600;
+    font-size: 1.3em;
+    margin: 0 5px;
+}
+
+.categories .categories-non-default{
+    background-color: #12757a18;
+    padding-top: 10px;
+    margin-top: -10px;
+    border-radius: 5px;
+}
+
+.user-categories-card p{
+    display: block;
+}
+
 #add-category input[type=text]{
     width: initial;
 }
