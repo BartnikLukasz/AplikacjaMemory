@@ -46,8 +46,8 @@ class UnlockCategoryUtil{
                             ->where('category.status', 1)
                             ->where('user.role_id', 2)
                             ->select('category.id', 'category.name', 'category.author')
-                            ->get(3);
-
+                            ->take(3)
+                            ->get();
                                     
         foreach($categories as $category){
             UnlockCategory::create([

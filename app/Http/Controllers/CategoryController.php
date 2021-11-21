@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Picture;
 use App\Models\UnlockCategory;
+use App\Utilities\CategoryUtil;
 use DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,79 +48,30 @@ class CategoryController extends Controller
         return view("dashboard");
     }
 
-    public function store($upload, $categoryId, $categoryTitle, $word, $i){
-        if(Picture::where('word', $word)->where('category_id', $categoryId)->exists()) return;
-        session_start();
-        $picture = new Picture();
-        $picture->category_id = $categoryId;
-        $picture->word = $word;
-        if(!is_dir(public_path().'/pictures/'.$categoryTitle)) mkdir(public_path().'/pictures/'.$categoryTitle);
-        $path = '/pictures/'.$categoryTitle.'/'.$word.'.jpg';
-        $path = str_replace('\\', '/', $path);
-        $picture->link = $path;
-        $picture->save();
-        move_uploaded_file($upload[$i]["tmp_name"], public_path().$path);
-        session_destroy();
-    }
-
     public function addCategory(Request $request){
         if(Auth::user()==null){
             return view('login');
         }
-        $category = null;
-        if(isset($request->oldTitle)){
-            if($request->oldTitle != $request->title){
-                $category = Category::where('name', $request->oldTitle)->update(['name'=>$request->title]);
-            }
-            else{
-                $category = Category::where('name', $request->oldTitle)->first();
-            }
+
+        $category = CategoryUtil::getCategoryForRequest($request);
+        if(!CategoryUtil::validateEmptyRequest($request, $category->id)){
+            return back()->withErrors(["morePicturesNeeded"=>__('validation.morePicturesNeeded')]);
         }
-        else{
-            $category = Category::firstOrCreate([
-                'name' => $request->title,
-                'author' => Auth::user()->id,
-            ]);
-        }
-        $category = Category::where('name', $request->title)->first();
+
         $upload = $this->incoming_files();
-        $i = 0;
-        foreach($request->words as $word){
-            $this->store($upload, $category->id, $category->name, $word, $i);
-            $i++;
-        }
+        
+        CategoryUtil::storePictures($upload, $category->id, $category->name, $request->words);
+       
         return $this->edit($category->id);
     }
 
     public function delete($id){
-        $category = Category::find($id);
-        if((Auth::user()->id != $category->author) && (!Auth::user()->isAdmin())){
-            return view('dashboard');
-        }
-        $pictures = Picture::where('category_id', $id)->get();
-        foreach($pictures as $picture){
-            $url = public_path().$picture->link;
-            try {
-                unlink($url);
-            } catch (\Exception $e) {
-
-            }
-        }
-        Picture::where('category_id', $id)->delete();
-        UnlockCategory::where('category_id', $id)->delete();
-        Category::destroy($id);
+        CategoryUtil::deleteCategory($id);
         return $this->create(Auth::user()->id);
     }
 
     public function deleteImage($id){
-        $picture = Picture::find($id);
-        $url = public_path().$picture->link;
-        try {
-            unlink($url);
-        } catch (\Exception $e) {
-
-        }
-        Picture::destroy($id);
+        $picture = CategoryUtil::deleteImage($id);
         return $this->edit($picture->category_id);
     }
 

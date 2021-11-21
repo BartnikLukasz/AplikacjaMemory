@@ -15,6 +15,12 @@
 
         <form id="categoryForm" action="{{ route('storeCategory') }}" method="POST" enctype="multipart/form-data">
 
+        @error('morePicturesNeeded')
+                <span class="invalid-feedback" role="alert">
+                    <strong class="bg-light">{{ $message }}</strong>
+                </span>
+            @enderror
+
         @csrf
 
         <div class="categories-container">
@@ -38,7 +44,7 @@
                 </div>
                 
             </div>
-            @error('image')
+            @error('words.*')
                 <span class="invalid-feedback" role="alert">
                     <strong class="bg-light">{{ $message }}</strong>
                 </span>
@@ -46,7 +52,7 @@
         </div>
         <div class="row justify-content-between align-items-center mt-3">
             <div class="col text-start">
-                    <input type='text' name="title" class="d-inline" required placeholder="Nazwa kategorii" @if($category != null) value="{{ $category->name }}" @endif/>
+                    <input type='text' name="title" class="d-inline" pattern=".{1,30}" title="Nazwa kategorii powinna mieć maksymalnie 30 liter." required placeholder="Nazwa kategorii" @if($category != null) value="{{ $category->name }}" @endif/>
             </div>
             <div class="col text-end">
                 <input type="submit" class="button d-inline add-category-button" name='submit_category' value="Dodaj Kategorię"/>
@@ -85,7 +91,7 @@
                     var file=document.getElementById("upload_file"+j);
                     console.log(event.target.files[0]);
                     console.log(file.innerHTML)
-                    $('#image_preview').append("<div class='col-2 mb-2'><div class='add-category-img' style='background-image: url("+URL.createObjectURL(event.target.files[0])+")'></div><br><input type='text' name='words[]' required placeholder='Tytuł obrazka' class='add-category-text'/></div>");
+                    $('#image_preview').append("<div class='col-2 mb-2'><div class='add-category-img' style='background-image: url("+URL.createObjectURL(event.target.files[0])+")'></div><br><input type='text' name='words[]' pattern='.{1,15}' title='Nazwa obrazka powinna mieć maksymalnie 15 liter.' required placeholder='Tytuł obrazka' class='add-category-text'/></div>");
                 }
             </script>
 </x-app-layout>
