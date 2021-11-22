@@ -40,6 +40,9 @@ class CategoryUtil{
                 CategoryUtil::deleteCategory($categoryId);
                 return false;
             }
+        }elseif(Picture::where('category_id', $categoryId)->count()<10){
+            CategoryUtil::deleteCategory($categoryId);
+            return false;
         }
         return true;
     }
@@ -75,6 +78,9 @@ class CategoryUtil{
 
     public static function deleteImage($id){
         $picture = Picture::find($id);
+        if(Picture::where('category_id', $picture->category_id)->count()<10){
+            return false;
+        }
         $url = public_path().$picture->link;
         try {
             unlink($url);

@@ -76,6 +76,9 @@ class CategoryController extends Controller
 
     public function deleteImage($id){
         $picture = CategoryUtil::deleteImage($id);
+        if($picture == false){
+            return back()->withErrors(["morePicturesNeeded"=>__('validation.morePicturesNeeded')]);
+        }
         return $this->edit($picture->category_id);
     }
 
