@@ -124,6 +124,7 @@ return [
     'url' => 'The :attribute must be a valid URL.',
     'uuid' => 'The :attribute must be a valid UUID.',
     'morePicturesNeeded' => 'Należy dodać co najmniej 10 obrazków',
+    'picturesTooHeavy' => "Maksymalny rozmiar obrazka to 1MB",
 
     /*
     |--------------------------------------------------------------------------
