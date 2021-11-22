@@ -53,15 +53,15 @@ class CategoryController extends Controller
             return view('login');
         }
 
-        $category = CategoryUtil::getCategoryForRequest($request);
-        if(!CategoryUtil::validateEmptyRequest($request, $category->id)){
-            return back()->withErrors(["morePicturesNeeded"=>__('validation.morePicturesNeeded')]);
-        }
-
         $upload = $this->incoming_files();
 
         if(!CategoryUtil::validateImagesSize($upload)){
             return back()->withErrors(["picturesTooHeavy"=>__('validation.picturesTooHeavy')]);
+        }
+
+        $category = CategoryUtil::getCategoryForRequest($request);
+        if(!CategoryUtil::validateEmptyRequest($request, $category->id)){
+            return back()->withErrors(["morePicturesNeeded"=>__('validation.morePicturesNeeded')]);
         }
         
         CategoryUtil::storePictures($upload, $category->id, $category->name, $request->words);
