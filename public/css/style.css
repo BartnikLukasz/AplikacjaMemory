@@ -234,9 +234,18 @@ h3{
 -------Statistics---------------------
 ------------------------------------*/
 
-#statistics-panel span{
+#statistics-panel p{
+    text-align: center;
     font-size: 1.2em;
+    font-weight: 500;
 }
+
+#statistics-panel .statistic-title{
+    font-weight: 400;
+    font-size: 1.3em;
+    margin-bottom: 0;
+}
+
 
 /*------------------------------------
 -------Main page---------------------
@@ -388,7 +397,7 @@ h3{
     border: 6px solid transparent;
 }
 
-.categories .categories-default-locked, .categories .categories-non-default{
+.categories .categories-default-locked, .categories .categories-non-default-locked{
     opacity: 0.4;
     pointer-events: none;
 }
@@ -408,9 +417,8 @@ h3{
 
 .categories .categories-non-default{
     background-color: #12757a18;
-    padding-top: 10px;
-    margin-top: -10px;
-    border-radius: 5px;
+    padding-top: 8px;
+    margin-top: -8px;
 }
 
 .user-categories-card p{
