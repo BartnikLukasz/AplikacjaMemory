@@ -20,7 +20,11 @@
                     <strong class="bg-light">{{ $message }}</strong>
                 </span>
             @enderror
-
+            @error('picturesTooHeavy')
+                <span class="invalid-feedback" role="alert">
+                    <strong class="bg-light">{{ $message }}</strong>
+                </span>
+            @enderror
         @csrf
 
         <div class="categories-container">

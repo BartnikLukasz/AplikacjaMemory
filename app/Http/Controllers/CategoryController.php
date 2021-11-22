@@ -45,7 +45,7 @@ class CategoryController extends Controller
 
     public function reportCategory($categoryName){
         Category::where('name', $categoryName)->update(['reported'=>1]);
-        return view("dashboard");
+        return view("chooseDifficulty");
     }
 
     public function addCategory(Request $request){
@@ -59,6 +59,10 @@ class CategoryController extends Controller
         }
 
         $upload = $this->incoming_files();
+
+        if(!CategoryUtil::validateImagesSize($upload)){
+            return back()->withErrors(["picturesTooHeavy"=>__('validation.picturesTooHeavy')]);
+        }
         
         CategoryUtil::storePictures($upload, $category->id, $category->name, $request->words);
        
@@ -101,12 +105,12 @@ class CategoryController extends Controller
         foreach ($files as $input => $infoArr) {
             $filesByInput = [];
             foreach ($infoArr as $key => $valueArr) {
-                if (is_array($valueArr)) { // file input "multiple"
+                if (is_array($valueArr)) { 
                     foreach($valueArr as $i=>$value) {
                         $filesByInput[$i][$key] = $value;
                     }
                 }
-                else { // -> string, normal file input
+                else { 
                     $filesByInput[] = $infoArr;
                     break;
                 }
@@ -114,7 +118,7 @@ class CategoryController extends Controller
             $files2 = array_merge($files2,$filesByInput);
         }
         $files3 = [];
-        foreach($files2 as $file) { // let's filter empty & errors
+        foreach($files2 as $file) { 
             if (!$file['error']) $files3[] = $file;
         }
         return $files3;
