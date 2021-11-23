@@ -11,7 +11,7 @@
   
     <div class="main-panel w-75 text-center" id="add-category">
 
-        <p style="font-size: 0.9em;">{{ __('Załącz co najmniej 10 obrazków, dodaj podpisy i nazwę kategorii') }}</p>
+        <p style="font-size: 0.9em;">{{ __('Załącz co najmniej 10 obrazków, dodaj podpisy i nazwę kategorii. Maksymalny rozmiar obrazka to 1MB.') }}</p>
 
         <form id="categoryForm" action="{{ route('storeCategory') }}" method="POST" enctype="multipart/form-data">
 
@@ -45,7 +45,7 @@
                 </div>
                 <div class="input_div" id="input_div" name="input_div" hidden>
                     <input type="file" id="upload_file1" name="upload_file[]" class="@error('image') is-invalid @enderror" onchange="preview_image(this)" />
-                </div>
+                </div> 
                 
             </div>
             @error('words.*')
@@ -63,12 +63,12 @@
                 @if($category)
         
                     <a class="button d-inline add-category-button-return" href="{{ route('cancelCategoryCreation', $category->id) }}">{{ __('Powrót') }}</a>    
-                    <input class="button d-inline add-category-button" type="submit" name='submit_category' value="Zapisz">
+                    <input class="button d-inline add-category-button" type="button" name='submit_category' value="Zapisz">
                 
                 @else
                 
                     <a class="button d-inline add-category-button-return" href="{{ route('userCategories', Auth::user()->id) }}">{{ __('Powrót') }}</a>
-                    <input class="button d-inline add-category-button" type="submit" name='submit_category' value="Zapisz">
+                    <input class="button d-inline add-category-button" type="button" name='submit_category' value="Zapisz">
 
                 @endif
             </div>
@@ -80,17 +80,30 @@
             <script>
 
                 var j = 1;
-
                 function preview_image() 
                 {
                     $('#label'+j).hide();
                     j++;
-                    $('#label_div').append('<label id="label'+j+'" for="upload_file'+j+'" class="add-category-add-button-inner"><span class="plus-icon"><i class="bi bi-plus-square"></i><br><span style="font-size: 1rem;">Dodaj<br>obrazek</span></span></label>')
-                    $('#input_div').append('<input type="file" id="upload_file'+j+'" name="upload_file[]" onchange="preview_image(this)" />');
-                    var file=document.getElementById("upload_file"+j);
-                    console.log(event.target.files[0]);
-                    console.log(file.innerHTML)
-                    $('#image_preview').append("<div class='col-2 mb-2'><div class='add-category-img' style='background-image: url("+URL.createObjectURL(event.target.files[0])+")'></div><br><input type='text' name='words[]' pattern='.{1,15}' title='Nazwa obrazka powinna mieć maksymalnie 15 liter.' required placeholder='Tytuł obrazka' class='add-category-text'/></div>");
+                    $('#label_div').append('<label id="label'+j+'" for="upload_file'+j+'" class="add-category-add-button-inner upload_file'+(j-1)+'"><span class="plus-icon"><i class="bi bi-plus-square"></i><br><span style="font-size: 1rem;">Dodaj<br>obrazek</span></span></label>')
+                    $('#input_div').append('<input type="file" id="upload_file'+j+'" class="upload_file'+(j-1)+'" name="upload_file[]" onchange="preview_image(this)" />');
+                    $('#upload_file'+(j-1)).each(function(){
+            
+                            if(this.files[0].size > 1048576){
+
+                                    alert("Maksymalny rozmiar obrazka to 1MB."); 
+                                    let element = this.id;
+                                    $('.'+element).remove();
+                                    j--;
+                                    $('#label'+j).show();
+
+                            } else{
+                                var file=document.getElementById("upload_file"+j);
+                                console.log(event.target.files[0]);
+                                console.log(file.innerHTML)
+                                $('#image_preview').append("<div class='col-2 mb-2 upload_file"+(j-1)+"'><div class='add-category-img' style='background-image: url("+URL.createObjectURL(event.target.files[0])+")'></div><br><input type='text' name='words[]' pattern='.{1,15}' title='Nazwa obrazka powinna mieć maksymalnie 15 liter.' required placeholder='Tytuł obrazka' class='add-category-text'/></div>");
+                            } 
+                        });
+                   
                 }
             </script>
 </x-app-layout>

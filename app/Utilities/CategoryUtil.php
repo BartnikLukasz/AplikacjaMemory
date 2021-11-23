@@ -107,11 +107,11 @@ class CategoryUtil{
     }
 
     public static function validateImagesSize($upload){
-        foreach($upload as $file){
+       /* foreach($upload as $file){
             if($file["size"]>1048576){
                 return false;
             }
-        }
+        } */
         return true;
     }
 
