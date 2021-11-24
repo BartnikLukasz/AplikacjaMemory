@@ -477,7 +477,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => '60',
-                'word' => 'Nauczycielka',
+                'word' => 'Nauczyciel',
                 'link' => '/pictures/Zawody/nauczycielka.jpg',
                 'category_id' => '5',
             ],

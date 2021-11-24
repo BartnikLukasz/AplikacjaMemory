@@ -25,14 +25,17 @@ h3{
     background-repeat: no-repeat;
 }
 
-.title-container:hover{
+.title-container a:hover{
     color: #000;
 }
 
 .title-container{
     display: block;
-    max-width: 27%;
+    max-width: 95%; 
     margin: auto;
+}
+.title-container {
+    width: fit-content;
 }
 
 .title{
@@ -50,6 +53,13 @@ h3{
 .title:hover{
     transform: scale(1.02);
     color:black;
+}
+
+
+@media (max-height: 720px){
+    .title{
+        font-size: 4em !important;
+    }
 }
 
 .user-button{
@@ -232,6 +242,14 @@ h3{
     content: " pkt";
 }
 
+.newPassword-confirm-alert{
+    display: none;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: .875em;
+    color: #dc3545;
+}
+
 /*------------------------------------
 -------Statistics---------------------
 ------------------------------------*/
@@ -355,15 +373,15 @@ h3{
     border-radius: 20px;
 }
 
-.categories .col-2{
+.categories .col-xl-2{
     transition: all .2s ease-in-out;   
 }
 
-.categories .col-2:hover .one-category{
+.categories .col-xl-2:hover .one-category{
      opacity: 0.75;
 }
 
-.categories .col-2:hover .category-title{
+.categories .col-xl-2:hover .category-title{
     transform: translateY(-3px) scale(1.02);
 }
 
@@ -730,6 +748,34 @@ h3{
     border: none;
 }
 
+@media (max-height: 700px){
+    .game-container .game-info-single h4{
+        font-size: 1em !important;
+    }
+    .game-container .points-row .info-border{
+        padding: 6px 10px !important;
+    }
+    .game-container .game-info-single:not(:last-child){
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 1200px){
+    .game-container .game-info-single{
+        width: 100%;
+    }
+    .game-container .game-info-single h4{
+        font-size: 1em !important;
+    }
+    .game-container .points-row .info-border{
+        padding: 6px 4px !important;
+    }
+    .game-container .category-name-inner h4{
+        font-size: 1.1em;
+    }
+}
+
+
 /*------------------------------------
 -------Samouczek------------------------
 ------------------------------------*/
@@ -754,8 +800,6 @@ h3{
     margin: auto;
     cursor: pointer;
 }
-
-
 
 /*------------------------------------
 -------Errors------------------------

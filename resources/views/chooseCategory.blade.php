@@ -14,7 +14,7 @@
             <div class="row">
                 @foreach ($categoriesDefault as $category)
                     @if(in_array($category->id, $unlockedCategoriesId)) 
-                    <div class="col-2 mb-2 categories-default-unlocked">
+                    <div class="col-4 col-lg-3 col-xl-2 mb-2 categories-default-unlocked">
                         <a href="{{ route('startGame', [$category->id, $level]) }}" class="text-decoration-none">
                             <div class="one-category" style="background-image: url('{{asset($picturesDefault[$i])}}');"></div>
                             <p class="category-title text-center mt-2">{{ $category->name }}</p>
@@ -33,7 +33,7 @@
                     ?>
                 @foreach ($categoriesDefault as $category)
                     @if(!in_array($category->id, $tempArray)) 
-                        <div class="col-2 mb-2 categories-default-locked">
+                        <div class="col-4 col-lg-3 col-xl-2 mb-2 categories-default-locked">
                             <a href="{{ route('startGame', [$category->id, $level]) }}" class="text-decoration-none">
                                 <div class="one-category" style="background-image: url('{{asset($picturesDefault[$i])}}');"></div>
                                 <p class="category-title text-center mt-2">{{ $category->name }}</p>
@@ -49,7 +49,7 @@
                     ?>
                 @foreach ($categoriesUser as $category)
                     @if(!in_array($category->id, $tempArray)) 
-                        <div class="col-2 mb-2 categories-non-default categories-non-default-locked">
+                        <div class="col-4 col-lg-3 col-xl-2 mb-2 categories-non-default categories-non-default-locked">
                             <a href="{{ route('startGame', [$category->id, $level]) }}" class="text-decoration-none">
                                 <div class="one-category" style="background-image: url('{{asset($picturesUser[$i])}}');"></div>
                                 <p class="category-title text-center mt-2">{{ $category->name }}</p>
