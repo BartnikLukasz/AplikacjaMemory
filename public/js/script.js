@@ -2,7 +2,7 @@ var $ = jQuery;
 $(function(){
 
     /* Ścieżka dźwiękowa */
-    var audio = new Audio("../music/background_music.mp3");
+    var audio = new Audio("../../music/background_music.mp3");
     audio.loop = true;
     $(document).on('click', '.sound-button', function(){
         
