@@ -33,14 +33,14 @@
                 @if($category != null)
                 <input type='hidden' name="oldTitle" class="d-inline" value="{{ $category->name }}" />
                 @foreach($category->picture()->get() as $image)
-                    <div class="col-2 mb-2" style="position:relative;">
+                    <div class="col-4 col-lg-3 col-xl-2 mb-2" style="position:relative;">
                         <a href="{{ route('deleteImage', $image->id) }}" class="delete-image"><div class="delete-image-inner">X</div></a>
                         <div class='add-category-img' style='background-image: url("{{$image->link}}")'></div>
                         <p class="category-title text-center mt-1 text-uppercase">{{$image->word}}</p>
                     </div>
                 @endforeach
                 @endif
-                <div class="label_div col-2 add-category-add-button order-last" id="label_div" name="label_div" style="display: flex;">
+                <div class="label_div col-4 col-lg-3 col-xl-2 add-category-add-button order-last" id="label_div" name="label_div" style="display: flex;">
                     <label id="label1" for="upload_file1" class="add-category-add-button-inner"><span><i class="bi bi-plus-square"></i><br><span style="font-size: 1rem;">Dodaj<br>obrazek</span></span></label>
                 </div>
                 <div class="input_div" id="input_div" name="input_div" hidden>
@@ -100,7 +100,7 @@
                                 var file=document.getElementById("upload_file"+j);
                                 console.log(event.target.files[0]);
                                 console.log(file.innerHTML)
-                                $('#image_preview').append("<div class='col-2 mb-2 upload_file"+(j-1)+"'><div class='add-category-img' style='background-image: url("+URL.createObjectURL(event.target.files[0])+")'></div><br><input type='text' name='words[]' pattern='.{1,10}' title='Nazwa obrazka może zawierać maksymalnie 10 znaków.' required placeholder='Tytuł obrazka' class='add-category-text'/></div>");
+                                $('#image_preview').append("<div class='col-4 col-lg-3 col-xl-2 mb-2 upload_file"+(j-1)+"'><div class='add-category-img' style='background-image: url("+URL.createObjectURL(event.target.files[0])+")'></div><br><input type='text' name='words[]' pattern='.{1,10}' title='Nazwa obrazka może zawierać maksymalnie 10 znaków.' required placeholder='Tytuł obrazka' class='add-category-text'/></div>");
                             } 
                         });
                    

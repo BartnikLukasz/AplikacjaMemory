@@ -29,7 +29,7 @@
     <body>
         <div class="container">
 
-            <a href="{{ route('login') }}" class="title-container text-decoration-none"><h1 class="title">Memory<br>game</h1></a>
+        <h1 class="title title-container"><a href="{{ route('login') }}" class="text-decoration-none">Memory<br>game</a></h1>
 
             <div class="main-panel-container d-flex flex-column align-items-center">
                 {{ $slot }}

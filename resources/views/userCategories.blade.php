@@ -15,7 +15,7 @@
         <div class="categories-container">
             <div class="row">
                 @foreach($categories as $category)
-                <div class="col-2 mb-2">
+                <div class="col-4 col-lg-3 col-xl-2 mb-2">
                     <a class="text-decoration-none" href="{{ route('category', $category->id) }}">
                         <div class="one-category" style="background-image: url('{{asset($pictures[$i])}}');"></div>
                         <p class="category-title text-center mt-2">{{ $category->name }}</p>

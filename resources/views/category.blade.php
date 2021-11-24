@@ -14,7 +14,7 @@
             <div id="image_preview" class="row">
             
                 @foreach($category->picture()->get() as $picture)
-                <div class="col-2 mb-2">
+                <div class="col-4 col-lg-3 col-xl-2 mb-2">
                     <div class="add-category-img" style="background-image: url('{{$picture->link}}')"></div>
                     <p class="category-title text-center mt-2 text-uppercase">{{$picture->word}}</p>
                 </div>    
