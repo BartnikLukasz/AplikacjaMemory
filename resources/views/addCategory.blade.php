@@ -56,7 +56,7 @@
         </div>
         <div class="row justify-content-between align-items-center mt-3">
             <div class="col text-start">
-                    <input type='text' name="title" class="d-inline" pattern=".{1,20}" title="Nazwa kategorii może zawierać maksymalnie 20 znaków." required placeholder="Nazwa kategorii" @if($category != null) value="{{ $category->name }}" @endif/>
+                    <input type='text' id="categoryTitle"  name="title" class="d-inline" pattern=".{1,20}" title="Nazwa kategorii może zawierać maksymalnie 20 znaków." onchange="checkCategoryName(this)" required placeholder="Nazwa kategorii" @if($category != null) value="{{ $category->name }}" @endif/>
             </div>
             <div class="col text-end">
               <!--  <input type="submit" class="button d-inline add-category-button" name='submit_category' value="Dodaj Kategorię"/>-->
@@ -105,5 +105,18 @@
                         });
                    
                 }
+
+                var categoriesName = <?php echo json_encode($categoriesName); ?>;
+                var categoryName = $('#categoryTitle');
+
+                function checkCategoryName(){
+                    console.log(categoriesName);
+                    console.log(categoryName.val());
+                    if(categoriesName.includes(categoryName.val())){
+                        categoryName.val("");
+                        alert("Kategoria o podanej nazwie już istnieje");
+                    }
+                }
+
             </script>
 </x-app-layout>

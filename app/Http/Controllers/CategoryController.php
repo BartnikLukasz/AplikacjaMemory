@@ -31,16 +31,18 @@ class CategoryController extends Controller
     }
 
     public function add(){
+        $categoriesName = Category::all()->pluck('name')->toArray();
         $category = null;
-        return view('addCategory', compact('category'));
+        return view('addCategory', compact('category', 'categoriesName'));
     }
 
     public function edit($id){
+        $categoriesName = Category::all()->pluck('name')->toArray();
         $category = Category::find($id);
         if((Auth::user()->id != $category->author) && !Auth::user()->isAdmin()){
             return view('dashboard');
         }
-        return view('addCategory', compact('category'));
+        return view('addCategory', compact('category', 'categoriesName'));
     }
 
     public function reportCategory($categoryName){
