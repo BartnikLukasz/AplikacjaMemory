@@ -61,7 +61,8 @@ class GameController extends Controller
     }
 
     public function chooseDifficulty(){
-        return view(('chooseDifficulty'));
+        $points = Auth::user()->ranking_points;
+        return view(('chooseDifficulty'), compact('points'));
     }
 
     public function endGame(Request $request){

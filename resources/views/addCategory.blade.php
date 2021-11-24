@@ -110,8 +110,6 @@
                 var categoryName = $('#categoryTitle');
 
                 function checkCategoryName(){
-                    console.log(categoriesName);
-                    console.log(categoryName.val());
                     if(categoriesName.includes(categoryName.val())){
                         categoryName.val("");
                         alert("Kategoria o podanej nazwie już istnieje");

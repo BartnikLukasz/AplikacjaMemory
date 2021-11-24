@@ -39,9 +39,9 @@
     <script>
         $(document).ready(function(){
             
-           // if({{-- $chooseDifficulty->points --}} == 0){
-           //     $('.tutorial').css("display", "flex");
-          // } 
+            if({{ $points }} == 0){
+                $('.tutorial').css("display", "flex");
+           } 
             
         });
     </script>
