@@ -10,7 +10,7 @@
             <input id="oldNickname" type="text" class="@error('badCredentials') is-invalid @enderror mb" name="oldNickname" value="{{ old('oldNickname') }}" required autocomplete="oldNickname" autofocus><br>
             
             <label for="newNickname" class="mt-2">Nowa nazwa</label><br>
-            <input id="newNickname" type="text" class="@error('newNickname') is-invalid @enderror" name="newNickname" value="{{ old('newNickname') }}" required autocomplete="newNickname"><br>
+            <input id="newNickname" type="text" class="@error('newNickname') is-invalid @enderror" name="newNickname" value="{{ old('newNickname') }}" pattern=".{4,30}" title="Nazwa użytkownika może mieć od 4 do 30 znaków." required autocomplete="newNickname"><br>
 
             @error('newNickname')
                 <span class="invalid-feedback" role="alert">

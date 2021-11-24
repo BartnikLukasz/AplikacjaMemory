@@ -182,6 +182,7 @@ h3{
     overflow-y: scroll;
     max-height: 300px;
     width: 100%;
+    scrollbar-width: thin;
 }
 
 .ranking-list{
@@ -340,7 +341,7 @@ h3{
     padding: 10px 20px;
 }
 
-.main-panel#user-categories, .main-panel#add-category{
+.main-panel#user-categories, .main-panel#add-category, .main-panel#category{
     padding: 20px 60px;
 }
 
@@ -378,6 +379,7 @@ h3{
 .categories .categories-container, #add-category .categories-container, #category .categories-container{
     max-height: 340px;
     overflow-y: scroll;
+    scrollbar-width: thin;
 }
 
 .categories .row, #add-category .row, #category .row{
@@ -539,6 +541,7 @@ h3{
     max-height: 340px;
     overflow-y: scroll;
     text-align: center;
+    scrollbar-width: thin;
 }
 
 .control-panel .table-container::-webkit-scrollbar {
@@ -726,6 +729,34 @@ h3{
 .game-container #end-game-form .button{
     border: none;
 }
+
+/*------------------------------------
+-------Samouczek------------------------
+------------------------------------*/
+
+.tutorial{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: #fff;
+    border: 4px solid #12747A;
+    border-radius: 10px;
+    padding: 25px 35px;
+    box-shadow: 1px 4px 10px 2px rgba(0, 0, 0, 0.55);
+    flex-direction: column;
+    display: none;
+}
+
+.tutorial-close{
+    text-align: center;
+    width: fit-content;
+    margin: auto;
+    cursor: pointer;
+}
+
+
+
 /*------------------------------------
 -------Errors------------------------
 ------------------------------------*/

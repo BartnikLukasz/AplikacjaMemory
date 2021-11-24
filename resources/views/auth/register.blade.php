@@ -17,7 +17,7 @@
             @enderror
 
             <label for="nickname" class="mt-2">{{ __('Login') }}</label><br>
-            <input id="nickname" type="text" class="@error('nickname') is-invalid @enderror" name="nickname" value="{{ old('nickname') }}" pattern=".{4,30}" required autocomplete="nickname"><br>
+            <input id="nickname" type="text" class="@error('nickname') is-invalid @enderror" name="nickname" value="{{ old('nickname') }}" pattern=".{4,30}" title="Nazwa użytkownika może mieć od 4 do 30 znaków." required autocomplete="nickname"><br>
 
             @error('nickname')
                 <span class="invalid-feedback" role="alert">

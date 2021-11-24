@@ -87,7 +87,10 @@ $(function(){
     });
 
 
-
+    //Zamknięcie samouczka po naciśnięciu przycisku
+    $(document).on("click", ".tutorial-close", function(){
+        $('.tutorial').hide();
+    });
 
     
 

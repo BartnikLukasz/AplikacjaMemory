@@ -56,7 +56,7 @@
         </div>
         <div class="row justify-content-between align-items-center mt-3">
             <div class="col text-start">
-                    <input type='text' name="title" class="d-inline" pattern=".{1,20}" title="Nazwa kategorii może mieć maksymalnie 20 znaków." required placeholder="Nazwa kategorii" @if($category != null) value="{{ $category->name }}" @endif/>
+                    <input type='text' name="title" class="d-inline" pattern=".{1,20}" title="Nazwa kategorii może zawierać maksymalnie 20 znaków." required placeholder="Nazwa kategorii" @if($category != null) value="{{ $category->name }}" @endif/>
             </div>
             <div class="col text-end">
               <!--  <input type="submit" class="button d-inline add-category-button" name='submit_category' value="Dodaj Kategorię"/>-->
@@ -100,7 +100,7 @@
                                 var file=document.getElementById("upload_file"+j);
                                 console.log(event.target.files[0]);
                                 console.log(file.innerHTML)
-                                $('#image_preview').append("<div class='col-2 mb-2 upload_file"+(j-1)+"'><div class='add-category-img' style='background-image: url("+URL.createObjectURL(event.target.files[0])+")'></div><br><input type='text' name='words[]' pattern='.{1,15}' title='Nazwa obrazka powinna mieć maksymalnie 15 liter.' required placeholder='Tytuł obrazka' class='add-category-text'/></div>");
+                                $('#image_preview').append("<div class='col-2 mb-2 upload_file"+(j-1)+"'><div class='add-category-img' style='background-image: url("+URL.createObjectURL(event.target.files[0])+")'></div><br><input type='text' name='words[]' pattern='.{1,10}' title='Nazwa obrazka może zawierać maksymalnie 10 znaków.' required placeholder='Tytuł obrazka' class='add-category-text'/></div>");
                             } 
                         });
                    
