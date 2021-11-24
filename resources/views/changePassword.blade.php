@@ -24,6 +24,13 @@
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
+
+            <label for="newPassword-confirm" class="mt-2">{{ __('Powtórz nowe hasło') }}</label><br>
+            <input id="newPassword-confirm" type="password" name="newPassword-confirm" required><br>
+
+            <span class="newPassword-confirm-alert" role="alert">
+                    <strong>Powtórzone hasło nie zgadza się z nowym hasłem.</strong>
+            </span>
             
             <input type="submit" value="Zmień hasło" class="button mt-4">
 

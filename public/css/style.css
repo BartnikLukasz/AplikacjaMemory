@@ -242,6 +242,14 @@ h3{
     content: " pkt";
 }
 
+.newPassword-confirm-alert{
+    display: none;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: .875em;
+    color: #dc3545;
+}
+
 /*------------------------------------
 -------Statistics---------------------
 ------------------------------------*/
@@ -365,15 +373,15 @@ h3{
     border-radius: 20px;
 }
 
-.categories .col-2{
+.categories .col-xl-2{
     transition: all .2s ease-in-out;   
 }
 
-.categories .col-2:hover .one-category{
+.categories .col-xl-2:hover .one-category{
      opacity: 0.75;
 }
 
-.categories .col-2:hover .category-title{
+.categories .col-xl-2:hover .category-title{
     transform: translateY(-3px) scale(1.02);
 }
 

@@ -92,6 +92,15 @@ $(function(){
         $('.tutorial').hide();
     });
 
+
+    //Walidacja podczas procesu zmiany hasła
+    $(document).on("click", "input[value='Zmień hasło']", function(){
+        if($('#newPassword').val() != $('#newPassword-confirm').val() ){
+            $('.newPassword-confirm-alert').show();
+            return false;
+        }
+    });
+
     
 
     
