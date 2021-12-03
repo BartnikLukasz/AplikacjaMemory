@@ -51,15 +51,7 @@ class CategoryController extends Controller
     }
 
     public function addCategory(Request $request){
-        if(Auth::user()==null){
-            return view('login');
-        }
-
         $upload = $this->incoming_files();
-
-        if(!CategoryUtil::validateImagesSize($upload)){
-            return back()->withErrors(["picturesTooHeavy"=>__('validation.picturesTooHeavy')]);
-        }
 
         $category = CategoryUtil::getCategoryForRequest($request);
         if(!CategoryUtil::validateEmptyRequest($request, $category->id)){
