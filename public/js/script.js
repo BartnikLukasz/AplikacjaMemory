@@ -37,7 +37,7 @@ $(function(){
             if($.inArray(this.value, values) >= 0) {
                 submitAccept = 0;
                 alert("Nazwy obrazków nie mogą się powtarzać");
-                return false;
+                $(this).val("");
                 
             } else{
                 submitAccept++;
@@ -63,7 +63,7 @@ $(function(){
                     if($.inArray(this.value, values) >= 0) {
                         submitAccept = 0;
                         alert("Nazwy obrazków nie mogą się powtarzać");
-                        return false;
+                        $(this).val("");
                     } 
                 });
             }
