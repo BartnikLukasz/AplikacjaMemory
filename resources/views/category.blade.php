@@ -26,7 +26,7 @@
         <div class="category-buttons">
             <a class="button" href="{{ route('editCategory', $category->id) }}">
                 {{ __('Edytuj kategorię') }}</a>
-            <a class="button" href="{{ route('deleteCategory', $category->id) }}">
+            <a class="button" href="{{ route('deleteCategory', $category->id) }}" onclick="return confirm('Kategoria zostanie bezpowrotnie usunięta. Kontynuować?')">
                 {{ __('Usuń kategorię') }}</a>
         </div>
         

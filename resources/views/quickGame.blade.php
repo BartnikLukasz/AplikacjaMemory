@@ -7,7 +7,7 @@
         $word = "word";
     ?>
 <style>
-    .left-buttons{
+    .left-buttons, .user-button{
         display: none !important;
     }
 </style>
@@ -93,9 +93,12 @@
                         <input type="number" id="levelDifficultySend" name="levelDifficulty" value="{{ $level }}" hidden/>
                         <input type="number" id="multiplier" name="multiplier" value="{{ $multiplier }}" hidden/>
                         <input type="text" id="score" name="score" value="" hidden/>
-                        <p id="timeP">Czas gry: </p>
-                        <p id="numberOfMovesP">Liczba ruchów: </p>
-                        <p id="scoreP">Zdobyte punkty: </p>
+                        <p class="end-game-title">Czas gry</p>
+                        <p id="timeP"></p>
+                        <p class="end-game-title">Liczba ruchów</p>
+                        <p id="numberOfMovesP"></p>
+                        <p class="end-game-title">Zdobyte punkty</p>
+                        <p id="scoreP"></p>
                         <input type="submit" class="button d-inline add-category-button" name='submit_game' value="Zakończ"/>
                     </form>
                 </div>

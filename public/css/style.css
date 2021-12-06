@@ -395,9 +395,10 @@ h3{
 }
 
 .categories .categories-container, #add-category .categories-container, #category .categories-container{
-    max-height: 340px;
+    max-height: 345px;
     overflow-y: scroll;
     scrollbar-width: thin;
+    padding: 5px;
 }
 
 .categories .row, #add-category .row, #category .row{

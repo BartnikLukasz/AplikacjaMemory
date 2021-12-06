@@ -28,13 +28,17 @@ $(function(){
 
     /*Walidacja w trakcie dodawania kategorii */ 
     var submitButton = $('#add-category .add-category-button');
-    var values = [];
+    var valuesWords = [];
+    var valuesWordsEdit = [];
     var submitAccept = 0;
+    var imageNamesValidation = 0;
     $(document).on('click', '#add-category .add-category-button', function(){
 
-        //Sprawdzanie powtórzeń nazwy
+        //Sprawdzanie powtórzeń nazwy obrazków
         $('input[name="words[]"]').each(function(){
-            if($.inArray(this.value, values) >= 0) {
+            if( !$(this).val() ) {
+                imageNamesValidation = 1;
+            } else if($.inArray(this.value, valuesWords) >= 0) {
                 submitAccept = 0;
                 alert("Nazwy obrazków nie mogą się powtarzać");
                 $(this).val("");
@@ -42,25 +46,22 @@ $(function(){
             } else{
                 submitAccept++;
             }
-            values.push(this.value);
+            valuesWords.push(this.value);
         });
-        values = [];
+        valuesWords = [];
+        if (imageNamesValidation == 1) {
+            alert("Dodaj nazwy do wszystkich obrazków");
+            imageNamesValidation = 0;
+            return false;
+        }
 
-        //Sprawdzanie ilości obrazków
-        if($('.add-category-img').length < 10){
-            alert("Dodaj minimum 10 obrazków")
-            submitAccept = 0;
-        } else{
-            submitAccept++;
-        } 
-
-        //Sprawdzanie unikalności nazwy podczas edycji kategorii
+        //Sprawdzanie unikalności nazwy obrazków podczas edycji kategorii
         var titleLength = $('.category-title').length;
         $('.category-title').each(function(index){
-            values.push($(this).text());
+            valuesWordsEdit.push($(this).text());
             if(index === titleLength-1){
                 $('input[name="words[]"]').each(function(){
-                    if($.inArray(this.value, values) >= 0) {
+                    if($.inArray(this.value, valuesWordsEdit) >= 0) {
                         submitAccept = 0;
                         alert("Nazwy obrazków nie mogą się powtarzać");
                         $(this).val("");
@@ -68,14 +69,18 @@ $(function(){
                 });
             }
         });
-        values = [];
+        valuesWordsEdit = [];
 
-
+        //Sprawdzanie liczby obrazków
+        if($('.add-category-img').length < 10){
+            alert("Dodaj minimum 10 obrazków");
+            submitAccept = 0;
+        } else submitAccept++; 
+            
         if(submitAccept >= 2){
             submitButton.attr("type", "submit");
             submitAccept = 0;
         }
-
     });
 
     //Funkcja sprawdzająca podczas edycji kategorii czy usuwając zdjęcie nie zostanie mniej niż 10
@@ -87,7 +92,6 @@ $(function(){
     });
 
 
-    //Zamknięcie samouczka po naciśnięciu przycisku
     $(document).on("click", ".tutorial-close", function(){
         $('.tutorial').hide();
     });
