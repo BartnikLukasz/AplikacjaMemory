@@ -45,11 +45,6 @@ class CategoryController extends Controller
         return view('addCategory', compact('category', 'categoriesName'));
     }
 
-    public function reportCategory($categoryName){
-        Category::where('name', $categoryName)->update(['reported'=>1]);
-        return view("chooseDifficulty");
-    }
-
     public function addCategory(Request $request){
         $upload = $this->incoming_files();
 

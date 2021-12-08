@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function ranking()
     {
-        UserUtil::ranking();
+        //UserUtil::ranking(); //Włączenie ustawienia rankingu przy każdym wejściu do widoku rankingu
         $users = User::where('deleted', 0)->where('role_id', 1)->orderBy('position', 'asc')->get();
         return view('ranking', compact('users'));
     }

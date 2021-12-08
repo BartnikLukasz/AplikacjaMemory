@@ -82,6 +82,11 @@ class GameController extends Controller
         return view('dashboard');
     }
 
+    public function reportCategory($categoryName){
+        Category::where('name', $categoryName)->update(['reported'=>1]);
+        return $this->chooseDifficulty();
+    }
+
     public function playQuickGame(){
         $categories = Category::all()->toArray();
         $key = array_rand($categories);
