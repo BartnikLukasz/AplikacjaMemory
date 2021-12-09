@@ -37,6 +37,6 @@ class Handler extends ExceptionHandler
     //Działający ekran błędów, odkomentować do prezentacji
 
     public function render($request, Throwable $exception){
-        return response()->view('auth.login', [], 500);
+        return response()->view('errors.default', [], 500);
     }
 }

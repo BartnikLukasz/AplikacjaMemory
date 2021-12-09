@@ -19,11 +19,11 @@ Route::get('/', function () {
 
 Route::get('/', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['authDashboard'])->name('dashboard');
 
 Route::get('/dashboard', function () {
     return redirect('/');
-})->middleware(['auth'])->name('redirectFromDashboard');
+})->middleware(['authDashboard'])->name('redirectFromDashboard');
 
 Route::middleware('admin')->group(function () {
     Route::get('/control-panel', 'App\Http\Controllers\AdminController@create')->name('controlPanel');
