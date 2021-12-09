@@ -1,8 +1,14 @@
 <x-app-layout>
-    <div>
-        <h2>Wystąpił błąd</h2>
+<style>
+    .user-button{
+        display: none !important;
+    }
+</style>
+    <div class="main-panel">
+        <h2 class="text-center">Wystąpił błąd</h2>
+        <a class="back-button-container text-center" href="{{ route('login') }}">
+            <div class="back-button button">{{ __('Powrót') }}</div>
+        </a>
     </div>
-    <a class="btn btn-primary" href="{{ route('login') }}">
-        {{ __('Powrót do logowania') }}
-    </a>
+    
 </x-app-layuout>
