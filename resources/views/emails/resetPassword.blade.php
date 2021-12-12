@@ -41,7 +41,7 @@
         <div class="text-container w-50 d-block mx-auto">
             <p>Witaj, {{$nickname}}!</p>
             <p>Aby zresetować hasło kliknij w link: <a href="{{ $url }}">Odzyskaj hasło</a><p>
-            <p>Jeżeli nie to nie Ty poprosiłeś o zresetowanie hasła, zignoruj ten mail.</p>
+            <p>Jeżeli to nie Ty poprosiłeś o zresetowanie hasła, zignoruj ten mail.</p>
             <p>Pozdrawiamy, ekipa Memory Game.</p>
         </div>   
     </div>

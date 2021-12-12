@@ -35,8 +35,8 @@ class Handler extends ExceptionHandler
      * @return void
      */
     //Działający ekran błędów, odkomentować do prezentacji
-
+/*
     public function render($request, Throwable $exception){
         return response()->view('errors.default', [], 500);
-    }
+    }*/
 }

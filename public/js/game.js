@@ -12,6 +12,12 @@ $(function(){
     var gamePart = 1;
 
     $(document).ready(function(){
+        $('.game-card').each(function() {
+            $(this).css({"background": $(this).data("url"), 
+            "background-position": "center", 
+            "background-size": "cover", 
+            "background-repeat": "no-repeat"});
+        });
         if(diffucultLevel == 2){
             $(".word").css("bottom", "20px");
             $(".word h3").css("font-size", "1.6em");
@@ -52,7 +58,7 @@ $(function(){
                 if(active_card.data("url") != active_card_2.data("url")){
 
                     setTimeout(function(){
-                        hideCards(active_card, active_card_2);
+                        hideCards(active_card, active_card_2, gamePart);
                         active_card_2 = null;
                     }, 500);   
 
@@ -80,29 +86,26 @@ $(function(){
     });
 
     function gameTimer(){
-        if (seconds === 59){
-            minutes++;
-            seconds = 0;
-        } else seconds++;
-
+        if (seconds === 59){ minutes++; seconds = 0;}
+        else seconds++;
+        
         if (seconds < 10) $("#timer").text(minutes+":0"+seconds);
         else $("#timer").text(minutes+":"+seconds);
     }
 
     function addImageBackgroundtoCard(revealCard){
-        revealCard.css({"background": revealCard.data("url"), 
-        "background-position": "center", 
-        "background-size": "cover", 
-        "background-repeat": "no-repeat"});
+        revealCard.find(".game-card-hide").hide();
     }
 
-    function hideCards(card_1, card_2){
-        card_1.css("background", "#25EF39");
-        card_2.css("background", "#25EF39");
-        card_1.find('.word').hide();
-        card_2.find('.word').hide();
-        card_1.attr("reveal", "false");
-        card_2.attr("reveal", "false");
+    function hideCards(card_1, card_2, gamePart){
+        card_1.find(".game-card-hide").show();
+        card_2.find(".game-card-hide").show();
+        card_1.attr("reveal", "false").find('.word').hide();
+        card_2.attr("reveal", "false").find('.word').hide();
+        if(gamePart==3){ card_2.css({"background": card_2.data("url"), 
+            "background-position": "center", 
+            "background-size": "cover", 
+            "background-repeat": "no-repeat"}) };
     }
 
     function wordOnCardCenter(onlyWordCard){
@@ -123,7 +126,7 @@ $(function(){
     function nextGamePart(){
         gamePart++;
         $("#gamePart").text(gamePart);
-        $('.game-card').css("background", "#25EF39");
+        $('.game-card .game-card-hide').show();
         $('.game-card').attr("reveal", "false");
         $('.word').hide();
         complete_pairs = 0;

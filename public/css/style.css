@@ -670,7 +670,6 @@ h3{
     height: 100%;
     border-radius: 15px;
     box-shadow: 2px 4px 6px 2px rgba(0, 0, 0, 0.25);
-    background: #25EF39;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat; 
@@ -682,6 +681,19 @@ h3{
 }
 
 .game-container .game-card:not([reveal=true]):hover{
+    background: #23c533 !important;
+}
+
+.game-container .game-card-hide{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #25EF39;
+    border-radius: 15px;
+}
+
+.game-container .game-card-hide:hover{
     background: #23c533 !important;
 }
 

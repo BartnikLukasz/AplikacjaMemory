@@ -8,10 +8,10 @@
         <p class="mb-4">Łukasz Bartnik <br> Kacper Berliński</p>
 
         <h5 class="mb-1">{{ __('Kontakt') }}</h5>
-        <p class="mb-4">kacper.berlinski@pollub.edu.pl</p>
+        <p class="mb-4">aplikacja.memory@gmail.com</p>
 
         <h5 class="mb-1">{{ __('Ostatnia aktualizajca') }}</h5>
-        <p class="mb-4">07.10.2021</p>
+        <p class="mb-4">12.12.2021</p>
 
         <a class="back-button-container text-center" href="{{ route('settings') }}">
             <div class="back-button button">{{ __('Powrót') }}</div>
