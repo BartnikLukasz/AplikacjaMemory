@@ -49,6 +49,7 @@
                                 @for ($j = 0; $j < 3; $j++)
                                     <div class="col-4 p-3">
                                         <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')">
+                                            <div class="game-card-hide"></div>
                                             <div class="word"><h3>{{$pictures[$i][$word]}}</h3></div>
                                         </div>
                                     </div>
@@ -62,6 +63,7 @@
                                 @for ($j = 0; $j < 4; $j++)
                                     <div class="col-3 p-2">
                                         <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')">
+                                            <div class="game-card-hide"></div>
                                             <div class="word"><h3>{{$pictures[$i][$word]}}</h3></div>
                                         </div>
                                     </div>
@@ -75,6 +77,7 @@
                                 @for ($j = 0; $j < 5; $j++)
                                     <div class="col-20 p-1">
                                         <div class="game-card card-{{ $i }}" data-url="url('{{asset($pictures[$i][$link])}}')">
+                                            <div class="game-card-hide"></div>
                                             <div class="word"><h3>{{$pictures[$i][$word]}}</h3></div>
                                         </div>
                                     </div>
